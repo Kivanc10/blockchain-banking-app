@@ -23,7 +23,7 @@ async function main() {
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
   const Token = await ethers.getContractFactory("BankingApp");
-  const token = await Token.deploy();
+  const token = await Token.deploy("first message");
   await token.deployed();
 
   console.log("Token address:", token.address);
@@ -31,7 +31,7 @@ async function main() {
   // We also save the contract's artifacts and address in the frontend directory
   saveFrontendFiles(token);
 }
-
+// bu sayede deploy edilen contract ın abi(application binary interface frontende kaydediliyor)
 function saveFrontendFiles(token) {
   const fs = require("fs");
   const contractsDir = path.join(__dirname, "..", "frontend", "src", "contracts");
@@ -45,10 +45,10 @@ function saveFrontendFiles(token) {
     JSON.stringify({ Token: token.address }, undefined, 2)
   );
 
-  const TokenArtifact = artifacts.readArtifactSync("Token");
+  const TokenArtifact = artifacts.readArtifactSync("BankingApp");
 
   fs.writeFileSync(
-    path.join(contractsDir, "Token.json"),
+    path.join(contractsDir, "BankingApp.json"),
     JSON.stringify(TokenArtifact, null, 2)
   );
 }

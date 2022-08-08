@@ -1,7 +1,8 @@
 //SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
-// to deploy --> mpx hardhat compile
+// to compile --> npx hardhat compile
+// to deploy --> npx hardhat run scripts/deploy.js --network name
 contract BankingApp {
 
     string public msg;
@@ -15,6 +16,10 @@ contract BankingApp {
         string memory oldMsg = msg;
         msg = newmsg;
         emit msgChanged(oldMsg, msg);
+    }
+
+    function getMessage () public view returns (string memory) {
+        return msg;
     }
 
 }
