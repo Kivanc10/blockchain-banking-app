@@ -1,2 +1,2 @@
-.env
+#.env gizlilik için ama sonrasında uncomment yaparız
 /node_modules
