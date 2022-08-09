@@ -1,6 +1,9 @@
-import Web3 from "web3";
-const { ethereum } = window // import window.ethereum
-
+import Web3 from "web3"; // import window.ethereum
+import {
+    setAlert,
+    setGlobalState,
+} from "./store"
+const { ethereum } = window
 
 export const connectWallet = async () => {
     try {
@@ -8,10 +11,9 @@ export const connectWallet = async () => {
             return alert("please install metamask")
         }
         const accounts = await ethereum.request({ method: 'eth_requestAccounts' })
-        return accounts[0]
+        setGlobalState("connectedAccount", accounts[0]) // get account from metamask
     } catch (error) {
-        //setAlert(JSON.stringify(error), "red")
-        console.log(error.message)
+        setAlert(JSON.stringify(error), "red")
     }
 }
 
@@ -22,15 +24,15 @@ export const getCurrentWalletConnected = async () => {
                 method: "eth_accounts",
             })
             if (addrArr.length > 0) {
-                return addrArr[0];
+                setGlobalState("connectedAccount", addrArr[0])
             } else {
-                return "";
+                setGlobalState("connectedAccount", "")
             }
         } catch (error) {
-           console.log(error.message);
+            setAlert(JSON.stringify(error.message), "red")
         }
     } else {
-       console.log("You must install MetaMask, a virtual Ethereum wallet, in your browser");
-        return ""
+        setGlobalState("connectedAccount", "")
+        setAlert("You must install MetaMask, a virtual Ethereum wallet, in your browser", "red")
     }
 }
