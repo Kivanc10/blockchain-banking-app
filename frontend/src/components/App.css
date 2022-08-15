@@ -1,0 +1,49 @@
+.main {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.sub_main{
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-self: center;
+align-items: center;
+height: 550px;
+width: 35%;
+border-radius: 20px;
+background-color: rgba(255, 255, 255, 0.144);
+border-color: rgb(255, 0, 0);
+padding-top: 30px;
+margin-top: 20px;
+}
+
+.image_logo{
+  justify-content: center;
+  display: flex;
+  margin-top: -330px;
+  margin-bottom: -200px;
+  scale: 20%;
+}
+
+.textLogin{ 
+    text-align: center;
+    vertical-align: middle;
+    font-size: 250px;
+    font-family: Poppins;
+    line-height: auto;
+}
+
+form .submitButton{
+  display: inline-block;
+  cursor: pointer;
+  background-image: linear-gradient(to right, #f7797d 50%, #f7797d 50%, #f7797d);
+  background-position: 0%;
+  transition: 0.4s;
+  color: white;
+  font-weight: 700;
+}
+form .submitButton :hover{
+background-position: 100%;
+}

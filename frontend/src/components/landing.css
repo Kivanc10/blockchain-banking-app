@@ -1,0 +1,39 @@
+.content{
+    height: 3000px;
+    background: linear-gradient(45deg, #757f9a, #d7dde8);
+  }
+  
+.App{
+    background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+}
+.coloring{
+    display: flex;
+    justify-content: end;
+    padding: 200px;
+    color: rgba(255, 255, 255, 0.879);
+    align-self: flex-end;    
+    border-block-width: 200px;
+    
+}
+.direction{
+    display : flex;
+    flex-direction : row;
+}
+
+.roboto{
+    font-family: 'Roboto', sans-serif;
+    justify-content : "center"!important;
+    flex-grow : 6;
+}
+
+.inter{
+    font-family: 'Inter', sans-serif;
+}
+
+.coloring :hover{
+
+    background: #4c4494d1;
+    border-radius: 20px;
+    transition: 0.4s;
+    box-shadow: 0px 0px 30px 8px #4c44949e;
+}
