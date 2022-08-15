@@ -1,11 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@700&display=swap');
+body{
+    background-image: url(./raw/background.jpg);
+    background-repeat: cover;
+}
 .content{
     height: 3000px;
     background: linear-gradient(45deg, #757f9a, #d7dde8);
   }
   
 .App{
-    background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+   background-color: rgb(0, 0, 0, 0.4);
+   
+    
 }
+.App > .container{
+    display: flex;
+    align-items: center!important;
+}
+.hName{
+    margin-left: 5px;
+    color: #BE913F;
+    font-family: 'Arima Madurai', cursive;
+    
+}
+.navbarYazi{
+    padding-top: 5px!important;
+}
+
+.navbarBtn{
+    width: 75px;
+    height: 50px;
+    
+}
+.mText{
+    margin-left: 2px;
+    font-size: x-small!important;
+}
+.test{
+    color: black!important;
+}
+
 .coloring{
     display: flex;
     justify-content: end;
@@ -23,13 +57,14 @@
 .roboto{
     font-family: 'Roboto', sans-serif;
     justify-content : "center"!important;
-    flex-grow : 6;
 }
 
 .inter{
     font-family: 'Inter', sans-serif;
 }
-
+.img-fluid{
+    width: 20%!important;
+}
 .coloring :hover{
 
     background: #4c4494d1;
