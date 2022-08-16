@@ -1,16 +1,20 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+//import "../intertech_coin_project/Inheritum.sol";
 
-contract NewContract {
-
+contract NewContract {  
+   IERC20 public token;
+   address owner = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
+    // define transaction struct
     struct Transaction {
         uint256 timestamp;
         address sender;
         address receiver;
         uint256 amount;
     }
-
+    // define person struct
       struct Person {
         string name;
         uint age;
@@ -23,10 +27,6 @@ contract NewContract {
         HaveParent parentInfo;
       }
 
-      /*
-        fonksiyonları aynı hesap ile çağırırsak , kısıtlamalara maruz kalmayız. Çocuğun hesabını parent görebilir.
-      */
-
     // çocuk objesinin parentı hakkında bilgi edinme alt objesi (hasParent : true, parentAddr : 0x.......)
       struct HaveParent {
           bool have;
@@ -35,7 +35,8 @@ contract NewContract {
     // debug için eventler başka eventler yazılcak
       event SentMoney(address from,address to,string childName,uint amount); //
       event BalanceGot(address owner,string child);
-
+      event InheritumSent(address from,address to,uint amount);
+        event allowanceTest(address recipient,uint amount);
     // persona ait transactionlar
       mapping(address => Transaction[]) personTransactions;
 
@@ -52,8 +53,9 @@ contract NewContract {
       Person[] persons;
 
     // msg.value ekleyebilmek için payable yapıldı
-        constructor() payable {
-
+        constructor(address _token) public payable {
+            token = IERC20(_token);
+            //owner = token.getOwner();
         }
 
     // para gönderilince persona transaction ekleme (direk çağırılmaz)
@@ -116,12 +118,28 @@ contract NewContract {
       function getTranscationHistory() public view returns (Transaction[] memory) { // public
           return personTransactions[msg.sender];
       }
+    // child a göre transaction history getir
+      function getTranscationHistoryForChild() public view returns(Transaction [] memory) {
+          return childTransactions[msg.sender];
+      }
 
 
 
       // normal person ekleme fonk. (mehmet,55) gibi
-
-      function addPerson(string memory _name,uint _age) public userAlreadyExist returns (Person memory) {
+/*
+          before execute this function , you should set something in frontend by owner address;
+          - call approve func as owner to allow the user to spend tokens
+          - if the tokens will be sent to the user , then user can execute this function
+          - so , we execute some functions before user call this function. (allowance cannot be 0 (user))
+          token.approve(user_address,100000000000000000000);
+          uint allowanceAfter = token.allowance(owner,msg.sender);
+          allowanceAfter == 100000000000000000000 (should be)
+          ------------------------------------------
+           after executing function , owner(admin) transfer money to the user in frontend.
+            transfer(user_address,amount) 
+*/
+      function addPerson(string memory _name,uint _age) public userAlreadyExist checkAllowance(100000000000000000000) returns (Person memory) {
+          require(msg.sender != owner,"You're admin !!!");
           Person storage personPointer = personList[msg.sender];
           personPointer.name = _name;
           personPointer.age = _age;
@@ -134,8 +152,17 @@ contract NewContract {
           personPointer.myAddress = msg.sender;
           Person memory person_instance = personPointer;
           persons.push(person_instance);
+         
+          //emit InheritumSent(owner,msg.sender,100000000000000000000);
+         // tokens will be transferred by owner in fronted....
+          
           return person_instance;
       }
+
+        modifier checkAllowance(uint amount) { // >= işlem yapmak için
+        require(token.allowance(owner, msg.sender) >= amount, "allowance error , owner should increase your allowance");
+        _;
+    }
 
     /* çocuk ekleme ve normal accounta ekleme 2 aşamada yapılıyor
         bu ilk fonku, çocuk ekleme fonku.
@@ -305,6 +332,18 @@ contract NewContract {
 
     }
 
+    // send tokens to child
+    // bunu çağıran user in balance ı en az amount kadar olmalı.
+    function sendTokenToChild(address _to,uint _amount) public checkBalance(_amount) {
+        token.transfer(_to,_amount);
+    }
+    
+
+    modifier checkBalance (uint _amount)  {
+        require(token.balanceOf(msg.sender) >= _amount);
+        _;
+    }
+
     // person olarak (msg.sender) ın hesabının olup olmadığını kontrol eder
 
     /*modifier HasAnAccount() {
@@ -328,5 +367,10 @@ contract NewContract {
         return msg.sender.balance;
     }
 
+    function getBalanceOfInheritumToken() public view returns (uint256) {
+        return token.balanceOf(msg.sender);
+    }
+
+   
 }
 
