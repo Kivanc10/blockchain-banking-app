@@ -7,7 +7,7 @@ import chart from './raw/Charts Section.png';
 import Button from 'react-bootstrap/Button';
 import metamask from './raw/metamask-icon.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMoneyBillTransfer, faChartSimple } from '@fortawesome/free-solid-svg-icons'
+import { faMoneyBillTransfer, faChartSimple, faBitcoinSign, faBuildingColumns, faPersonBreastfeeding, faHandHoldingDollar} from '@fortawesome/free-solid-svg-icons'
 <link href="//db.onlinewebfonts.com/c/9dc59b82721662bb26b8afb510dc29c8?family=Arima+Madurai" rel="stylesheet" type="text/css" />
 
 
@@ -96,7 +96,7 @@ function App() {
         <div class="col-3">
           <div class="card" style={{ width: '18rem;' }}>
             <div class="card-body">
-              <h5 class="card-title fa-3x"><FontAwesomeIcon icon={faMoneyBillTransfer} /></h5>
+              <h5 class="card-title fa-3x"><FontAwesomeIcon className='ServicesIcon' icon={faMoneyBillTransfer} /></h5>
               <h6 class="card-title mb-2 ">Transfer</h6>
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec placerat, odio sed elementum porttitor, lectus lacus consectetur purus, eget eleifend lacus turpis a lorem.</p>
             </div>
@@ -105,7 +105,7 @@ function App() {
         <div class="col-3">
           <div class="card" style={{ width: '18rem;' }}>
             <div class="card-body">
-              <h5 class="card-title fa-3x"><FontAwesomeIcon icon={faMoneyBillTransfer} /></h5>
+              <h5 class="card-title fa-3x"><FontAwesomeIcon className='ServicesIcon' icon={faHandHoldingDollar} /></h5>
               <h6 class="card-title mb-2 ">Withdraws</h6>
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec placerat, odio sed elementum porttitor, lectus lacus consectetur purus, eget eleifend lacus turpis a lorem.</p>
             </div>
@@ -114,7 +114,7 @@ function App() {
         <div class="col-3">
           <div class="card" style={{ width: '18rem;' }}>
             <div class="card-body">
-              <h5 class="card-title fa-3x"><FontAwesomeIcon icon={faMoneyBillTransfer} /></h5>
+              <h5 class="card-title fa-3x"><FontAwesomeIcon className='ServicesIcon' icon={faBitcoinSign} /></h5>
               <h6 class="card-title mb-2 ">Purchase</h6>
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec placerat, odio sed elementum porttitor, lectus lacus consectetur purus, eget eleifend lacus turpis a lorem.</p>
             </div>
@@ -128,7 +128,7 @@ function App() {
         <div class="col-3">
           <div class="card" style={{ width: '18rem;' }}>
             <div class="card-body">
-              <h5 class="card-title fa-3x"><FontAwesomeIcon icon={faMoneyBillTransfer} /></h5>
+              <h5 class="card-title fa-3x"><FontAwesomeIcon className='ServicesIcon' icon={faPersonBreastfeeding} /></h5>
               <h6 class="card-title mb-2 ">Inheritance Transactions</h6>
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec placerat, odio sed elementum porttitor, lectus lacus consectetur purus, eget eleifend lacus turpis a lorem.</p>
             </div>
@@ -137,7 +137,7 @@ function App() {
         <div class="col-3">
           <div class="card" style={{ width: '18rem;' }}>
             <div class="card-body">
-              <h5 class="card-title fa-3x"><FontAwesomeIcon icon={faMoneyBillTransfer} /></h5>
+              <h5 class="card-title fa-3x"><FontAwesomeIcon className='ServicesIcon' icon={faBuildingColumns} /></h5>
               <h6 class="card-title mb-2 ">Bank Statement</h6>
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec placerat, odio sed elementum porttitor, lectus lacus consectetur purus, eget eleifend lacus turpis a lorem.</p>
             </div>
@@ -146,7 +146,7 @@ function App() {
         <div class="col-3">
           <div class="card" style={{ width: '18rem;' }}>
             <div class="card-body">
-              <h5 class="card-title fa-3x"><FontAwesomeIcon icon={faChartSimple} /></h5>
+              <h5 class="card-title fa-3x"><FontAwesomeIcon className='ServicesIcon' icon={faChartSimple} /></h5>
               <h6 class="card-title mb-2 ">Instantaneous Financial Analyses</h6>
               <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec placerat, odio sed elementum porttitor, lectus lacus consectetur purus, eget eleifend lacus turpis a lorem.</p>
             </div>
@@ -155,9 +155,9 @@ function App() {
       </div>
       {/* Services Section End */}
       {/* News Section Start */}
-      <div class="row justify-content-center text-center container-fluid">
+      <div class="row justify-content-center text-center container-fluid" style={{ marginTop:'75px' }}>
         <div class="col-8">
-          <h1 style={{ color: 'blue' }}>Who are <span style={{ color: 'purple' }}>we ?</span></h1>
+          <h1 style={{ color: 'blue' }}>Agenda & News</h1>
         </div>
       </div>
       <div class="row justify-content-center text-center container-fluid">

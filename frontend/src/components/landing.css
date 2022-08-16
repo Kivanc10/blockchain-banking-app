@@ -72,3 +72,6 @@ body{
     transition: 0.4s;
     box-shadow: 0px 0px 30px 8px #4c44949e;
 }
+.ServicesIcon{
+    color: rgb(153, 153, 255);
+}
