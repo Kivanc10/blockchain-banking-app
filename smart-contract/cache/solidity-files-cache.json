@@ -37,8 +37,8 @@
       ]
     },
     "C:\\Users\\Kivanc\\blockchain_intertech\\blockchain-banking-app\\smart-contract\\contracts\\Banking.sol": {
-      "lastModificationDate": 1660663589206,
-      "contentHash": "a5cfab466eb2f3904c02e0d5dad5ff80",
+      "lastModificationDate": 1660721508925,
+      "contentHash": "0af9824f7a3f62ce36b9900541a2d959",
       "sourceName": "contracts/Banking.sol",
       "solcConfig": {
         "version": "0.8.9",

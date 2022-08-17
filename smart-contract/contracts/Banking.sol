@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-//import "../intertech_coin_project/Inheritum.sol";
+
 
 contract NewContract {  
    IERC20 public token;
@@ -44,7 +44,7 @@ contract NewContract {
       // person listeleri
       mapping(address => Person) personList;
       // child listeleri
-      mapping(address => Person) childList;
+      mapping(address => Person) childList; //
 
     // balancelar
       mapping(address => uint) balances;
@@ -53,7 +53,7 @@ contract NewContract {
       Person[] persons;
 
     // msg.value ekleyebilmek için payable yapıldı
-        constructor(address _token) public payable {
+        constructor(address _token) public payable { // inherştum token adresi koyulacak
             token = IERC20(_token);
             //owner = token.getOwner();
         }
@@ -278,8 +278,7 @@ contract NewContract {
         else{
             Person memory emptyPerson;
             return (emptyPerson,0);
-        }
-        
+        }      
     }
 
     // adrese göre çocuk getiren kod
@@ -334,7 +333,7 @@ contract NewContract {
 
     // send tokens to child
     // bunu çağıran user in balance ı en az amount kadar olmalı.
-    function sendTokenToChild(address _to,uint _amount) public checkBalance(_amount) {
+    function sendTokenToChild(address _to,uint _amount) public checkBalance(_amount) isAdult(personList[msg.sender].isLimited) {
         token.transfer(_to,_amount);
     }
     
