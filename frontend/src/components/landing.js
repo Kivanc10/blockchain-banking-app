@@ -93,14 +93,14 @@ function App() {
       {/* Navbar End */}
       {/* Mini Title Start */}
       <div className='container-fluid d-flex justify-content-center' style={{ marginTop: '6em' }}>
-        <div className='justify-content-center' style={{ fontSize: '1.4em' }}>
+        <div className='justify-content-center' style={{ fontSize: '1.4em', marginTop:'2em'}}>
           Blockchain investment app for financier
         </div>
       </div>
       {/* Mini Title End */}
 
       {/* Main Section Start */}
-      <div className='container-fluid d-flex justify-content-center'>
+      <div className='container-fluid d-flex justify-content-center' style={{marginTop: '2em'}}>
         <div className='col-4 col-md-4'>
           <img className='w-100 h-100'
             src={chart}
