@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@700&display=swap');
+
+.body{
+    background-image: url(./raw/background.jpg);
+    background-size: cover;
+    
+    height: 100vh!important;
+}
+
+.yazi{
+    font-size: 2em;
+}
+
+body,html{
+    height: 100vh;
+    width: 100%;
+}
+.form{
+border-radius: 20px;
+height: 60px;
+width: 300px;
+}
+
+.hName{
+    margin-left: 5px;
+    color: #BE913F;
+    font-family: 'Arima Madurai', cursive;
+}
+
+.submit{
+    border: none;
+    font-family: 'Inter', sans-serif;
+    text-align-last: center!important;
+    font-size: 2em;
+}
+.submit:hover{
+    border: none;
+}
+.logo{
+    width: 9em!important;
+}
+.cBox{
+    float: center!important;
+}
+.buttons:hover{
+    box-shadow: 2px 3px 3px #9E9E9E;
+}
+.inter{
+    font-family: 'Inter', sans-serif;
+}
+.textshadow:hover{
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3)!important;
+}
