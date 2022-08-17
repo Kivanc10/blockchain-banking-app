@@ -13,7 +13,7 @@ import Register from "./components/register";
 function App() {   
   return (  
     <div>
-      <Landing/>
+      <Dashboard/>
 
     </div>
   );
