@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@700&display=swap');
 body{
     background-image: url(./raw/background.jpg);
-    background-repeat: cover;
+    
+    
 }
 .content{
     height: 3000px;
@@ -23,6 +24,10 @@ body{
     font-family: 'Arima Madurai', cursive;
     
 }
+.footerText{
+    color: #BE913F;
+    font-family: 'Arima Madurai', cursive;
+}
 .navbarYazi{
     padding-top: 5px!important;
 }
@@ -36,10 +41,17 @@ body{
     margin-left: 2px;
     font-size: x-small!important;
 }
-.test{
+.TeamsBorder{
+    background-color: rgba(0,0, 0, 0)!important;
+    border: none!important;
+    color: white!important;
+}
+.teamsHeader{
     color: black!important;
 }
-
+.card{
+    border-radius: 20px!important;
+}
 .coloring{
     display: flex;
     justify-content: end;
@@ -74,4 +86,11 @@ body{
 }
 .ServicesIcon{
     color: rgb(153, 153, 255);
+}
+.newsP{
+    width: 28em!important;
+    height: 16em!important;
+}
+.footerLogo{
+    width: 12em!important;
 }
