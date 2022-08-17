@@ -1,62 +1,96 @@
-import React, { Component } from 'react'
-import 'bootstrap/dist/css/bootstrap.css';
-import Container from 'react-bootstrap/Container';
-import { Form, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
+import {
+  AppstoreOutlined,
+  BarChartOutlined,
+  CloudOutlined,
+  ShopOutlined,
+  TeamOutlined,
+  UploadOutlined,
+  UserOutlined,
+  VideoCameraOutlined,
+} from '@ant-design/icons';
+import { Layout, Menu } from 'antd';
+import React from 'react';
+import logo from './raw/logoveyazi.png';
+import './dashboard.css';
+const { Header, Content, Footer, Sider } = Layout;
 
-export default class dashboard extends Component {
-  render() {
-    return (
-      <div><div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
-      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-    
-        <span class="fs-4">Sidebar</span>
-      </a>
-      <ul class="nav nav-pills flex-column mb-auto">
-        <li class="nav-item">
-          <a href="#" class="nav-link active" aria-current="page">
-           
-            Home
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link link-dark">
-           
-            Dashboard
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link link-dark">
-           
-            Orders
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link link-dark">
-            
-            Products
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link link-dark">
-       
-            Customers
-          </a>
-        </li>
-      </ul>
-      <div class="dropdown">
-        <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2"></img>
-          <strong>mdo</strong>
-        </a>
-        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-          <li><a class="dropdown-item" href="#">New project...</a></li>
-          <li><a class="dropdown-item" href="#">Settings</a></li>
-          <li><a class="dropdown-item" href="#">Profile</a></li>
-          <li><a class="dropdown-item" href="#">Sign out</a></li>
-        </ul>
-      </div>
-    </div></div>
-    )
-  }
-}
+const App = () => (
+  <Layout hasSider>
+    <Sider
+      style={{
+        overflow: 'auto',
+        height: '100vh',
+        position: 'fixed',
+        left: 0,
+        top: 0,
+        bottom: 0,
+      }}
+    >
+      <div className="logo" />
+      <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}> 
+        <img className='img-fluid test' src={logo} alt='HeaderImage'></img>
+        <Menu.Item>
+          asdasfsdf
+          </Menu.Item>
+          <Menu.Item>
+          asdasfsdf
+          </Menu.Item> 
+          <Menu.Item>
+          asdasfsdf
+          </Menu.Item> 
+      </Menu>
+    </Sider>
+    <Layout
+      className="site-layout"
+      style={{
+        marginLeft: 200,
+      }}
+    >
+      <Header
+        className="site-layout-background"
+        style={{
+          padding: 0,
+        }}
+      />
+      <Content
+        style={{
+          margin: '24px 16px 0',
+          overflow: 'initial',
+        }}
+      >
+        <div
+          className="site-layout-background"
+          style={{
+            padding: 24,
+            textAlign: 'center',
+          }}
+        >
+          <p>long content</p>
+          {
+            // indicates very long content
+            Array.from(
+              {
+                length: 100,
+              },
+              (_, index) => (
+                <React.Fragment key={index}>
+                  {index % 20 === 0 && index ? 'more' : '...'}
+                  <br />
+                </React.Fragment>
+              ),
+            )
+          }
+        </div>
+      </Content>
+      <Footer
+        style={{
+          textAlign: 'center',
+        }}
+      >
+        Ant Design ©2018 Created by Ant UED
+      </Footer>
+    </Layout>
+  </Layout>
+);
+
+export default App;
