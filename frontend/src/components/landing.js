@@ -76,7 +76,7 @@ function App() {
             >
               <Nav.Link href="#action1">Home</Nav.Link>
               <Nav.Link href="#action2">About</Nav.Link>
-              <Nav.Link href="#action2">Services</Nav.Link>
+              <Nav.Link href="#3">Services</Nav.Link>
               <Nav.Link href="#action2">News</Nav.Link>
               <Nav.Link href="#action2">Teams</Nav.Link>
               <Nav.Link href="#action2">Contact</Nav.Link>
@@ -131,7 +131,7 @@ function App() {
       </div>
       {/* Who are we Section End */}
       {/* Services Section Start */}
-      <div class="row justify-content-center text-center container-fluid">
+      <div class="row justify-content-center text-center container-fluid" id='3'>
         <div class="col-12" style={{ marginTop: '75px' }}>
           <h1 style={{ color: 'blue' }}>Our Services</h1>
         </div>

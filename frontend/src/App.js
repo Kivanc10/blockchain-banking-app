@@ -5,13 +5,16 @@ import Formm from "./components/formm";
 import Landing from "./components/landing";
 import Dashboard from './components/dashboard';
 import AdminLogin from './components/adminLogin'
+import Register from "./components/register";
+
 
 
 
 function App() {   
   return (  
     <div>
-      <AdminLogin/>
+      <Landing/>
+
     </div>
   );
 }
