@@ -1,12 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "./Inheritum.sol";
 
-
-contract NewContract {  
+contract BankingApp {  
    IERC20 public token;
-   address owner = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
+   address owner;
     // define transaction struct
     struct Transaction {
         uint256 timestamp;
@@ -42,7 +41,7 @@ contract NewContract {
 
       mapping(address => Transaction[]) childTransactions;
       // person listeleri
-      mapping(address => Person) personList;
+      mapping(address => Person) public personList;
       // child listeleri
       mapping(address => Person) childList; //
 
@@ -53,9 +52,10 @@ contract NewContract {
       Person[] persons;
 
     // msg.value ekleyebilmek için payable yapıldı
-        constructor(address _token) public payable { // inherştum token adresi koyulacak
-            token = IERC20(_token);
-            //owner = token.getOwner();
+        constructor(address _token,address _owner) public payable {
+            token = IERC20(_token); // Inheritum(_token)
+            owner = _owner;
+            
         }
 
     // para gönderilince persona transaction ekleme (direk çağırılmaz)
@@ -124,6 +124,11 @@ contract NewContract {
       }
 
 
+    modifier isNotAdmin() {
+        require(msg.sender != owner,"You're admin");
+        _;
+    }
+
 
       // normal person ekleme fonk. (mehmet,55) gibi
 /*
@@ -138,7 +143,7 @@ contract NewContract {
            after executing function , owner(admin) transfer money to the user in frontend.
             transfer(user_address,amount) 
 */
-      function addPerson(string memory _name,uint _age) public userAlreadyExist checkAllowance(100000000000000000000) returns (Person memory) {
+      function addPerson(string memory _name,uint _age) public userAlreadyExist /*checkAllowance(100000000000000000000)*/ returns (Person memory) {
           require(msg.sender != owner,"You're admin !!!");
           Person storage personPointer = personList[msg.sender];
           personPointer.name = _name;
@@ -239,7 +244,7 @@ contract NewContract {
           Person[] memory children = new Person[](persons.length);
         uint count = 0;
           for (uint i= 0;i < persons.length;i++) {  
-              if (persons[i].isLimited && persons[i].myAddress != address(0) && persons[i].parentInfo.have == true) {
+              if (persons[i].isLimited && persons[i].myAddress != address(0) && persons[i].myAddress != owner) {
                   children[count] = persons[i];
                   count++;
               }
@@ -315,13 +320,24 @@ contract NewContract {
     }
 
     // çocuğa veya herhangi bir adrese kod gönderen kod , işlem sonucu msg.senderin hesabına işlenir.
-    function sendEtherMyChild(address payable _to,uint amount) public payable isAdult(personList[msg.sender].isLimited) {
+    /*
+        yeni anlayışa göre ->
+         - ether gönderen user a ödül olarak tokenımzıdan verelim.
+         - tokenı owner atmalı ondan dolayı öncesinde reactta bazı değişiklikler yapılmalı. ( approve(bool) , allowance(uint))
+         - msg.value lazım (göndermek için)
+         - sonra transferFrom metodu çağır.
+
+    */
+    function sendEther(address payable _to,uint amount) public payable isAdult(personList[msg.sender].isLimited) checkAllowance(amount) { // amount kadar token göndermek için kontrol yapılıyor.(admin izin vermeli)        
         //require(personList[msg.sender].isLimited == false,"You have a limited account");
          (bool sent, bytes memory data) = _to.call{value: amount}(""); // msg.value
          require(sent, "Failed to send Ether");
          if(keccak256(bytes(personList[msg.sender].name)) != "") { // if msg.sender is a person
              addTransactionToPerson(_to,amount,true); 
              addTransactionToChild(_to,msg.sender,amount,false); // add transaction to child
+             // send token to the user
+            // token.transferFrom(owner,msg.sender,amount); // send token to the user 
+            // owner will transfer token to the user ---> transfer(user_address,_amount,{from : owner)
          }else if (keccak256(bytes(childList[msg.sender].name)) != "") {
              addTransactionToPerson(_to,amount,false); 
              addTransactionToChild(_to,msg.sender,amount,true);
@@ -331,8 +347,9 @@ contract NewContract {
 
     }
 
+
     // send tokens to child
-    // bunu çağıran user in balance ı en az amount kadar olmalı.
+    // bunu çağıran user in balance ı en az amount kadar olmalı. // hata veriyor
     function sendTokenToChild(address _to,uint _amount) public checkBalance(_amount) isAdult(personList[msg.sender].isLimited) {
         token.transfer(_to,_amount);
     }

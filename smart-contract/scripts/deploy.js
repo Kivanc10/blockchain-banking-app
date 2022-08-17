@@ -22,19 +22,25 @@ async function main() {
 
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
-  const Token = await ethers.getContractFactory("BankingApp");
-  const token = await Token.deploy("first message");
+  /*const Token = await ethers.getContractFactory("BankingApp");
+  const token = await Token.deploy();
+  await token.deployed();*/
+  const Token = await ethers.getContractFactory("Inheritum");
+  const token = await Token.deploy();
   await token.deployed();
-
   console.log("Token address:", token.address);
+  const BankContract = await ethers.getContractFactory("BankingApp");
+  const bankContract = await BankContract.deploy(token.address,token.getOwner()); // give contract address as argument
+  await bankContract.deployed();
 
   // We also save the contract's artifacts and address in the frontend directory
-  saveFrontendFiles(token);
+  saveFrontendFiles(token,1);
+  saveFrontendFiles(bankContract,2);
 }
 // bu sayede deploy edilen contract ın abi(application binary interface frontende kaydediliyor)
-function saveFrontendFiles(token) {
+function saveFrontendFiles(token,num) {
   const fs = require("fs");
-  const contractsDir = path.join(__dirname, "../", "frontend", "src", "contracts");
+  const contractsDir = path.join(__dirname, "..","..", "frontend", "src", "contracts");
 
   if (!fs.existsSync(contractsDir)) {
     fs.mkdirSync(contractsDir);
@@ -47,10 +53,19 @@ function saveFrontendFiles(token) {
 
   const TokenArtifact = artifacts.readArtifactSync("BankingApp");
 
-  fs.writeFileSync(
-    path.join(contractsDir, "BankingApp.json"),
-    JSON.stringify(TokenArtifact, null, 2)
-  );
+    if (num == 1) {
+      fs.writeFileSync(    
+        path.join(contractsDir, "Inheritum.json"),
+        JSON.stringify(TokenArtifact, null, 2)
+      );
+    }else if (num == 2) {
+      fs.writeFileSync(    
+        path.join(contractsDir, "BankingApp.json"),
+        JSON.stringify(TokenArtifact, null, 2)
+      );
+    }
+
+ 
 }
 
 main()
