@@ -1,76 +1,62 @@
-import {
-    AppstoreOutlined,
-    ContainerOutlined,
-    DesktopOutlined,
-    MailOutlined,
-    MenuFoldOutlined,
-    MenuUnfoldOutlined,
-    PieChartOutlined,
-  } from '@ant-design/icons';
-  import { Button, Menu } from 'antd';
-  import React, { useState } from 'react';
-  import './dashboard.css';
-  
-  function getItem(label, key, icon, children, type) {
-    return {
-      key,
-      icon,
-      children,
-      label,
-      type,
-    };
-  }
-  
-  const items = [
-    getItem('Option 1', '1', <PieChartOutlined />),
-    getItem('Option 2', '2', <DesktopOutlined />),
-    getItem('Option 3', '3', <ContainerOutlined />),
-    getItem('Navigation One', 'sub1', <MailOutlined />, [
-      getItem('Option 5', '5'),
-      getItem('Option 6', '6'),
-      getItem('Option 7', '7'),
-      getItem('Option 8', '8'),
-    ]),
-    getItem('Navigation Two', 'sub2', <AppstoreOutlined />, [
-      getItem('Option 9', '9'),
-      getItem('Option 10', '10'),
-      getItem('Submenu', 'sub3', null, [getItem('Option 11', '11'), getItem('Option 12', '12')]),
-    ]),
-  ];
-  
-  const App = () => {
-    const [collapsed, setCollapsed] = useState(false);
-  
-    const toggleCollapsed = () => {
-      setCollapsed(!collapsed);
-    };
-  
+import React, { Component } from 'react'
+import 'bootstrap/dist/css/bootstrap.css';
+import Container from 'react-bootstrap/Container';
+import { Form, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+
+export default class dashboard extends Component {
+  render() {
     return (
-      <div
-        style={{
-          width: 256,   
-        }}
-        className='test'
-      >
-        <Button
-          type="primary"
-          onClick={toggleCollapsed}
-          style={{
-            marginBottom: 16,
-          }}
-        >
-          {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-        </Button>
-        <Menu
-          defaultSelectedKeys={['1']}
-          defaultOpenKeys={['sub1']}
-          mode="inline"
-          theme="dark"
-          inlineCollapsed={collapsed}
-          items={items}
-        />
+      <div><div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+    
+        <span class="fs-4">Sidebar</span>
+      </a>
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+          <a href="#" class="nav-link active" aria-current="page">
+           
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link link-dark">
+           
+            Dashboard
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link link-dark">
+           
+            Orders
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link link-dark">
+            
+            Products
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link link-dark">
+       
+            Customers
+          </a>
+        </li>
+      </ul>
+      <div class="dropdown">
+        <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2"></img>
+          <strong>mdo</strong>
+        </a>
+        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+          <li><a class="dropdown-item" href="#">New project...</a></li>
+          <li><a class="dropdown-item" href="#">Settings</a></li>
+          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li><a class="dropdown-item" href="#">Sign out</a></li>
+        </ul>
       </div>
-    );
-  };
-  
-  export default App;
+    </div></div>
+    )
+  }
+}

@@ -8,8 +8,6 @@ import AdminLogin from './components/adminLogin'
 import Register from "./components/register";
 
 
-
-
 function App() {   
   return (  
     <div>

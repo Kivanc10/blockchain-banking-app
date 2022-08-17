@@ -32,19 +32,19 @@ function App() {
                     <input
                         type="text"
                         className="form-control"
-                        placeholder="First name"
+                        placeholder="Enter your first name"
                     />
                 </div>
                 <div className="mb-3">
                     <label>Last name</label>
-                    <input type="text" className="form-control" placeholder="Last name" />
+                    <input type="text" className="form-control" placeholder="Enter your last name" />
                 </div>
                 <div className="mb-3">
                     <label>Email address</label>
                     <input
                         type="email"
                         className="form-control"
-                        placeholder="Enter email"
+                        placeholder="Enter your email"
                         />
                 </div>
                 <div className="mb-3">
@@ -60,7 +60,7 @@ function App() {
                     <input
                         type="text"
                         className="form-control"
-                        placeholder="Enter ID number"
+                        placeholder="Enter your ID number"
                         />
                 </div>
                 <div className="mb-3 date">
