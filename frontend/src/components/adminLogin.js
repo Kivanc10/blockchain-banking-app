@@ -33,7 +33,7 @@ function App() {
                  <Form.Control className='form buttons' type="password" placeholder="Password" />
                </Form.Group>
                <Form.Group className="mb-4" controlId="formBasicCheckbox">
-                 <Form.Check className='cBox' type="checkbox"  label="Remember me" />
+                     <Form.Check className='cBox d-flex'  type="checkbox"  label="Remember me" />
                </Form.Group>
                <Button variant="submit inter textshadow"  type="submit">
                  Lets Go <FontAwesomeIcon className='ServicesIcon' style={{color:'black'}} icon={faArrowRightToBracket} />

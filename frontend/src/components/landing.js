@@ -312,7 +312,7 @@ function App() {
         <div class="col-2">
           <div class="card TeamsBorder" style={{ width: '18rem;' }}>
           <img className='card-img-top'
-                src={aysenB}
+                src={SinejanY}
                 alt='icerik'></img>
             <div class="card-body">
               <h6 class="card-title mb-2 teamsHeader">Sinejan Yıldırım</h6>

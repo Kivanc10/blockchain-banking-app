@@ -39,9 +39,7 @@ width: 300px;
 .logo{
     width: 9em!important;
 }
-.cBox{
-    float: center!important;
-}
+
 .buttons:hover{
     box-shadow: 2px 3px 3px #9E9E9E;
 }
