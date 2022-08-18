@@ -59,33 +59,57 @@ const App = () => (
     >
       <Content className='body'>
 
-
+        <MDBRow className='header d-flex justify-content-between'>
+          <MDBCol md='3' className='top1'>
+            sdfsdfsdf
+          </MDBCol>
+          <MDBCol md='5' className='top2'>
+            sgdfgdfgd
+          </MDBCol>
+          <MDBCol md='3' className='top3'>
+            asdfsdfs
+          </MDBCol>
+        </MDBRow>
 
         <MDBRow className='test3 d-flex justify-content-evenly'>
           <MDBCol md='4'>
             <MDBCol className='TopLine'> asdasd</MDBCol>
-            <MDBRow style={{marginTop:'15px'}} className='justify-content-between'>
-              <MDBCol md='5 box2' >
-                md="6"
+            <MDBRow style={{ marginTop: '15px' }} className='test4 justify-content-between'>
+              <MDBCol md='5 box' >
+                3
               </MDBCol>
-              <MDBCol md='5 box3'>
-                md="6"
+              <MDBCol md='5 box2'>
+                4
               </MDBCol>
             </MDBRow>
           </MDBCol>
           <MDBCol md='4 box4'>
             <MDBCol className='TopLine'> asdasd</MDBCol>
-            <MDBRow style={{marginTop:'15px'}} className='test4 justify-content-between'>
+            <MDBRow style={{ marginTop: '15px' }} className='test4 justify-content-between'>
               <MDBCol md='5 box' >
-                md="6"
+                3
               </MDBCol>
               <MDBCol md='5 box2'>
-                md="6"
+                4
               </MDBCol>
             </MDBRow>
           </MDBCol>
-          <MDBCol md='3 ' >
-            md="4"
+
+          <MDBCol md='3 box5' >
+            5
+          </MDBCol>
+
+
+
+
+          <MDBCol md='4' style={{ marginTop: '15px' }}>
+            <MDBCol className='TopLine'> asdasd</MDBCol>
+          </MDBCol>
+          <MDBCol md='4 ' style={{ marginTop: '15px' }}>
+            <MDBCol className='TopLine'> asdasd</MDBCol>
+          </MDBCol>
+          <MDBCol md='3 box5' style={{ marginTop: '15px' }} >
+            6
           </MDBCol>
         </MDBRow>
 
