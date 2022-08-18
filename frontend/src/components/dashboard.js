@@ -9,12 +9,18 @@ import {
   VideoCameraOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
+import Container from 'react-bootstrap/Container';
+import { MDBRow, MDBCol } from 'mdb-react-ui-kit';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import React from 'react';
 import logo from './raw/logoveyazi.png';
 import './dashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faWallet, faGlobe, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 const { Header, Content, Footer, Sider } = Layout;
+
+
 
 const App = () => (
   <Layout hasSider>
@@ -53,36 +59,37 @@ const App = () => (
     >
       <Content className='body'>
 
-        <div className='container-fluid d-flex justify-content-center' style={{ marginTop: '150px' }}>
-          <div className='container-fluid d-flex col-8 col-md-8'>
-            <div className='col-6 col-md-6 box'>
-              1
-            </div>
-            <div className='col-6 col-md-6 box2'>
-              2
-            </div>
-          </div>
-          <div className='container-fluid d-flex col-4 col-md-4'>
-              <div className='box3'>
-                123
-              </div>
-          </div>
-        </div>
-        <div className='container-fluid d-flex justify-content-center' style={{ marginTop: '10px' }}>
-          <div className='container-fluid d-flex col-8 col-md-8'>
-            <div className='col-6 col-md-6 box'>
-              1
-            </div>
-            <div className='col-6 col-md-6 box2'>
-              2
-            </div>
-          </div>
-          <div className='container-fluid d-flex col-4 col-md-4'>
-              <div className='box3'>
-                123
-              </div>
-          </div>
-        </div>
+
+
+        <MDBRow className='test3 d-flex justify-content-evenly'>
+          <MDBCol md='4'>
+            <MDBCol className='TopLine'> asdasd</MDBCol>
+            <MDBRow style={{marginTop:'15px'}} className='justify-content-between'>
+              <MDBCol md='5 box2' >
+                md="6"
+              </MDBCol>
+              <MDBCol md='5 box3'>
+                md="6"
+              </MDBCol>
+            </MDBRow>
+          </MDBCol>
+          <MDBCol md='4 box4'>
+            <MDBCol className='TopLine'> asdasd</MDBCol>
+            <MDBRow style={{marginTop:'15px'}} className='test4 justify-content-between'>
+              <MDBCol md='5 box' >
+                md="6"
+              </MDBCol>
+              <MDBCol md='5 box2'>
+                md="6"
+              </MDBCol>
+            </MDBRow>
+          </MDBCol>
+          <MDBCol md='3 ' >
+            md="4"
+          </MDBCol>
+        </MDBRow>
+
+
 
 
 
