@@ -64,7 +64,7 @@ const App = () => (
         <MDBRow className='test3 d-flex justify-content-evenly'>
           <MDBCol md='4'>
             <MDBCol className='TopLine'> asdasd</MDBCol>
-            <MDBRow style={{marginTop:'15px'}} className='justify-content-between'>
+            <MDBRow style={{marginTop:'15px'}} className='justify-content-evenly'>
               <MDBCol md='5 box2' >
                 md="6"
               </MDBCol>
