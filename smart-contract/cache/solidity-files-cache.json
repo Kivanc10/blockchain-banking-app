@@ -1,264 +1,9 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "C:\\blockchainApps\\blockchain-banking-app\\contracts\\Banking.sol": {
-      "lastModificationDate": 1659963013546,
-      "contentHash": "0bde990f4f927a8994ef77552a629b14",
-      "sourceName": "contracts/Banking.sol",
-      "solcConfig": {
-        "version": "0.8.9",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "BankingApp"
-      ]
-    },
-    "C:\\Users\\Kivanc\\blockchain_intertech\\blockchain-banking-app\\smart-contract\\contracts\\Banking.sol": {
-      "lastModificationDate": 1660721508925,
-      "contentHash": "0af9824f7a3f62ce36b9900541a2d959",
-      "sourceName": "contracts/Banking.sol",
-      "solcConfig": {
-        "version": "0.8.9",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/token/ERC20/IERC20.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "NewContract"
-      ]
-    },
-    "C:\\Users\\Kivanc\\blockchain_intertech\\blockchain-banking-app\\smart-contract\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\IERC20.sol": {
-      "lastModificationDate": 1660662326658,
-      "contentHash": "ad7c2d0af148c8f9f097d65deeb4da6b",
-      "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
-      "solcConfig": {
-        "version": "0.8.9",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IERC20"
-      ]
-    },
-    "C:\\Users\\Kivanc\\blockchain_intertech\\blockchain-banking-app\\smart-contract\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\extensions\\IERC20Metadata.sol": {
-      "lastModificationDate": 1660662326659,
-      "contentHash": "909ab67fc5c25033fe6cd364f8c056f9",
-      "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
-      "solcConfig": {
-        "version": "0.8.9",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../IERC20.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IERC20Metadata"
-      ]
-    },
-    "C:\\Users\\Kivanc\\blockchain_intertech\\blockchain-banking-app\\smart-contract\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\ERC20.sol": {
-      "lastModificationDate": 1660662326596,
-      "contentHash": "af7bd64e1cfefbf6cb07f2adc1a25392",
-      "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
-      "solcConfig": {
-        "version": "0.8.9",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./IERC20.sol",
-        "./extensions/IERC20Metadata.sol",
-        "../../utils/Context.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "ERC20"
-      ]
-    },
-    "C:\\Users\\Kivanc\\blockchain_intertech\\blockchain-banking-app\\smart-contract\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
-      "lastModificationDate": 1660662326562,
-      "contentHash": "5f2c5c4b6af2dd4551027144797bc8be",
-      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
-      "solcConfig": {
-        "version": "0.8.9",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "Context"
-      ]
-    },
-    "C:\\Users\\Kivanc\\blockchain_intertech\\blockchain-banking-app\\smart-contract\\contracts\\Inheritum.sol": {
-      "lastModificationDate": 1660663536762,
-      "contentHash": "466c2a076122151143bf419681220848",
-      "sourceName": "contracts/Inheritum.sol",
-      "solcConfig": {
-        "version": "0.8.9",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/token/ERC20/ERC20.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "Inheritum"
-      ]
-    },
-    "C:\\blockchain-banking-app\\smart-contract\\contracts\\Banking.sol": {
-      "lastModificationDate": 1660764615789,
-      "contentHash": "673fb57ca5ef0810a985ad7ec41e4476",
+    "C:\\staj\\blockchain-banking-app\\smart-contract\\contracts\\Banking.sol": {
+      "lastModificationDate": 1660824308261,
+      "contentHash": "00303a9e8d4c968c476a28bedc8d7434",
       "sourceName": "contracts/Banking.sol",
       "solcConfig": {
         "version": "0.8.9",
@@ -285,7 +30,7 @@
       },
       "imports": [
         "@openzeppelin/contracts/token/ERC20/IERC20.sol",
-        "./Inheritum.sol"
+        "./Inheritium.sol"
       ],
       "versionPragmas": [
         "^0.8.0"
@@ -294,8 +39,8 @@
         "BankingApp"
       ]
     },
-    "C:\\blockchain-banking-app\\smart-contract\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\IERC20.sol": {
-      "lastModificationDate": 1660764696537,
+    "C:\\staj\\blockchain-banking-app\\smart-contract\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\IERC20.sol": {
+      "lastModificationDate": 1660818674579,
       "contentHash": "ad7c2d0af148c8f9f097d65deeb4da6b",
       "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
       "solcConfig": {
@@ -329,10 +74,10 @@
         "IERC20"
       ]
     },
-    "C:\\blockchain-banking-app\\smart-contract\\contracts\\Inheritum.sol": {
-      "lastModificationDate": 1660764592500,
-      "contentHash": "466c2a076122151143bf419681220848",
-      "sourceName": "contracts/Inheritum.sol",
+    "C:\\staj\\blockchain-banking-app\\smart-contract\\contracts\\Inheritium.sol": {
+      "lastModificationDate": 1660818418028,
+      "contentHash": "7c9460e488f037c4ce112df430423a40",
+      "sourceName": "contracts/Inheritium.sol",
       "solcConfig": {
         "version": "0.8.9",
         "settings": {
@@ -363,11 +108,11 @@
         "^0.8.0"
       ],
       "artifacts": [
-        "Inheritum"
+        "Inheritium"
       ]
     },
-    "C:\\blockchain-banking-app\\smart-contract\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\ERC20.sol": {
-      "lastModificationDate": 1660764696067,
+    "C:\\staj\\blockchain-banking-app\\smart-contract\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\ERC20.sol": {
+      "lastModificationDate": 1660818674152,
       "contentHash": "af7bd64e1cfefbf6cb07f2adc1a25392",
       "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
       "solcConfig": {
@@ -405,8 +150,8 @@
         "ERC20"
       ]
     },
-    "C:\\blockchain-banking-app\\smart-contract\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\extensions\\IERC20Metadata.sol": {
-      "lastModificationDate": 1660764696549,
+    "C:\\staj\\blockchain-banking-app\\smart-contract\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\extensions\\IERC20Metadata.sol": {
+      "lastModificationDate": 1660818674598,
       "contentHash": "909ab67fc5c25033fe6cd364f8c056f9",
       "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
       "solcConfig": {
@@ -442,8 +187,8 @@
         "IERC20Metadata"
       ]
     },
-    "C:\\blockchain-banking-app\\smart-contract\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
-      "lastModificationDate": 1660764695777,
+    "C:\\staj\\blockchain-banking-app\\smart-contract\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
+      "lastModificationDate": 1660818673894,
       "contentHash": "5f2c5c4b6af2dd4551027144797bc8be",
       "sourceName": "@openzeppelin/contracts/utils/Context.sol",
       "solcConfig": {

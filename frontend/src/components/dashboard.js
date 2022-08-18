@@ -9,17 +9,18 @@ import {
   VideoCameraOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
+import Container from 'react-bootstrap/Container';
+import { MDBRow, MDBCol } from 'mdb-react-ui-kit';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import React from 'react';
 import logo from './raw/logoveyazi.png';
 import './dashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faWallet, faGlobe, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
-import { Col, Divider, Row } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
-const style = {
-  background: '#0092ff',
-  padding: '8px 0',
-};
+
+
 
 const App = () => (
   <Layout hasSider>
@@ -58,28 +59,37 @@ const App = () => (
     >
       <Content className='body'>
 
-        <Divider orientation="left">Responsive</Divider>
-        <Row
-          gutter={{
-            xs: 8,
-            sm: 16,
-            md: 24,
-            lg: 32,
-          }}
-        >
-          <Col className="gutter-row" span={6}>
-            <div style={style}>col-6</div>
-          </Col>
-          <Col className="gutter-row" span={6}>
-            <div style={style}>col-6</div>
-          </Col>
-          <Col className="gutter-row" span={6}>
-            <div style={style}>col-6</div>
-          </Col>
-          <Col className="gutter-row" span={6}>
-            <div style={style}>col-6</div>
-          </Col>
-        </Row>
+
+
+        <MDBRow className='test3 d-flex justify-content-evenly'>
+          <MDBCol md='4'>
+            <MDBCol className='TopLine'> asdasd</MDBCol>
+            <MDBRow style={{marginTop:'15px'}} className='justify-content-between'>
+              <MDBCol md='5 box2' >
+                md="6"
+              </MDBCol>
+              <MDBCol md='5 box3'>
+                md="6"
+              </MDBCol>
+            </MDBRow>
+          </MDBCol>
+          <MDBCol md='4 box4'>
+            <MDBCol className='TopLine'> asdasd</MDBCol>
+            <MDBRow style={{marginTop:'15px'}} className='test4 justify-content-between'>
+              <MDBCol md='5 box' >
+                md="6"
+              </MDBCol>
+              <MDBCol md='5 box2'>
+                md="6"
+              </MDBCol>
+            </MDBRow>
+          </MDBCol>
+          <MDBCol md='3 ' >
+            md="4"
+          </MDBCol>
+        </MDBRow>
+
+
 
 
 
