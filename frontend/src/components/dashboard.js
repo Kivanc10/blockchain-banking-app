@@ -12,11 +12,13 @@ import { Layout, Menu } from 'antd';
 import React from 'react';
 import logo from './raw/logoveyazi.png';
 import './dashboard.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faHome,faWallet,faGlobe,faArrowRightFromBracket} from '@fortawesome/free-solid-svg-icons';
 const { Header, Content, Footer, Sider } = Layout;
 
 const App = () => (
   <Layout hasSider>
-    <Sider
+    <Sider className='menu'
       style={{
         overflow: 'auto',
         height: '100vh',
@@ -27,16 +29,19 @@ const App = () => (
       }}
     >
       <div className="logo" />
-      <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}> 
+      <Menu className='menu' defaultSelectedKeys={['4']}> 
         <img className='img-fluid test' src={logo} alt='HeaderImage'></img>
-        <Menu.Item>
-          asdasfsdf
+        <Menu.Item className='item'>
+          <FontAwesomeIcon className='ServiceIcon' icon={faHome}/> Dashboard
           </Menu.Item>
-          <Menu.Item>
-          asdasfsdf
+          <Menu.Item className='item' >
+          <FontAwesomeIcon className='ServiceIcon fa-light' icon={faWallet}/> My Wallet
           </Menu.Item> 
-          <Menu.Item>
-          asdasfsdf
+          <Menu.Item className='item' >
+          <FontAwesomeIcon className='ServiceIcon' icon={faGlobe}/> Transactions
+          </Menu.Item>
+          <Menu.Item className='item' >
+          <FontAwesomeIcon className='ServiceIcon' icon={faArrowRightFromBracket}/> Signout
           </Menu.Item> 
       </Menu>
     </Sider>
@@ -45,50 +50,14 @@ const App = () => (
       style={{
         marginLeft: 200,
       }}
-    >
-      <Header
-        className="site-layout-background"
+    > 
+      <Content className = 'body'
         style={{
-          padding: 0,
-        }}
-      />
-      <Content
-        style={{
-          margin: '24px 16px 0',
+         
           overflow: 'initial',
         }}
       >
-        <div
-          className="site-layout-background"
-          style={{
-            padding: 24,
-            textAlign: 'center',
-          }}
-        >
-          <p>long content</p>
-          {
-            // indicates very long content
-            Array.from(
-              {
-                length: 100,
-              },
-              (_, index) => (
-                <React.Fragment key={index}>
-                  {index % 20 === 0 && index ? 'more' : '...'}
-                  <br />
-                </React.Fragment>
-              ),
-            )
-          }
-        </div>
       </Content>
-      <Footer
-        style={{
-          textAlign: 'center',
-        }}
-      >
-        Ant Design ©2018 Created by Ant UED
-      </Footer>
     </Layout>
   </Layout>
 );
