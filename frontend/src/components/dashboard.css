@@ -55,6 +55,10 @@
     
     height: 200px;
 }
+.box5{
+    background-color: purple;
+    border-radius: 20px;
+}
 .test2{
     background-color: green!important;
     padding-bottom: 1000px;
@@ -63,7 +67,7 @@
 }
 .test3{
    width: 100%!important;
-   margin-top: 150px;
+   margin-top: 25px;
    --bs-gutter-x : 0em!important;
 }
 .test4{
@@ -71,6 +75,23 @@
  }
 .TopLine{
     background-color: yellow;
-    height: 200px;
+    height: 300px;
     border-radius: 20px;
+}
+.header{
+    margin-top: 20px;
+    width: 100%;
+    height: 40px;
+}
+.top1{
+    background-color: red;
+    border-radius: 20px;
+}
+.top3{
+    background-color: blue;
+    border-radius: 20px;
+}
+.top2{
+    background-color: green;
+    border-radius: 20px;    
 }
