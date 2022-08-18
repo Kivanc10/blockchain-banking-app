@@ -28,3 +28,26 @@
     width:8em!important;
     margin-left: 38px;
 }
+.ant-menu-item-selected{
+    background-color: #7172a5!important;
+ }
+.box{
+    background-color: white!important;
+    padding: 100px!important;
+    border-radius: 20px;
+}
+.box2{
+    background-color: blue!important;
+    padding: 100px!important;
+    border-radius: 20px;
+}
+.box3{
+    background-color: green!important;
+    padding: 100px!important;
+    border-radius: 20px;
+}
+.test2{
+    background-color: green!important;
+    padding-bottom: 1000px;
+    border-radius: 20px;
+}

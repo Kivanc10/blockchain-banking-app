@@ -13,7 +13,7 @@ import React from 'react';
 import logo from './raw/logoveyazi.png';
 import './dashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faHome,faWallet,faGlobe,faArrowRightFromBracket} from '@fortawesome/free-solid-svg-icons';
+import { faHome, faWallet, faGlobe, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 const { Header, Content, Footer, Sider } = Layout;
 
 const App = () => (
@@ -29,20 +29,20 @@ const App = () => (
       }}
     >
       <div className="logo" />
-      <Menu className='menu' defaultSelectedKeys={['4']}> 
+      <Menu className='menu' defaultSelectedKeys={['4']}>
         <img className='img-fluid test' src={logo} alt='HeaderImage'></img>
         <Menu.Item className='item'>
-          <FontAwesomeIcon className='ServiceIcon' icon={faHome}/> Dashboard
-          </Menu.Item>
-          <Menu.Item className='item' >
-          <FontAwesomeIcon className='ServiceIcon fa-light' icon={faWallet}/> My Wallet
-          </Menu.Item> 
-          <Menu.Item className='item' >
-          <FontAwesomeIcon className='ServiceIcon' icon={faGlobe}/> Transactions
-          </Menu.Item>
-          <Menu.Item className='item' >
-          <FontAwesomeIcon className='ServiceIcon' icon={faArrowRightFromBracket}/> Signout
-          </Menu.Item> 
+          <FontAwesomeIcon className='ServiceIcon' icon={faHome} /> Dashboard
+        </Menu.Item>
+        <Menu.Item className='item' >
+          <FontAwesomeIcon className='ServiceIcon fa-light' icon={faWallet} /> My Wallet
+        </Menu.Item>
+        <Menu.Item className='item' >
+          <FontAwesomeIcon className='ServiceIcon' icon={faGlobe} /> Transactions
+        </Menu.Item>
+        <Menu.Item className='item' >
+          <FontAwesomeIcon className='ServiceIcon' icon={faArrowRightFromBracket} /> Signout
+        </Menu.Item>
       </Menu>
     </Sider>
     <Layout
@@ -50,13 +50,43 @@ const App = () => (
       style={{
         marginLeft: 200,
       }}
-    > 
-      <Content className = 'body'
-        style={{
-         
-          overflow: 'initial',
-        }}
-      >
+    >
+      <Content className='body'>
+
+        <div className='container-fluid d-flex justify-content-center' style={{ marginTop: '150px' }}>
+          <div className='container-fluid d-flex col-8 col-md-8'>
+            <div className='col-6 col-md-6 box'>
+              1
+            </div>
+            <div className='col-6 col-md-6 box2'>
+              2
+            </div>
+          </div>
+          <div className='container-fluid d-flex col-4 col-md-4'>
+              <div className='box3'>
+                123
+              </div>
+          </div>
+        </div>
+        <div className='container-fluid d-flex justify-content-center' style={{ marginTop: '10px' }}>
+          <div className='container-fluid d-flex col-8 col-md-8'>
+            <div className='col-6 col-md-6 box'>
+              1
+            </div>
+            <div className='col-6 col-md-6 box2'>
+              2
+            </div>
+          </div>
+          <div className='container-fluid d-flex col-4 col-md-4'>
+              <div className='box3'>
+                123
+              </div>
+          </div>
+        </div>
+
+
+
+
       </Content>
     </Layout>
   </Layout>
