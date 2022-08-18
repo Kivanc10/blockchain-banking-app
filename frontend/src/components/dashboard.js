@@ -14,7 +14,12 @@ import logo from './raw/logoveyazi.png';
 import './dashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faWallet, faGlobe, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { Col, Divider, Row } from 'antd';
 const { Header, Content, Footer, Sider } = Layout;
+const style = {
+  background: '#0092ff',
+  padding: '8px 0',
+};
 
 const App = () => (
   <Layout hasSider>
@@ -53,36 +58,28 @@ const App = () => (
     >
       <Content className='body'>
 
-        <div className='container-fluid d-flex justify-content-center' style={{ marginTop: '150px' }}>
-          <div className='container-fluid d-flex col-8 col-md-8'>
-            <div className='col-6 col-md-6 box'>
-              1
-            </div>
-            <div className='col-6 col-md-6 box2'>
-              2
-            </div>
-          </div>
-          <div className='container-fluid d-flex col-4 col-md-4'>
-              <div className='box3'>
-                123
-              </div>
-          </div>
-        </div>
-        <div className='container-fluid d-flex justify-content-center' style={{ marginTop: '10px' }}>
-          <div className='container-fluid d-flex col-8 col-md-8'>
-            <div className='col-6 col-md-6 box'>
-              1
-            </div>
-            <div className='col-6 col-md-6 box2'>
-              2
-            </div>
-          </div>
-          <div className='container-fluid d-flex col-4 col-md-4'>
-              <div className='box3'>
-                123
-              </div>
-          </div>
-        </div>
+        <Divider orientation="left">Responsive</Divider>
+        <Row
+          gutter={{
+            xs: 8,
+            sm: 16,
+            md: 24,
+            lg: 32,
+          }}
+        >
+          <Col className="gutter-row" span={6}>
+            <div style={style}>col-6</div>
+          </Col>
+          <Col className="gutter-row" span={6}>
+            <div style={style}>col-6</div>
+          </Col>
+          <Col className="gutter-row" span={6}>
+            <div style={style}>col-6</div>
+          </Col>
+          <Col className="gutter-row" span={6}>
+            <div style={style}>col-6</div>
+          </Col>
+        </Row>
 
 
 

@@ -27,6 +27,8 @@
 .test{
     width:8em!important;
     margin-left: 38px;
+    margin-top: 10px;
+    padding-bottom: 30px;
 }
 .ant-menu-item-selected{
     background-color: #7172a5!important;
@@ -35,19 +37,26 @@
     background-color: white!important;
     padding: 100px!important;
     border-radius: 20px;
+    height: 100px!important;
 }
 .box2{
     background-color: blue!important;
     padding: 100px!important;
     border-radius: 20px;
+    height: 100px!important;
 }
 .box3{
     background-color: green!important;
-    padding: 100px!important;
+    padding: 100px;
     border-radius: 20px;
+    height: 200px!important;
 }
 .test2{
     background-color: green!important;
     padding-bottom: 1000px;
     border-radius: 20px;
+}
+.test3{
+    margin-top: -100px!important;
+    margin-right: 1px!important;
 }
