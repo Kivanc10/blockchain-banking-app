@@ -23,6 +23,11 @@ contract BankingApp {
         address[] parents;
         uint256 createdTime;
     }
+    /*
+        - transfer metodu çağırıldığı zaman 
+        -
+        -
+    */
 
     // debug için eventler başka eventler yazılcak
     event SentMoney(address from, address to, string childName, uint256 amount); //
@@ -32,13 +37,13 @@ contract BankingApp {
 
     // persona ait transactionlar
     mapping(address => Transaction[]) transactions;
-    mapping(address => Person) public userList;
+    mapping(address => Person) userList; // getUser fonk old için private yapıldı
 
     // child ve normal person depolama yeri (db gibi düşün)
     Person[] persons;
 
     // msg.value ekleyebilmek için payable yapıldı
-    constructor(address _token, address _owner) payable {
+    constructor(address _token, address _owner) payable { // (inheritum adres,owner adres)
         token = IERC20(_token); // Inheritum(_token)
         owner = _owner;
     }
@@ -104,6 +109,7 @@ contract BankingApp {
             transfer(user_address,amount) 
 */
     function addPerson(
+        // ok
         string memory _name,
         uint256 _age,
         bool isLimited
@@ -133,6 +139,7 @@ contract BankingApp {
     }
 
     modifier checkAllowance(uint256 amount) {
+        // ok
         // >= işlem yapmak için
         require(
             token.allowance(owner, msg.sender) >= amount,
@@ -148,11 +155,12 @@ contract BankingApp {
      ardından findTheChild fonk ile persons arrayına pushlanan child personun kopyası ve indeksi alınır
      en son bu person objesi userListe eklenir ve chidl objesine çocuğun adresi eklenir
     */
-    function linkAccount(address childAccount)
-        public
-        HasAnAccountForChild(childAccount)
-        returns (Person memory)
-    {
+    function linkAccount(
+        address childAccount,
+        string memory _name,
+        uint256 _age
+    ) public HasAnAccountForChild(childAccount) isNotAdmin isRegistered returns (Person memory) {
+        // ok (duplicate olabiliyor)
         // childAccountAlreadyExist(childAccount)
         /*Person memory chidlInstance = addChild(_name,_age);
         chidlInstance.myAddress = childAccount; // myAddress will not write on storage just write on copy
@@ -160,6 +168,7 @@ contract BankingApp {
         //(Person memory childInstance,uint index) = findTheChild(_name);
 
         //userList[msg.sender].child[index] = childAccount; // write on the storage
+        // duplicate error hatası önlemek(birden fazla aynı adreste child) için child ı userListe eklemeliyiz  /// yeni comment
 
         Person storage person = userList[msg.sender];
         //uint len = person.child.length;
@@ -167,7 +176,35 @@ contract BankingApp {
         else{
             person.child.push(childAccount);
         }*/
-        person.children.push(childAccount);
+        person.children.push(childAccount); // link child to user
+        userList[msg.sender] = person; // eklendi (güncel person listeye eklendi)
+
+        (Person memory persInstance, uint256 index) = findThePerson(
+            person.name,
+            false
+        ); // get person's index in persons array (güncellemek için)
+
+        persons[index].children.push(childAccount); // genel db de update edilmeli (person objesi)
+
+        userList[childAccount] = Person(
+            _name,
+            _age,
+            0,
+            true,
+            new address[](0),
+            new address[](1), // 1 ebeveyn (max) (degisebilir)
+            block.timestamp
+        );
+        userList[childAccount].parents[0] = msg.sender; // child -> parent
+        /*
+         string name;
+        uint256 age;
+        uint256 balance;
+        bool isLimited;
+        address[] children;
+        address[] parents;
+        uint256 createdTime;
+        */
 
         Person memory parentIns = userList[msg.sender];
         return parentIns;
@@ -181,7 +218,7 @@ contract BankingApp {
 
     // güncelle child list kullan
     // persons içinden child accountları bulan kod
-    function getChildren() public view returns (Person[] memory) {
+    /* function getChildren() public view returns (Person[] memory) {
         Person[] memory children = new Person[](persons.length);
         uint256 count = 0;
         for (uint256 i = 0; i < persons.length; i++) {
@@ -191,6 +228,16 @@ contract BankingApp {
             }
         }
         return children;
+    }*/
+    function getChildren() public view returns (address[] memory) {
+        Person memory currentPerson = getUser(msg.sender);
+        address[] memory childAccounts = new address[](
+            currentPerson.children.length
+        );
+        for (uint256 i = 0; i < currentPerson.children.length; i++) {
+            childAccounts[i] = currentPerson.children[i];
+        }
+        return childAccounts;
     }
 
     /*
@@ -200,27 +247,62 @@ contract BankingApp {
         bool returnErr argümanı ise hata döndürmeyi seçmeyi sağlar. (Başka fonk içinde bu fonk çağırılırsa revert edip kodun patlamasını önlemek için
         returErr false yapılır ve boş person struct döndürülür.
     */
+    // isme göre arama
     function findTheChild(string memory _name, bool returnErr)
         public
         view
         returns (Person memory, uint256 index)
     {
-        for (uint256 i = 0; i < persons.length; i++) {
+        // name -->
+        Person memory currenUser = getUser(msg.sender);
+        uint256 lenOfChild = currenUser.children.length;
+
+        if (lenOfChild >= 1) {
+            for (uint256 i = 0; i < lenOfChild; i++) {
+                address tempChild = currenUser.children[i];
+                string memory tempChildName = getUser(tempChild).name;
+                if (
+                    keccak256(bytes(tempChildName)) == keccak256(bytes(_name))
+                ) {
+                    return (getUser(tempChild), i);
+                }
+            }
+            if (returnErr) revert("The child did not found");
+            else {
+                Person memory emptyPerson;
+                return (emptyPerson, 0);
+            }
+        } else {
+            revert("You have not any child");
+        }
+        /*for (uint256 i = 0; i < persons.length; i++) {
             if (
                 persons[i].parents.length > 0 &&
                 persons[i].parents[0] == msg.sender && // TODO: CHANGE THIS
                 keccak256(bytes(persons[i].name)) == keccak256(bytes(_name))
             ) {
+                return (persons[i], i);               
+            }
+        }*/
+
+        if (returnErr) revert("The child did not found");
+        else {
+            Person memory emptyPerson;
+            return (emptyPerson, 0);
+        }
+    }
+
+    function findThePerson(
+        string memory _name,
+        bool returnErr // link child işleminde persons içinden user indeksini bulup güncellemek için eklendi
+    ) public view returns (Person memory, uint256 index) {
+        for (uint256 i = 0; i < persons.length; i++) {
+            if (keccak256(bytes(persons[i].name)) == keccak256(bytes(_name))) {
                 return (persons[i], i);
-                /*for (uint j = 0;j<userList[msg.sender].child.length;j++) {
-                    if (userList[msg.sender].child[j] == persons[i].parentInfo.parent) {
-                        return (persons[i],j);
-                    }
-                }*/
             }
         }
 
-        if (returnErr) revert("The child did not found");
+        if (returnErr) revert("The person did not found");
         else {
             Person memory emptyPerson;
             return (emptyPerson, 0);
@@ -238,7 +320,7 @@ contract BankingApp {
         );
         _;
     }
-    // çocuk kaydını kontrol eden middleware(modifier)
+    // çocuk kaydını kontrol eden middleware(modifier) // child listeye eklenerek duplicate error önlendi
     modifier HasAnAccountForChild(address childAddr) {
         require(
             keccak256(bytes(userList[childAddr].name)) == keccak256(bytes("")),
@@ -253,6 +335,11 @@ contract BankingApp {
             keccak256(bytes(theChild.name)) == keccak256(bytes("")),
             "Child name already exist"
         ); //
+        _;
+    }
+
+    modifier isRegistered() {
+         require(keccak256(bytes(getUser(msg.sender).name)) != keccak256(bytes("")),"You can link account after logged in");
         _;
     }
 
