@@ -63,7 +63,7 @@ const App = () => (
     >
       <Content className='body'>
 
-        <MDBRow className='header d-flex justify-content-between text-center' style={{ marginTop: '95px' }}>
+        <MDBRow className='header d-flex justify-content-between text-center' style={{ marginTop: '25px' }}>
           <MDBCol md='3' className='top1'>
           <Swiper
       spaceBetween={50}

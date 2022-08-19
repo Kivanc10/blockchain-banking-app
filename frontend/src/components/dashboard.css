@@ -86,10 +86,12 @@
 .top1{
     background-color: red;
     border-radius: 20px;
+    margin-left: 47px;
 }
 .top3{
     background-color: blue;
     border-radius: 20px;
+    margin-right: 25px;
 }
 .top2{
     background-color: green;
