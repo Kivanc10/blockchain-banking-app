@@ -6,12 +6,13 @@ import Landing from "./components/landing";
 import Dashboard from './components/dashboard';
 import AdminLogin from './components/adminLogin'
 import Register from "./components/register";
+import GuestMain from'./components/GuestMain';
 
 
 function App() {   
   return (  
     <div>
-      <Dashboard/>
+      <GuestMain/>
     </div>
   );
 }
