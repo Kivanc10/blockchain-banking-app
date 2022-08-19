@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "./Inheritium.sol";
+
+//import "./Inheritium.sol";
 
 contract BankingApp {
     IERC20 public token;
@@ -43,7 +44,8 @@ contract BankingApp {
     Person[] persons;
 
     // msg.value ekleyebilmek için payable yapıldı
-    constructor(address _token, address _owner) payable { // (inheritum adres,owner adres)
+    constructor(address _token, address _owner) payable {
+        // (inheritum adres,owner adres)
         token = IERC20(_token); // Inheritum(_token)
         owner = _owner;
     }
@@ -56,7 +58,7 @@ contract BankingApp {
         address _to,
         uint256 _amount,
         bool isSender
-    ) internal {
+    ) internal isRegistered {
         // (bool sent, bytes memory data) = _to.call{value: _amount}(""); // msg.value
         //require(sent, "Failed to send Ether");
         if (isSender) {
@@ -68,7 +70,23 @@ contract BankingApp {
                     _amount
                 )
             );
+            transactions[_to].push(
+                Transaction(
+                    block.timestamp,
+                    msg.sender, // alan
+                    _to, // gönderen
+                    _amount
+                )
+            );
         } else {
+            transactions[_to].push(
+                Transaction(
+                    block.timestamp,
+                    _to, // gönderen
+                    msg.sender, // alan
+                    _amount
+                )
+            );
             transactions[msg.sender].push(
                 Transaction(
                     block.timestamp,
@@ -159,7 +177,13 @@ contract BankingApp {
         address childAccount,
         string memory _name,
         uint256 _age
-    ) public HasAnAccountForChild(childAccount) isNotAdmin isRegistered returns (Person memory) {
+    )
+        public
+        HasAnAccountForChild(childAccount)
+        isNotAdmin
+        isRegistered
+        returns (Person memory)
+    {
         // ok (duplicate olabiliyor)
         // childAccountAlreadyExist(childAccount)
         /*Person memory chidlInstance = addChild(_name,_age);
@@ -284,12 +308,6 @@ contract BankingApp {
                 return (persons[i], i);               
             }
         }*/
-
-        if (returnErr) revert("The child did not found");
-        else {
-            Person memory emptyPerson;
-            return (emptyPerson, 0);
-        }
     }
 
     function findThePerson(
@@ -339,7 +357,10 @@ contract BankingApp {
     }
 
     modifier isRegistered() {
-         require(keccak256(bytes(getUser(msg.sender).name)) != keccak256(bytes("")),"You can link account after logged in");
+        require(
+            keccak256(bytes(getUser(msg.sender).name)) != keccak256(bytes("")),
+            "You can link account after logged in"
+        );
         _;
     }
 
@@ -357,6 +378,12 @@ contract BankingApp {
         );
         _;
     }
+
+    /*modifier HasMoreThanAChild() {
+        address [] memory temp = getMyChild();
+        require(temp.length >= 1,"You have not any sub inheritor account");
+        _;
+    }*/
 
     // çocuğa veya herhangi bir adrese kod gönderen kod , işlem sonucu msg.senderin hesabına işlenir.
     /*
@@ -377,16 +404,20 @@ contract BankingApp {
         //require(userList[msg.sender].isLimited == false,"You have a limited account");
         (bool sent, ) = _to.call{value: amount}(""); // msg.value
         require(sent, "Failed to send Ether");
-        if (keccak256(bytes(userList[msg.sender].name)) != "") {
+        if (
+            getUser(msg.sender).children.length != 0 &&
+            getUser(msg.sender).children[0] != address(0)
+        ) {
+            // parent ise
             // if msg.sender is a person
             addTransaction(_to, amount, true);
-            addTransaction(_to, amount, false); // add transaction to child
+            //   addTransaction(_to, amount, true); // add transaction to child
             // send token to the user
             // token.transferFrom(owner,msg.sender,amount); // send token to the user
             // owner will transfer token to the user ---> transfer(user_address,_amount,{from : owner)
-        } else if (keccak256(bytes(userList[msg.sender].name)) != "") {
+        } else if (getUser(msg.sender).children.length == 0) {
             addTransaction(_to, amount, false);
-            addTransaction(_to, amount, true);
+            //addTransaction(_to, amount, false);
         }
         //addTransactionToPerson(_to,amount);
         //addTransactionToChild()
@@ -436,5 +467,64 @@ contract BankingApp {
 
     function getBalanceOfInheritumToken() public view returns (uint256) {
         return token.balanceOf(msg.sender);
+    }
+
+    modifier isLimitedAccount(address user_address) {
+        require(
+            getUser(user_address).isLimited == true,
+            "This account is not limited"
+        );
+        _;
+    }
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "You must be owner to run this method");
+        _;
+    }
+
+    function makeAccountisLimited(address linked_account)
+        public
+        isLimitedAccount(linked_account)
+        onlyOwner
+    {
+        Person memory tempLinkedPerson = getUser(linked_account);
+        address parent_addr = tempLinkedPerson.parents[0];
+        Person memory oldChild = extractLinkedAccountFromParent(
+            linked_account,
+            parent_addr
+        );
+        persons.push(oldChild);
+    }
+
+    function extractLinkedAccountFromParent(
+        address linked_account,
+        address parent_account
+    ) internal returns (Person memory) {
+        Person memory parent = getUser(parent_account);
+        (Person memory t, uint256 parentIndex) = findThePerson(
+            parent.name,
+            false
+        );
+        // persons tan değiştir
+        // userListte değiştir
+        Person memory child = getUser(linked_account);
+        (Person memory t2, uint256 childIndex) = findThePerson(
+            child.name,
+            false
+        );
+
+        //parent[childIndex]
+        delete parent.children[childIndex]; // delete from sub children address arr
+        //parent.children.length--;
+
+        persons[parentIndex] = parent; // update parent in db
+
+        userList[parent_account] = parent;
+
+        child.isLimited = false;
+        delete child.parents[0]; // delete child's parent
+
+        userList[linked_account] = child;
+        return child;
     }
 }
