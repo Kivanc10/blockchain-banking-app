@@ -19,7 +19,7 @@ import React from 'react';
 import logo from './raw/logoveyazi.png';
 import './dashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faWallet, faGlobe, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faWallet, faGlobe, faArrowRightFromBracket, faCirclePlus, faBell } from '@fortawesome/free-solid-svg-icons';
 import 'swiper/css';
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -63,35 +63,46 @@ const App = () => (
     >
       <Content className='body'>
 
-        <MDBRow className='header d-flex justify-content-between text-center' style={{ marginTop: '25px' }}>
-          <MDBCol md='3' className='top1'>
-          <Swiper
-      spaceBetween={50}
-      slidesPerView={1}
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}
-    >
-      <SwiperSlide>January</SwiperSlide>
-      <SwiperSlide>February</SwiperSlide>
-      <SwiperSlide>March</SwiperSlide>
-      <SwiperSlide>April</SwiperSlide>
-    </Swiper>
+        <MDBRow className='header d-flex justify-content-between text-center align-items-center' style={{ marginTop: '25px' }}>
+          <MDBCol md='3' className='top1 align-items-center'>
+            <Swiper
+              spaceBetween={1}
+              slidesPerView={1}
+              onSlideChange={() => console.log('slide change')}
+              onSwiper={(swiper) => console.log(swiper)}
+            >
+              <SwiperSlide><button type="buttons" className="btn btn-primary months">January</button></SwiperSlide>
+              <SwiperSlide><button type="buttons" className="btn btn-primary months">February</button></SwiperSlide>
+              <SwiperSlide><button type="buttons" className="btn btn-primary months">March</button></SwiperSlide>
+              <SwiperSlide><button type="buttons" className="btn btn-primary months">April</button></SwiperSlide>
+            </Swiper>
           </MDBCol>
           <MDBCol md='5' className='top2'>
-          <Swiper
-      spaceBetween={50}
-      slidesPerView={3}
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}
-    >
-      <SwiperSlide>Main Account</SwiperSlide>
-      <SwiperSlide>Guest Account 1</SwiperSlide>
-      <SwiperSlide>Guest Account 2</SwiperSlide>
-      <SwiperSlide>Guest Account 3</SwiperSlide>
-    </Swiper>
+            <Swiper
+              spaceBetween={1}
+              slidesPerView={4}
+              onSlideChange={() => console.log('slide change')}
+              onSwiper={(swiper) => console.log(swiper)}
+            >
+              <SwiperSlide><button type="button" className="btn btn-primary account">Main Account</button></SwiperSlide>
+              <SwiperSlide><button type="buttons" className="btn btn-primary account">Inheritor</button></SwiperSlide>
+              <SwiperSlide><button type="buttons" className="btn btn-primary account">Inheritor</button></SwiperSlide>
+              <SwiperSlide><button type="buttons" className="btn btn-primary account">Inheritor</button></SwiperSlide>
+            </Swiper>
           </MDBCol>
-          <MDBCol md='3' className='top3'>
-            asdfsdfs
+          <MDBCol md='3' className='d-flex justify-content-evenly text-center top3'>
+            <button type="account" className="btn btn-primary buttons">
+              <FontAwesomeIcon className='ServiceIcon fa-2x' icon={faCirclePlus} />
+              <div>
+                Create New Account
+              </div>
+            </button>
+            <button type="notifications" className="btn btn-primary buttons">
+              <FontAwesomeIcon className='ServiceIcon fa-2x' icon={faBell} />
+              <div>
+                Notifications
+              </div>
+            </button>
           </MDBCol>
         </MDBRow>
 
