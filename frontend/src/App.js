@@ -12,7 +12,7 @@ import GuestMain from'./components/GuestMain';
 function App() {   
   return (  
     <div>
-      <GuestMain/>
+      <Dashboard/>
     </div>
   );
 }
