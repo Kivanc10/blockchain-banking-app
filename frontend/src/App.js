@@ -7,12 +7,13 @@ import Dashboard from './components/dashboard';
 import AdminLogin from './components/adminLogin'
 import Register from "./components/register";
 import GuestMain from'./components/GuestMain';
+import Logpage from './components/logPage';
 
 
 function App() {   
   return (  
     <div>
-      <GuestMain/>
+      <Logpage/>
     </div>
   );
 }

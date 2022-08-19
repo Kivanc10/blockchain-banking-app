@@ -1,0 +1,15 @@
+.TopHead{
+    margin-top: 25px;
+}
+.log_Table{
+    background-color: white;
+    border-radius: 20px;
+    border-style: none;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+}
+.log_Table > tr{
+    border-style: hidden!important;
+}
