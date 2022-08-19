@@ -17,6 +17,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Carousel from 'react-bootstrap/Carousel';
 import React from 'react';
 import logo from './raw/logoveyazi.png';
+import intertech from './raw/intertechLogo.png';
 import './dashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faWallet, faGlobe, faArrowRightFromBracket, faCirclePlus, faBell } from '@fortawesome/free-solid-svg-icons';
@@ -53,6 +54,7 @@ const App = () => (
         <Menu.Item className='item' >
           <FontAwesomeIcon className='ServiceIcon' icon={faArrowRightFromBracket} /> Signout
         </Menu.Item>
+        <img className='img-fluid intertech' style={{scale:'80%'}} src={intertech} alt='HeaderImage'></img>
       </Menu>
     </Sider>
     <Layout
