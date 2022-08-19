@@ -26,8 +26,13 @@
 }
 .test{
     width:8em!important;
-    margin-left: 38px;
+    margin-left: 40px;
     margin-top: 20px;
+}
+.intertech{
+    margin-top: 550px;
+    width: 10em!important;
+    margin-left: 31px;
 }
 .ant-menu-item-selected{
     background-color: #7172a5!important;
