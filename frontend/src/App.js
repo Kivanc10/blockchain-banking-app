@@ -13,11 +13,7 @@ import Logpage from './components/logPage';
 function App() {   
   return (  
     <div>
-<<<<<<< HEAD
-      <Logpage/>
-=======
       <Dashboard/>
->>>>>>> 15a4655e02bef0fd99301a0b19f2196c31abb6a3
     </div>
   );
 }

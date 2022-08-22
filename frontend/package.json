@@ -25,7 +25,7 @@
     "react-owl-carousel": "^2.3.3",
     "react-scripts": "^5.0.1",
     "swiper": "^8.3.2",
-    "victory": "^36.6.3",
+    "victory": "^36.6.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

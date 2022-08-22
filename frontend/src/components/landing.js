@@ -30,6 +30,12 @@ import {
   AccordionItemPanel,
 } from 'react-accessible-accordion';
 import SinejanY from './raw/sinejanYildirim.png';
+import {
+  MDBCarousel,
+  MDBCarouselInner,
+  MDBCarouselItem,
+  MDBCarouselElement,
+} from 'mdb-react-ui-kit';
 import { faMoneyBillTransfer, faChartSimple, faBitcoinSign, faBuildingColumns, faPersonBreastfeeding, faHandHoldingDollar } from '@fortawesome/free-solid-svg-icons'
 <link href="//db.onlinewebfonts.com/c/9dc59b82721662bb26b8afb510dc29c8?family=Arima+Madurai" rel="stylesheet" type="text/css" />
 
@@ -93,14 +99,14 @@ function App() {
       {/* Navbar End */}
       {/* Mini Title Start */}
       <div className='container-fluid d-flex justify-content-center' style={{ marginTop: '6em' }}>
-        <div className='justify-content-center' style={{ fontSize: '1.4em', marginTop:'2em'}}>
+        <div className='justify-content-center' style={{ fontSize: '1.4em', marginTop: '2em' }}>
           Blockchain investment app for financier
         </div>
       </div>
       {/* Mini Title End */}
 
       {/* Main Section Start */}
-      <div className='container-fluid d-flex justify-content-center' style={{marginTop: '2em'}}>
+      <div className='container-fluid d-flex justify-content-center' style={{ marginTop: '2em' }}>
         <div className='col-4 col-md-4'>
           <img className='w-100 h-100'
             src={chart}
@@ -204,7 +210,17 @@ function App() {
       </div>
       <div class="row justify-content-center text-center container-fluid" style={{ marginTop: '15px' }}>
         <div class="col-12">
-          <Carousel responsive={responsive}>
+          <MDBCarousel showControls interval={10000}>
+            <MDBCarouselInner>
+              <MDBCarouselItem className='active'>
+                <MDBCarouselElement src={icerik1} alt='...' />
+              </MDBCarouselItem>
+              <MDBCarouselItem>
+                <MDBCarouselElement src={icerik2} alt='...' />
+              </MDBCarouselItem>
+            </MDBCarouselInner>
+          </MDBCarousel>
+          {/*<Carousel responsive={responsive}>
             <div>
 
               <img className='img-fluid newsP'
@@ -233,7 +249,7 @@ function App() {
                 alt='icerik'></img>
 
             </div>
-          </Carousel>
+  </Carousel>*/}
         </div>
       </div>
       {/* News Section End */}
@@ -244,9 +260,9 @@ function App() {
         </div>
         <div class="col-2">
           <div class="card TeamsBorder" style={{ width: '18rem;' }}>
-          <img className='card-img-top'
-                src={senaN}
-                alt='icerik'></img>
+            <img className='card-img-top'
+              src={senaN}
+              alt='icerik'></img>
             <div class="card-body">
               <h6 class="card-title mb-2 teamsHeader">Senanur Katipoğlu</h6>
               <p class="card-text">Mentor</p>
@@ -256,9 +272,9 @@ function App() {
         </div>
         <div class="col-2">
           <div class="card TeamsBorder " style={{ width: '18rem;' }}>
-          <img className='card-img-top'
-                src={SimgeB}
-                alt='icerik'></img>
+            <img className='card-img-top'
+              src={SimgeB}
+              alt='icerik'></img>
             <div class="card-body">
               <h6 class="card-title mb-2 teamsHeader">Simge Batur</h6>
               <p class="card-text">Business Analysis</p>
@@ -268,9 +284,9 @@ function App() {
         </div>
         <div class="col-2">
           <div class="card TeamsBorder" style={{ width: '18rem;' }}>
-          <img className='card-img-top'
-                src={aysenB}
-                alt='icerik'></img>
+            <img className='card-img-top'
+              src={aysenB}
+              alt='icerik'></img>
             <div class="card-body">
               <h6 class="card-title mb-2 teamsHeader">Ayşen Bakış</h6>
               <p class="card-text">Mentor</p>
@@ -280,9 +296,9 @@ function App() {
         </div>
         <div class="col-2">
           <div class="card TeamsBorder" style={{ width: '18rem;' }}>
-          <img className='card-img-top'
-                src={ArdaS}
-                alt='icerik'></img>
+            <img className='card-img-top'
+              src={ArdaS}
+              alt='icerik'></img>
             <div class="card-body">
               <h6 class="card-title mb-2 teamsHeader">Arda Sönmezler</h6>
               <p class="card-text">Software Developer</p>
@@ -291,17 +307,17 @@ function App() {
           </div>
         </div>
       </div>
-    
+
       <div class="row justify-content-center text-center container-fluid">
         <div class="col-12" style={{ marginTop: '25px' }}>
-         
+
         </div>
-     
+
         <div class="col-2">
           <div class="card TeamsBorder" style={{ width: '18rem;' }}>
-          <img className='card-img-top'
-                src={KaanK}
-                alt='icerik'></img>
+            <img className='card-img-top'
+              src={KaanK}
+              alt='icerik'></img>
             <div class="card-body">
               <h6 class="card-title mb-2 teamsHeader">Kaan Kaftanoğlu</h6>
               <p class="card-text">Business Analysis</p>
@@ -311,9 +327,9 @@ function App() {
         </div>
         <div class="col-2">
           <div class="card TeamsBorder" style={{ width: '18rem;' }}>
-          <img className='card-img-top'
-                src={SinejanY}
-                alt='icerik'></img>
+            <img className='card-img-top'
+              src={SinejanY}
+              alt='icerik'></img>
             <div class="card-body">
               <h6 class="card-title mb-2 teamsHeader">Sinejan Yıldırım</h6>
               <p class="card-text">Business Analysis</p>
@@ -323,9 +339,9 @@ function App() {
         </div>
         <div class="col-2">
           <div class="card TeamsBorder" style={{ width: '18rem;' }}>
-          <img className='card-img-top'
-                src={KivancK}
-                alt='icerik'></img>
+            <img className='card-img-top'
+              src={KivancK}
+              alt='icerik'></img>
             <div class="card-body">
               <h6 class="card-title mb-2 teamsHeader">Kıvanç Aydoğmuş</h6>
               <p class="card-text">Software Developer</p>
@@ -335,9 +351,9 @@ function App() {
         </div>
         <div class="col-2">
           <div class="card TeamsBorder" style={{ width: '18rem;' }}>
-          <img className='card-img-top'
-                src={GizemZ}
-                alt='icerik'></img>
+            <img className='card-img-top'
+              src={GizemZ}
+              alt='icerik'></img>
             <div class="card-body">
               <h6 class="card-title mb-2 teamsHeader">Gizem Zorba</h6>
               <p class="card-text">Software Developer</p>
@@ -346,16 +362,16 @@ function App() {
           </div>
         </div>
       </div>
-      
+
       <div class="row justify-content-center align-self-center text-center container-fluid">
         <div class="col-12 " style={{ marginTop: '25px' }}>
-         
+
         </div>
         <div class="col-2 ">
           <div class="card TeamsBorder" style={{ width: '18rem;' }}>
-          <img className='card-img-top'
-                src={BerkayT}
-                alt='icerik'></img>
+            <img className='card-img-top'
+              src={BerkayT}
+              alt='icerik'></img>
             <div class="card-body">
               <h6 class="card-title mb-2 teamsHeader">Berkay Tuğut</h6>
               <p class="card-text">Software Developer</p>
@@ -365,9 +381,9 @@ function App() {
         </div>
         <div class="col-2">
           <div class="card TeamsBorder" style={{ width: '18rem;' }}>
-          <img className='card-img-top'
-                src={AbdullahK}
-                alt='icerik'></img>
+            <img className='card-img-top'
+              src={AbdullahK}
+              alt='icerik'></img>
             <div class="card-body">
               <h6 class="card-title mb-2 teamsHeader">Abdullah Küsgülü</h6>
               <p class="card-text">Software Developer</p>
@@ -377,9 +393,9 @@ function App() {
         </div>
         <div class="col-2">
           <div class="card TeamsBorder" style={{ width: '18rem;' }}>
-          <img className='card-img-top'
-                src={HuseyinO}
-                alt='icerik'></img>
+            <img className='card-img-top'
+              src={HuseyinO}
+              alt='icerik'></img>
             <div class="card-body">
               <h6 class="card-title mb-2 teamsHeader">Hüseyin Özkale</h6>
               <p class="card-text">Software Developer</p>
@@ -389,9 +405,9 @@ function App() {
         </div>
         <div class="col-2 ">
           <div class="card TeamsBorder" style={{ width: '18rem;' }}>
-          <img className='card-img-top'
-                src={MusaM}
-                alt='icerik'></img>
+            <img className='card-img-top'
+              src={MusaM}
+              alt='icerik'></img>
             <div class="card-body">
               <h6 class="card-title mb-2 teamsHeader ">Musa Meriç</h6>
               <p class="card-text">Software Developer</p>
@@ -403,7 +419,7 @@ function App() {
       {/* Teams Section End */}
 
       {/*FAQ Section Start */}
-      <div class="row justify-content-center text-center container-fluid" style={{marginTop:'75px'}}>
+      <div class="row justify-content-center text-center container-fluid" style={{ marginTop: '75px' }}>
         <div class="col-8">
           <h1 style={{ color: 'purple' }}>Frequently <span style={{ color: 'blue' }}>asked question</span></h1>
         </div>
@@ -411,109 +427,109 @@ function App() {
       <div class="row justify-content-center text-center container-fluid">
         <div class="col-6">
           <p style={{ color: 'white', fontWeight: 'bold' }}>If you are not sure whether Draft is suitalbe for you or
-not, do not worry. We are here to explain everything you
-might want to know</p>
+            not, do not worry. We are here to explain everything you
+            might want to know</p>
         </div>
       </div>
       <div className='row justify-content-center text-center container-fluid'>
         <div className='col-6 text-center'>
-      <Accordion className='accordion'>
+          <Accordion className='accordion'>
             <AccordionItem className='accordion-item'>
-                <AccordionItemHeading className='accordion-header'>
-                    <AccordionItemButton className='accordion-button'>
-                    What is the difference between INHERITIUM and a Bank account ? 
-                    </AccordionItemButton>
-                </AccordionItemHeading>
-                <AccordionItemPanel className='accordion-body'>
-                    <p>
-                    you can easily invest your accumulation via Inheritium
-on the contrary your bank account 
-                    </p>
-                </AccordionItemPanel>
+              <AccordionItemHeading className='accordion-header'>
+                <AccordionItemButton className='accordion-button'>
+                  What is the difference between INHERITIUM and a Bank account ?
+                </AccordionItemButton>
+              </AccordionItemHeading>
+              <AccordionItemPanel className='accordion-body'>
+                <p>
+                  you can easily invest your accumulation via Inheritium
+                  on the contrary your bank account
+                </p>
+              </AccordionItemPanel>
             </AccordionItem>
             <AccordionItem className='accordion-item'>
-                <AccordionItemHeading className='accordion-header'>
-                    <AccordionItemButton className='accordion-button'>
-                    Who can open INHERITIUM account ?
-                    </AccordionItemButton>
-                </AccordionItemHeading>
-                <AccordionItemPanel className='accordion-body'>
-                    <p>
-                    Anyone who is over the age of 18 and has no problems with legal processes can open an account in our system.
-                    </p>
-                </AccordionItemPanel>
+              <AccordionItemHeading className='accordion-header'>
+                <AccordionItemButton className='accordion-button'>
+                  Who can open INHERITIUM account ?
+                </AccordionItemButton>
+              </AccordionItemHeading>
+              <AccordionItemPanel className='accordion-body'>
+                <p>
+                  Anyone who is over the age of 18 and has no problems with legal processes can open an account in our system.
+                </p>
+              </AccordionItemPanel>
             </AccordionItem>
             <AccordionItem className='accordion-item'>
-                <AccordionItemHeading className='accordion-header'>
-                    <AccordionItemButton className='accordion-button'>
-                        
-Can my children transact through their accounts?
-                    </AccordionItemButton>
-                </AccordionItemHeading>
-                <AccordionItemPanel className='accordion-body'>
-                    <p>
-                    Children will not be able to perform transactions until they reach the legal age limit. The legal age has been determined as 18.
-                    </p>
-                </AccordionItemPanel>
+              <AccordionItemHeading className='accordion-header'>
+                <AccordionItemButton className='accordion-button'>
+
+                  Can my children transact through their accounts?
+                </AccordionItemButton>
+              </AccordionItemHeading>
+              <AccordionItemPanel className='accordion-body'>
+                <p>
+                  Children will not be able to perform transactions until they reach the legal age limit. The legal age has been determined as 18.
+                </p>
+              </AccordionItemPanel>
             </AccordionItem>
             <AccordionItem className='accordion-item'>
-                <AccordionItemHeading className='accordion-header'>
-                    <AccordionItemButton className='accordion-button'>
-                    Can I cancel my subscription or switch to another account anytime?
-                    </AccordionItemButton>
-                </AccordionItemHeading>
-                <AccordionItemPanel className='accordion-body'>
-                    <p>
-                    Our system has been designed to allow this easily.
- You can cancel your subscription or switch to your 
-another Inheritium account.
-                    </p>
-                </AccordionItemPanel>
+              <AccordionItemHeading className='accordion-header'>
+                <AccordionItemButton className='accordion-button'>
+                  Can I cancel my subscription or switch to another account anytime?
+                </AccordionItemButton>
+              </AccordionItemHeading>
+              <AccordionItemPanel className='accordion-body'>
+                <p>
+                  Our system has been designed to allow this easily.
+                  You can cancel your subscription or switch to your
+                  another Inheritium account.
+                </p>
+              </AccordionItemPanel>
             </AccordionItem>
             <AccordionItem className='accordion-item'>
-                <AccordionItemHeading className='accordion-header'>
-                    <AccordionItemButton className='accordion-button'>
-                    What happens if I invest less than X coins?
-                    </AccordionItemButton>
-                </AccordionItemHeading>
-                <AccordionItemPanel className='accordion-body'>
-                    <p>
-The minimum order amount is set as 10 TRY by our system.
-                    </p>
-                </AccordionItemPanel>
+              <AccordionItemHeading className='accordion-header'>
+                <AccordionItemButton className='accordion-button'>
+                  What happens if I invest less than X coins?
+                </AccordionItemButton>
+              </AccordionItemHeading>
+              <AccordionItemPanel className='accordion-body'>
+                <p>
+                  The minimum order amount is set as 10 TRY by our system.
+                </p>
+              </AccordionItemPanel>
             </AccordionItem>
-        </Accordion>
+          </Accordion>
         </div>
-        </div>
+      </div>
       {/*FAQ Section End */}
       <div class="container-fluid bg-light">
-  <footer class="row row-cols-5 py-5 my-5 border-top">
-    <div class="col-8 text-center">
-      <h6>Contact :</h6>
-      <p>
-        Sanayi Mahallesi, Teknopark Bulvarı 1/3C, Kurtköy, 34906 Pendik/Istanbul
-      </p>
-      <p>Tel:+90 216 664 20 00</p>
-      <p>Fax:(0216) 664 20 00</p>
-      <p>Mail:info@intertech.com</p>
-      <p class="text-muted">© 2021</p>
-    </div>
+        <footer class="row row-cols-5 py-5 my-5 border-top">
+          <div class="col-8 text-center">
+            <h6>Contact :</h6>
+            <p>
+              Sanayi Mahallesi, Teknopark Bulvarı 1/3C, Kurtköy, 34906 Pendik/Istanbul
+            </p>
+            <p>Tel:+90 216 664 20 00</p>
+            <p>Fax:(0216) 664 20 00</p>
+            <p>Mail:info@intertech.com</p>
+            <p class="text-muted">© 2021</p>
+          </div>
 
-  
 
-    
 
-  
 
-    <div class="col-2 align-self-center text-center">
-    <img className='img-fluid footerLogo'
-                src={logo}
-                alt='icerik'
-                ></img>
-                <p className='text-center footerText'>INHERITIUM</p>
-    </div>
-  </footer>
-</div>
+
+
+
+          <div class="col-2 align-self-center text-center">
+            <img className='img-fluid footerLogo'
+              src={logo}
+              alt='icerik'
+            ></img>
+            <p className='text-center footerText'>INHERITIUM</p>
+          </div>
+        </footer>
+      </div>
     </div>
   );
 }

@@ -20,9 +20,25 @@ import logo from './raw/logoveyazi.png';
 import intertech from './raw/intertechLogo.png';
 import './dashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faWallet, faGlobe, faDollarSign, faArrowRightFromBracket, faCirclePlus, faBell, faMoneyBillWave, faCreditCard, faArrowTrendUp, faArrowTrendDown } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faWallet, faGlobe, faDollarSign, faArrowRightFromBracket, faCirclePlus, faBell, faMoneyBillWave, faCreditCard, faArrowTrendUp, faArrowTrendDown, faEuroSign, faSterlingSign, faCoins } from '@fortawesome/free-solid-svg-icons';
 import 'swiper/css';
 import * as V from 'victory';
+import btc from './raw/btc.png';
+import eth from './raw/eth.png';
+import usdt from './raw/usdt.png';
+import usdc from './raw/usdc.png';
+import bnb from './raw/bnb.png';
+import xrp from './raw/xrp.png';
+import ada from './raw/ada.png';
+import sol from './raw/sol.png';
+import doge from './raw/doge.png';
+import {
+  MDBCarousel,
+  MDBCarouselInner,
+  MDBCarouselItem,
+  MDBCarouselElement,
+} from 'mdb-react-ui-kit';
+import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 import { VictoryChart, VictoryLine, VictoryTheme, VictoryPie, VictoryBar }
   from 'victory';
 const { Header, Content, Footer, Sider } = Layout;
@@ -56,17 +72,17 @@ const App = () => (
     >
       <div className="logo" />
       <Menu className='menu' defaultSelectedKeys={['4']}>
-        <img className='rounded mx-auto d-block test' src={logo} alt='HeaderImage'></img>
-        <Menu.Item className='item'>
+        <img className='rounded mx-auto d-block mb-4 test' src={logo} alt='HeaderImage'></img>
+        <Menu.Item className='item mb-3'>
           <FontAwesomeIcon className='ServiceIcon' icon={faHome} /> Dashboard
         </Menu.Item>
-        <Menu.Item className='item' >
+        <Menu.Item className='item mb-3' >
           <FontAwesomeIcon className='ServiceIcon fa-light' icon={faWallet} /> My Wallet
         </Menu.Item>
-        <Menu.Item className='item' >
+        <Menu.Item className='item mb-3' >
           <FontAwesomeIcon className='ServiceIcon' icon={faGlobe} /> Transactions
         </Menu.Item>
-        <Menu.Item className='item' >
+        <Menu.Item className='item mb-3' >
           <FontAwesomeIcon className='ServiceIcon' icon={faArrowRightFromBracket} /> Signout
         </Menu.Item>
         <img className='rounded mx-auto d-block fixed-bottom intertech2' src={intertech} alt='HeaderImage'></img>
@@ -82,7 +98,7 @@ const App = () => (
 
         <MDBRow className='header d-flex justify-content-between text-center align-items-center' style={{ marginTop: '25px' }}>
           <MDBCol md='3' className='top1 align-items-center'>
-            <Swiper
+            {/*<Swiper
               spaceBetween={1}
               slidesPerView={1}
               onSlideChange={() => console.log('slide change')}
@@ -92,7 +108,47 @@ const App = () => (
               <SwiperSlide><button type="button" className="btn btn-primary months">February</button></SwiperSlide>
               <SwiperSlide><button type="button" className="btn btn-primary months">March</button></SwiperSlide>
               <SwiperSlide><button type="button" className="btn btn-primary months">April</button></SwiperSlide>
-            </Swiper>
+    </Swiper>*/}
+            <MDBCarousel showControls>
+              <MDBCarouselInner className='months'>
+                <MDBCarouselItem className='active'>
+                  January
+                </MDBCarouselItem>
+                <MDBCarouselItem>
+                  February
+                </MDBCarouselItem>
+                <MDBCarouselItem>
+                  March
+                </MDBCarouselItem>
+                <MDBCarouselItem>
+                  April
+                </MDBCarouselItem>
+                <MDBCarouselItem>
+                  May
+                </MDBCarouselItem>
+                <MDBCarouselItem>
+                  June
+                </MDBCarouselItem>
+                <MDBCarouselItem>
+                  July
+                </MDBCarouselItem>
+                <MDBCarouselItem>
+                  August
+                </MDBCarouselItem>
+                <MDBCarouselItem>
+                  September
+                </MDBCarouselItem>
+                <MDBCarouselItem>
+                  October
+                </MDBCarouselItem>
+                <MDBCarouselItem>
+                  November
+                </MDBCarouselItem>
+                <MDBCarouselItem>
+                  December
+                </MDBCarouselItem>
+              </MDBCarouselInner>
+            </MDBCarousel>
           </MDBCol>
           <MDBCol md='5' className='top2'>
             <Swiper
@@ -138,7 +194,7 @@ const App = () => (
                     Total Balance
                   </div>
                   <div className='d-flex justify-content-evenly mb-1 font1'>
-                    +$2008,55
+                    +$2008.55
                   </div>
                   <div className='d-flex justify-content-evenly mb-4'>
                     Last Transaction
@@ -257,7 +313,55 @@ const App = () => (
 
 
           <MDBCol md='3 box5 boxShadow' >
-            5
+            <div className='font2 mb-2' style={{ marginTop: '15px', marginLeft: '20px' }}>
+              Chain Allocation
+            </div>
+            <MDBTable>
+              <MDBTableBody>
+                <tr>
+                  <th scope='row'><img className='d-flex mb-3 coins' src={btc} alt='HeaderImage'></img></th>
+                  <td className='trans'>Bitcoin</td>
+                  <td className='d-flex justify-content-end trans'>$21,280.84</td>
+                </tr>
+                <tr>
+                  <th scope='row'><img className='d-flex mb-3 coins' src={eth} alt='HeaderImage'></img></th>
+                  <td className='trans'>Ethereum</td>
+                  <td className='d-flex justify-content-end trans'> $1,573.05</td>
+                </tr>
+                <tr>
+                  <th scope='row'><img className='d-flex mb-3 coins' src={bnb} alt='HeaderImage'></img></th>
+                  <td className='trans'>BNB</td>
+                  <td className='d-flex justify-content-end trans'> $296.41</td>
+                </tr>
+                <tr>
+                  <th scope='row'><img className='d-flex mb-3 coins' src={xrp} alt='HeaderImage'></img></th>
+                  <td className='trans'>XRP</td>
+                  <td className='d-flex justify-content-end trans'> $0.3354</td>
+                </tr>
+                <tr>
+                  <th scope='row'><img className='d-flex mb-3 coins' src={ada} alt='HeaderImage'></img> </th>
+                  <td className='trans'>Cardano</td>
+                  <td className='d-flex justify-content-end trans'>$0.4518</td>
+                </tr>
+                <tr>
+                  <th scope='row'><img className='d-flex mb-3 coins' src={sol} alt='HeaderImage'></img></th>
+                  <td className='trans'>Solana</td>
+                  <td className='d-flex justify-content-end trans' >$34.74</td>
+                </tr>
+                <tr>
+                  <th scope='row'><img className='d-flex coins' src={doge} alt='HeaderImage'></img></th>
+                  <td className='trans'>Dogecoin</td>
+                  <td className='d-flex justify-content-end trans'>$0.06689</td>
+                </tr>
+              </MDBTableBody>
+            </MDBTable>
+
+
+
+
+
+
+
           </MDBCol>
 
           <MDBCol md='4' className='d-flex justify-content-evenly' style={{ marginTop: '15px' }}>
@@ -265,50 +369,95 @@ const App = () => (
               <div className='font2 mb-4' style={{ marginTop: '15px', marginLeft: '20px' }}>
                 Latest Transactions
               </div>
-              <MDBRow className='d-flex justify-content-evenly'>
-                <MDBCol md='8'>
-                  <div className='mb-3 trans'>
-                    <FontAwesomeIcon className='ServiceIcon' icon={faCreditCard} /> Personal Payment
-                  </div>
-                  <div className='mb-3 trans'>
-                    <FontAwesomeIcon className='ServiceIcon purchase' icon={faMoneyBillWave} /> Purchasing
-                  </div>
-                  <div className='mb-3 trans'>
-                    <FontAwesomeIcon className='ServiceIcon' icon={faCreditCard} /> Personal Payment
-                  </div>
-                  <div className='mb-3 trans'>
-                    <FontAwesomeIcon className='ServiceIcon sell' icon={faMoneyBillWave} /> Selling
-                  </div>
-                  <div className='mb-3 trans'>
-                    <FontAwesomeIcon className='ServiceIcon' icon={faCreditCard} /> Personal Payment
-                  </div>
-                </MDBCol>
-                <MDBCol md='4'>
-                  <div className='mb-3 transEnd' style={{ color: 'red' }}>
-                    -$35
-                  </div>
-                  <div className='mb-3 transEnd' style={{ color: 'red' }}>
-                    -$128
-                  </div>
-                  <div className='mb-3 transEnd' style={{ color: 'green' }}>
-                    +$10
-                  </div>
-                  <div className='mb-3 transEnd' style={{ color: 'green' }}>
-                    +$35
-                  </div>
-                  <div className='mb-3 transEnd' style={{ color: 'red' }}>
-                    -$35
-                  </div>
-                </MDBCol>
-              </MDBRow>
+              <MDBTable>
+                <MDBTableBody>
+                  <tr>
+                    <th scope='row'><FontAwesomeIcon className='ServiceIcon iconRed' icon={faCreditCard}></FontAwesomeIcon></th>
+                    <td className='trans'>Personal Payment</td>
+                    <td className='d-flex justify-content-end redValue'>-$35</td>
+                  </tr>
+                  <tr>
+                    <th scope='row'><FontAwesomeIcon className='ServiceIcon iconRed' icon={faMoneyBillWave}></FontAwesomeIcon></th>
+                    <td className='trans'>Purchasing</td>
+                    <td className='d-flex justify-content-end redValue'>-$128</td>
+                  </tr>
+                  <tr>
+                    <th scope='row'><FontAwesomeIcon className='ServiceIcon iconGreen' icon={faCreditCard}></FontAwesomeIcon></th>
+                    <td className='trans'>Personal Payment</td>
+                    <td className='d-flex justify-content-end greenValue'>$10</td>
+                  </tr>
+                  <tr>
+                    <th scope='row'><FontAwesomeIcon className='ServiceIcon iconGreen' icon={faMoneyBillWave}></FontAwesomeIcon></th>
+                    <td className='trans'>Selling</td>
+                    <td className='d-flex justify-content-end greenValue'>$35</td>
+                  </tr>
+                  <tr>
+                    <th scope='row'><FontAwesomeIcon className='ServiceIcon iconRed' icon={faCreditCard}></FontAwesomeIcon></th>
+                    <td className='trans'>Personal Payment</td>
+                    <td className='d-flex justify-content-end redValue'>-$35</td>
+                  </tr>
+                </MDBTableBody>
+              </MDBTable>
             </MDBCol>
           </MDBCol>
           <MDBCol md='4 ' style={{ marginTop: '15px' }}>
             <MDBCol className='boxes boxShadow'>
+              <div className='text-center mb-12 font2' style={{ paddingTop: '10px', marginBottom: '-25px' }}>
+                Transaction History Of This Month
+              </div>
+              <div className='chartpie'>
+                <VictoryPie
+                  colorScale={["#ED2482", "#6638F9", "#3D0358"]}
+                  labelRadius={({ innerRadius }) => innerRadius + 5}
+                  data={[
+                    { x: "0", y: '%' + 10 },
+                    { x: "0", y: '%' + 20 },
+                    { x: "0", y: '%' + 70 },
+                  ]}
+                />
+              </div>
+
+              <div className='d-flex justify-content-evenly'>
+                <div className='historyText1'>Own Upload</div>
+                <div className='historyText2'>Shopping</div>
+                <div className='historyText3'>Saving</div>
+              </div>
+
             </MDBCol>
           </MDBCol>
           <MDBCol md='3 box5 boxShadow' style={{ marginTop: '15px' }} >
-            6
+            <div className='font2 mb-4' style={{ marginTop: '15px', marginLeft: '20px' }}>
+              Currency Rates
+            </div>
+            <MDBTable>
+              <MDBTableBody className='tableCorner'>
+                <tr>
+                  <th scope='row'><FontAwesomeIcon style={{ color: 'green', fontWeight: 'bold' }} className='currencyLogos' icon={faDollarSign}></FontAwesomeIcon></th>
+                  <td className='currencyTableText'>USD/TL</td>
+                  <td className='currencyTableText d-flex justify-content-end currenciesText'>18.11</td>
+                </tr>
+                <tr>
+                  <th scope='row'><FontAwesomeIcon style={{ color: 'green', fontWeight: 'bold' }} className='currencyLogos ' icon={faEuroSign}></FontAwesomeIcon></th>
+                  <td className='currencyTableText'>EUR/TL</td>
+                  <td className='currencyTableText d-flex justify-content-end currenciesText'>18.15</td>
+                </tr>
+                <tr>
+                  <th scope='row'><FontAwesomeIcon style={{ color: 'green', fontWeight: 'bold' }} className='currencyLogos ' icon={faDollarSign}></FontAwesomeIcon></th>
+                  <td className='currencyTableText'>EUR/USD</td>
+                  <td className='currencyTableText d-flex justify-content-end currenciesText'>1.002</td>
+                </tr>
+                <tr>
+                  <th scope='row'><FontAwesomeIcon style={{ color: 'green', fontWeight: 'bold' }} className='currencyLogos ' icon={faSterlingSign}></FontAwesomeIcon></th>
+                  <td className='currencyTableText'>GBP/TL</td>
+                  <td className='currencyTableText d-flex justify-content-end currenciesText'>20.48</td>
+                </tr>
+                <tr>
+                  <th scope='row'><FontAwesomeIcon style={{ color: 'green', fontWeight: 'bold' }} className='currencyLogos ' icon={faCoins}></FontAwesomeIcon></th>
+                  <td className='currencyTableText'>ONS/USD</td>
+                  <td className='currencyTableText d-flex justify-content-end currenciesText'>1783.2</td>
+                </tr>
+              </MDBTableBody>
+            </MDBTable>
           </MDBCol>
         </MDBRow>
 

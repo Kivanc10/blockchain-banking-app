@@ -78,7 +78,7 @@
 }
 
 .box5 {
-    background-color: purple;
+    background-color: rgb(255, 255, 255);
     border-radius: 20px;
 }
 
@@ -159,31 +159,19 @@
 }
 
 .months {
-    background-color: rgb(0, 0, 0);
+    background-color: #454666;
     color: rgb(255, 255, 255);
-    border-color: rgba(0, 0, 0, 0);
-    width: 150px;
-    border-radius: 20px;
-}
-
-.months:hover {
-    color: white !important;
-    background: #454666 !important;
     border-color: #454666;
+    border-radius: 20px;
+    padding:8px;
 }
 
 .account {
-    background-color: rgb(255, 255, 255);
-    color: black;
-    border-color: rgba(0, 0, 0, 0);
+    background-color: #454666;
+    color: rgb(255, 255, 255);
+    border-color: #454666;
     width: 150px;
     border-radius: 20px;
-}
-
-.account:hover {
-    color: white !important;
-    background: #454666 !important;
-    border-color: #454666;
 }
 
 .font1 {
@@ -223,8 +211,23 @@
 
 .trans {
     margin-left: 20px;
+    margin-right: 40px;
     font-weight: bolder;
 }
+
+.redValue {
+    margin-left: 20px;
+    margin-right: 40px;
+    font-weight: bolder;
+    color: red;
+}
+.greenValue {
+    margin-left: 20px;
+    margin-right: 40px;
+    font-weight: bolder;
+    color: green;
+}
+
 .transEnd {
     margin-right: 20px;
     text-align: end;
@@ -286,4 +289,55 @@
 }
 .boxShadow:hover{
     box-shadow: 5px 5px 10px #726e6e;
+}
+.table{
+    border-color: #45466600!important;
+}
+.coins{
+    margin-left: 20px;
+}
+
+.iconRed{
+    margin-left: 20px;
+    color:red;
+}
+.iconGreen{
+    margin-left: 20px;
+    color:green;
+}
+.chartpie{
+    width:250px!important;
+    margin-left: 160px;
+    margin-bottom: -20px;
+}
+.historyText1{
+    background-color: #ED2482;
+    border-radius: 20px;
+    padding: 5px;
+    color: white;
+}
+.historyText2{
+    background-color: #6638F9;
+    border-radius: 20px;
+    padding: 5px;
+    color: white;
+}
+.historyText3{
+    background-color: #3D0358;
+    border-radius: 20px;
+    padding: 6px;
+    color: white;
+}
+.currencyTableText{
+    color: black;
+    font-weight: bolder;
+}
+.currencyLogos{
+    margin-left: 20px;
+}
+.currenciesText{
+    margin-right: 20px;
+}
+.tableCorner{
+    border-color: rgba(255, 255, 255, 0);
 }
