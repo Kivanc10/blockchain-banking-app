@@ -13,7 +13,7 @@ import Logpage from './components/logPage';
 function App() {   
   return (  
     <div>
-      <Dashboard/>
+      <Landing/>
     </div>
   );
 }

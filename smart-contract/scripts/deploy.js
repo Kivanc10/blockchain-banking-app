@@ -25,7 +25,7 @@ async function main() {
   /*const Token = await ethers.getContractFactory("BankingApp");
   const token = await Token.deploy();
   await token.deployed();*/
-  const Token = await ethers.getContractFactory("Inheritum");
+  const Token = await ethers.getContractFactory("Inheritium");
   const token = await Token.deploy();
   await token.deployed();
   console.log("Token address:", token.address);
@@ -34,11 +34,11 @@ async function main() {
   await bankContract.deployed();
 
   // We also save the contract's artifacts and address in the frontend directory
-  saveFrontendFiles(token,1);
-  saveFrontendFiles(bankContract,2);
+  saveFrontendFiles(token,bankContract,1);
+  saveFrontendFiles(bankContract,token,2);
 }
 // bu sayede deploy edilen contract ın abi(application binary interface frontende kaydediliyor)
-function saveFrontendFiles(token,num) {
+function saveFrontendFiles(token1,token2,num) {
   const fs = require("fs");
   const contractsDir = path.join(__dirname, "..","..", "frontend", "src", "contracts");
 
@@ -46,22 +46,31 @@ function saveFrontendFiles(token,num) {
     fs.mkdirSync(contractsDir);
   }
 
-  fs.writeFileSync(
-    path.join(contractsDir, "contract-address.json"),
-    JSON.stringify({ Token: token.address }, undefined, 2)
-  );
+  // fs.writeFileSync(
+  //   path.join(contractsDir, "contract-address.json"),
+  //   JSON.stringify({ Token: token1.address }, undefined, 2)
+  // );
 
-  const TokenArtifact = artifacts.readArtifactSync("BankingApp");
+  const BankContract = artifacts.readArtifactSync("BankingApp");
+  const TokenArtifact = artifacts.readArtifactSync("Inheritium");
 
     if (num == 1) {
       fs.writeFileSync(    
-        path.join(contractsDir, "Inheritum.json"),
+        path.join(contractsDir, "Inheritium.json"),
         JSON.stringify(TokenArtifact, null, 2)
+      );
+      fs.writeFileSync(
+        path.join(contractsDir, "contract-address.json"),
+        JSON.stringify({ Token: token1.address,BankContract : token2.address }, undefined, 2)
       );
     }else if (num == 2) {
       fs.writeFileSync(    
         path.join(contractsDir, "BankingApp.json"),
-        JSON.stringify(TokenArtifact, null, 2)
+        JSON.stringify(BankContract, null, 2)
+      );
+      fs.writeFileSync(
+        path.join(contractsDir, "contract-address.json"),
+        JSON.stringify({ BankContract: token1.address, Token : token2.address }, undefined, 2)
       );
     }
 

@@ -72,7 +72,7 @@ const responsive = {
   },
 };
 function App() {
-  const { currentAccount, connectWallet } = useContext(BankingContext);
+  const { currentAccount, connectWallet,metamaskBtnText} = useContext(BankingContext);
 
   return (
     <div className="body">
@@ -106,7 +106,7 @@ function App() {
                 <img src={metamask} className="img-fluid w-75" alt="" />
               </Button>
               <div className="mText d-flex align-items-center">
-                Connect With Metamask
+                {metamaskBtnText}
               </div>
             </Form>
           </Navbar.Collapse>

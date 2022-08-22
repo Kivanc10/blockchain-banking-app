@@ -2,7 +2,10 @@ import Web3 from "web3"; // import window.ethereum
 import {
     setAlert,
     setGlobalState,
-} from "./store"
+} from "../store";
+import BankingApp from "../contracts/BankingApp.json";
+import Inheritium from "../contracts/Inheritium.json";
+
 const { ethereum } = window
 
 export const connectWallet = async () => {
@@ -34,5 +37,14 @@ export const getCurrentWalletConnected = async () => {
     } else {
         setGlobalState("connectedAccount", "")
         setAlert("You must install MetaMask, a virtual Ethereum wallet, in your browser", "red")
+    }
+}
+
+
+export const loadBlockchainDatas = async () => {
+    try {
+        
+    } catch (error) {
+        
     }
 }

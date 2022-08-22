@@ -31,10 +31,13 @@ contract BankingApp {
     */
 
     // debug için eventler başka eventler yazılcak
-    event SentMoney(address from, address to, string childName, uint256 amount); //
-    event BalanceGot(address owner, string child);
-    event InheritumSent(address from, address to, uint256 amount);
-    event allowanceTest(address recipient, uint256 amount);
+    //event SentMoney(address from, address to, string childName, uint256 amount); //
+    event TransactionAdded(address from,address to,uint amount);
+    event PersonAdded (string name,uint age,bool isLimited,address user_address);
+    event AccountLinkedToParent(string inheritor_name,uint inheritor_age,address child_address,address parent_address);
+    event TokenSent(address from,address to,uint amount);
+    event LinkedAccountMadeUnLimited(address childAddress,address parentAddress,uint time);
+
 
     // persona ait transactionlar
     mapping(address => Transaction[]) transactions;
@@ -78,6 +81,7 @@ contract BankingApp {
                     _amount
                 )
             );
+            emit TransactionAdded(msg.sender,_to,_amount);
         } else {
             transactions[_to].push(
                 Transaction(
@@ -95,6 +99,7 @@ contract BankingApp {
                     _amount
                 )
             );
+             emit TransactionAdded(_to,msg.sender,_amount);
         }
     }
 
@@ -152,7 +157,7 @@ contract BankingApp {
 
         //emit InheritumSent(owner,msg.sender,100000000000000000000);
         // tokens will be transferred by owner in fronted....
-
+        emit PersonAdded(_name,_age,false,msg.sender);
         return person_instance;
     }
 
@@ -229,7 +234,7 @@ contract BankingApp {
         address[] parents;
         uint256 createdTime;
         */
-
+        emit AccountLinkedToParent(_name,_age,childAccount,msg.sender);
         Person memory parentIns = userList[msg.sender];
         return parentIns;
     }
@@ -430,12 +435,18 @@ contract BankingApp {
         checkBalance(_amount)
         isAdult(userList[msg.sender].isLimited)
     {
+        // admin önce approve ve allowance yapmalı
         token.transfer(_to, _amount);
+        emit TokenSent(msg.sender,_to,_amount);
     }
 
     modifier checkBalance(uint256 _amount) {
         require(token.balanceOf(msg.sender) >= _amount);
         _;
+    }
+    // inheritum contractından çağırınca bunu invoke et
+    function tokenSendEventFired(address _to, uint256 _amount) external {
+        emit TokenSent(msg.sender,_to,_amount);
     }
 
     // person olarak (msg.sender) ın hesabının olup olmadığını kontrol eder
@@ -456,7 +467,7 @@ contract BankingApp {
     // isme göre çocuğun balance ını getiren kod
     function getMyChildBalance(string memory _name) public returns (uint256) {
         (Person memory theChild, ) = findTheChild(_name, true);
-        emit BalanceGot(msg.sender, theChild.name);
+       
         return theChild.balance;
     }
 
@@ -494,6 +505,7 @@ contract BankingApp {
             parent_addr
         );
         persons.push(oldChild);
+        emit LinkedAccountMadeUnLimited(linked_account,parent_addr,block.timestamp);
     }
 
     function extractLinkedAccountFromParent(
@@ -525,6 +537,7 @@ contract BankingApp {
         delete child.parents[0]; // delete child's parent
 
         userList[linked_account] = child;
+        
         return child;
     }
 }
