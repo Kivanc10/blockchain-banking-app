@@ -72,7 +72,8 @@ const responsive = {
   },
 };
 function App() {
-  const { currentAccount, connectWallet,metamaskBtnText} = useContext(BankingContext);
+  const { currentAccount, connectWallet, metamaskBtnText } =
+    useContext(BankingContext);
 
   return (
     <div className="body">

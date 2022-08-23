@@ -5,7 +5,6 @@ import contract from "../contracts/BankingApp.json";
 import contractAddrs from "../contracts/contract-address.json";
 import tokenContract from "../contracts/Inheritium.json";
 
-
 export const BankingContext = React.createContext();
 
 const { ethereum } = window;
@@ -28,13 +27,15 @@ const createEthereumContract = () => {
 
   return {
     bankingContract,
-    inheritiumContract
+    inheritiumContract,
   };
 };
 
 export const BankingProvider = ({ children }) => {
   const [currentAccount, setCurrentAccount] = useState("");
-  const [metamaskBtnText, setMetamaskBtnText] = useState("Connect With Metamask")
+  const [metamaskBtnText, setMetamaskBtnText] = useState(
+    "Connect With Metamask"
+  );
   const [tokenContract, setTokenContract] = useState(null);
   const [bankContract, setBankContract] = useState(null);
 
@@ -74,35 +75,36 @@ export const BankingProvider = ({ children }) => {
   };
 
   const metamaskBtnChange = (address) => {
-    return address.slice(0, 5) + ".." + address.slice(-4)
-  }
+    return address.slice(0, 5) + ".." + address.slice(-4);
+  };
 
   const getOwnerTest = async () => {
     if (bankContract == null) {
-     window.alert("null")
+      window.alert("null");
       // setTokenContract(createEthereumContract().inheritiumContract)
     }
     // let owner = await tokenContract.methods.getOwner().call()
     // console.log(owner);
-  }
+  };
 
   useEffect(() => {
     isWalletConnected();
 
-    if (window.ethereum) { // if metamask connection is interrupted
-      window.ethereum.on('chainChanged', () => {
+    if (window.ethereum) {
+      // if metamask connection is interrupted
+      window.ethereum.on("chainChanged", () => {
         window.location.reload();
-      })
-      window.ethereum.on('accountsChanged', () => {
+      });
+      window.ethereum.on("accountsChanged", () => {
         window.location.reload();
-      })
+      });
     }
     const loadContracts = async () => {
       setBankContract(createEthereumContract().bankingContract);
       setTokenContract(createEthereumContract().inheritiumContract);
-//      window.alert("bc --> " ,bankContract)
-    }
-    loadContracts()
+      //      window.alert("bc --> " ,bankContract)
+    };
+    loadContracts();
     getOwnerTest();
   }, []);
 
