@@ -18,7 +18,7 @@ const onChange = (date, dateString) => {
   console.log(date, dateString);
 };
 
-function App() {
+function Register() {
   return (
     <div className="body">
       <div className="container-fluid d-flex justify-content-center">
@@ -113,4 +113,4 @@ function App() {
     </div>
   );
 }
-export default App;
+export default Register;

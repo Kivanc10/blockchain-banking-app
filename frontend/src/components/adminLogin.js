@@ -7,7 +7,7 @@ import intertechLogo from "./raw/intertechLogo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
 
-function App() {
+const adminLogin = () => {
   return (
     <div className="body justify-content-center">
       {/* Logo Start*/}
@@ -73,6 +73,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
-export default App;
+export default adminLogin;
