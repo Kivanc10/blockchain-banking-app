@@ -4,6 +4,11 @@ import { ethers } from "ethers";
 import contract from "../contracts/BankingApp.json";
 import contractAddrs from "../contracts/contract-address.json";
 import tokenContract from "../contracts/Inheritium.json";
+import {
+  setGlobalState,
+  getGlobalState
+} from "../store";
+
 
 export const BankingContext = React.createContext();
 
@@ -12,7 +17,9 @@ const { ethereum } = window;
 // This will be used to call contract functions
 const createEthereumContract = () => {
   const provider = new ethers.providers.Web3Provider(ethereum);
-  const signer = provider.getSigner();
+  //const signer = provider.getSigner(); // bundan dolayı hata
+  const wallet = new ethers.Wallet(process.env.REACT_APP_PRIVATE_KEY, provider);
+  const signer = wallet.provider.getSigner(wallet.address);
   const bankingContract = new ethers.Contract(
     contractAddrs.BankContract, // bank contract
     contract.abi,
@@ -27,17 +34,15 @@ const createEthereumContract = () => {
 
   return {
     bankingContract,
-    inheritiumContract,
+    inheritiumContract
   };
 };
 
 export const BankingProvider = ({ children }) => {
   const [currentAccount, setCurrentAccount] = useState("");
-  const [metamaskBtnText, setMetamaskBtnText] = useState(
-    "Connect With Metamask"
-  );
-  const [tokenContract, setTokenContract] = useState(null);
-  const [bankContract, setBankContract] = useState(null);
+  const [metamaskBtnText, setMetamaskBtnText] = useState("Connect With Metamask")
+  // const [tokenContract, setTokenContract] = useState(null);
+  // const [bankContract, setBankContract] = useState(null);
 
   const isWalletConnected = async () => {
     try {
@@ -75,37 +80,39 @@ export const BankingProvider = ({ children }) => {
   };
 
   const metamaskBtnChange = (address) => {
-    return address.slice(0, 5) + ".." + address.slice(-4);
-  };
+    return address.slice(0, 5) + ".." + address.slice(-4)
+  }
 
   const getOwnerTest = async () => {
-    if (bankContract == null) {
-      window.alert("null");
-      // setTokenContract(createEthereumContract().inheritiumContract)
-    }
-    // let owner = await tokenContract.methods.getOwner().call()
-    // console.log(owner);
-  };
+    const contractToken = getGlobalState("contractToken")
+
+
+    let owner = await contractToken.getOwner();
+    console.log("owner --> ", owner);
+
+  }
+
+  const loadWeb3 = () => {
+    setGlobalState("contractBank", createEthereumContract().bankingContract);
+    setGlobalState("contractToken", createEthereumContract().inheritiumContract);
+  }
 
   useEffect(() => {
     isWalletConnected();
-
-    if (window.ethereum) {
-      // if metamask connection is interrupted
-      window.ethereum.on("chainChanged", () => {
+    loadWeb3();
+    if (window.ethereum) { // if metamask connection is interrupted
+      window.ethereum.on('chainChanged', () => {
         window.location.reload();
-      });
-      window.ethereum.on("accountsChanged", () => {
+      })
+      window.ethereum.on('accountsChanged', () => {
         window.location.reload();
-      });
+      })
     }
-    const loadContracts = async () => {
-      setBankContract(createEthereumContract().bankingContract);
-      setTokenContract(createEthereumContract().inheritiumContract);
-      //      window.alert("bc --> " ,bankContract)
-    };
-    loadContracts();
-    getOwnerTest();
+
+
+    getOwnerTest()
+
+
   }, []);
 
   return (

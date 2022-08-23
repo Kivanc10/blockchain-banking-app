@@ -4,8 +4,8 @@ export const { setGlobalState, getGlobalState, useGlobalState } =
   createGlobalState({
     alert: { show: false, msg: "", color: "" },
     loading: { show: false, msg: "" },
-    contract: null,
-    connectedAccount: "",
+    contractBank: null,
+    contractToken: null
   });
 
 // set alert func
