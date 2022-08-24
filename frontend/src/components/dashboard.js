@@ -47,7 +47,6 @@ import xrp from "./raw/xrp.png";
 import ada from "./raw/ada.png";
 import sol from "./raw/sol.png";
 import doge from "./raw/doge.png";
-import ChartP from "./monthlyChart";
 import {
   MDBCarousel,
   MDBCarouselInner,
@@ -335,81 +334,6 @@ const Dashboard = () => {
               </MDBRow>
             </MDBCol>
 
-<<<<<<< HEAD
-            <MDBRow
-              style={{ marginTop: "15px" }}
-              className="test4 justify-content-between"
-            >
-              <MDBCol
-                md="5 box"
-                className="justify-content-center p-4 boxShadow"
-              >
-                <div className="box-title" style={{ paddingTop: "0.8em" }}>
-                  Total Income
-                </div>
-                <div className="box-subtitle ">$ 18531.31</div>
-                <div
-                  className="greenBox text-center"
-                  style={{ width: "6.5em" }}
-                >
-                  <FontAwesomeIcon
-                    className="faArrowTrendUp greenBoxYazilar"
-                    icon={faArrowTrendUp}
-                  />
-                  <label
-                    className="greenBoxYazilar"
-                    style={{ paddingLeft: "5px" }}
-                  >
-                    {" "}
-                    +11%
-                  </label>
-                </div>
-              </MDBCol>
-              <MDBCol
-                md="5 box2"
-                className="justify-content-center p-4 boxShadow"
-              >
-                <div className="box-title" style={{ paddingTop: "0.8em" }}>
-                  Total Saves
-                </div>
-                <div className="box-subtitle ">$ 137.43</div>
-                <div className="redBox text-center" style={{ width: "6.5em" }}>
-                  <FontAwesomeIcon
-                    className="faArrowTrendDown redBoxYazilar"
-                    icon={faArrowTrendDown}
-                  />
-                  <label
-                    className="redBoxYazilar"
-                    style={{ paddingLeft: "5px" }}
-                  >
-                    {" "}
-                    -8%
-                  </label>
-                </div>
-              </MDBCol>
-            </MDBRow>
-          </MDBCol>
-
-          <MDBCol md="4 box4 ">
-            <MDBCol className="boxes boxShadow">
-              <ChartP />
-            </MDBCol>
-            <MDBRow
-              style={{ marginTop: "15px" }}
-              className="test4 justify-content-between"
-            >
-              <MDBCol
-                md="5 box"
-                className="justify-content-center p-4 boxShadow"
-              >
-                <div className="box-title" style={{ paddingTop: "0.8em" }}>
-                  Input
-                </div>
-                <div className="box-subtitle ">$ 5000.00</div>
-                <div
-                  className="greenBox text-center"
-                  style={{ width: "6.5em" }}
-=======
             <MDBCol md="4 box4 ">
               <MDBCol className="boxes boxShadow">
                 <VictoryChart
@@ -417,7 +341,6 @@ const Dashboard = () => {
                   width={600}
                   theme={VictoryTheme.material}
                   domainPadding={10}
->>>>>>> 722d4238727de16af298fe9ba55fd4680aa3d409
                 >
                   <VictoryBar
                     className="chart"
