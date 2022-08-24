@@ -1,0 +1,54 @@
+.boxs{
+    background-color: rgb(255, 255, 255);
+    height: 360px;
+    border-radius: 20px;
+}.container-box{
+    background-color: rgba(255, 255, 255, 0);
+    height: 360px;
+    border-radius: 20px;
+}
+.m-boxs{
+    background-color: rgb(255, 255, 255);
+    height: 104px;
+    border-radius: 20px;
+}
+.topPart{
+    height: 100px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+}
+.walletButtons{
+    width: 100px;
+    height: 50px;
+    margin-right: 109px;
+    border-radius: 20px;
+}
+.Wallet{
+    width:100%;
+}
+.h{
+    max-width: 100%;
+    max-height: 100%;
+}
+.WalletChart{
+    width:320px!important;
+    margin-left: 45px;
+}
+.childChart1{
+    background-color: #ED2482;
+    border-radius: 20px;
+    padding: 5px;
+    color: white;
+}
+.childChart2{
+    background-color: #6638F9;
+    border-radius: 20px;
+    padding: 5px;
+    color: white;
+}
+.childChart3{
+    background-color: #3D0358;
+    border-radius: 20px;
+    padding: 6px;
+    color: white;
+}

@@ -47,6 +47,7 @@ import xrp from "./raw/xrp.png";
 import ada from "./raw/ada.png";
 import sol from "./raw/sol.png";
 import doge from "./raw/doge.png";
+import ChartP from "./monthlyChart";
 import {
   MDBCarousel,
   MDBCarouselInner,
@@ -314,18 +315,7 @@ const App = () => (
 
           <MDBCol md="4 box4 ">
             <MDBCol className="boxes boxShadow">
-              <VictoryChart
-                className="chart"
-                width={600}
-                theme={VictoryTheme.material}
-                domainPadding={10}
-              >
-                <VictoryBar
-                  className="chart"
-                  style={{ data: { fill: "blue" } }}
-                  data={dataBar}
-                />
-              </VictoryChart>
+              <ChartP />
             </MDBCol>
             <MDBRow
               style={{ marginTop: "15px" }}

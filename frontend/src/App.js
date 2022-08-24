@@ -8,11 +8,13 @@ import AdminLogin from "./components/adminLogin";
 import Register from "./components/register";
 import GuestMain from "./components/GuestMain";
 import Logpage from "./components/logPage";
+import MyWallet from "./components/myWallet";
+import Transaction from "./components/Transaction"
 
 function App() {
   return (
     <div>
-      <Landing />
+      <Dashboard />
     </div>
   );
 }

@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@700&display=swap');
+
+.greenButton{
+    color: green;
+    font-size: 2em;
+}
+.redButton{
+    font-size: 2em;
+    color: red;
+}
+.transactionTable{
+border-radius: 20px;
+}
+
+.inter{
+    font-family: 'Inter', sans-serif;
+font-weight: bold;
+}
+
+.greenText{
+    color: green!important;
+    font-weight: 600;
+}
+.redText{
+    color: red!important;
+    font-weight: 600;
+}
+
+.text{
+    font-weight: 700;
+}
+.icons{
+    margin-left: 10px!important;
+}
