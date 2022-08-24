@@ -95,3 +95,38 @@ body{
 .footerLogo{
     width: 12em!important;
 }
+.ServicesBox{
+    width: 11em!important;
+    height: 9em!important;
+}
+.sBTitle{
+    padding-top: 7px!important;
+}
+.mmBtn:hover, .mmBtn:active, .mmBtn:link, .mmBtn:visited, .btn-outline-success {
+    background-color: #D58EB8!important;
+    border-color: #D58EB8!important;
+    transition: 0.6s;
+    --bs-btn-focus-shadow-rgb:#D58EB8!important;
+}
+.mmBtn{
+    border: 0px!important;
+}
+.navbarText{
+    font-size: 1.4em!important;
+    margin-left: 5px;
+    border-radius: 20px;
+    
+}
+.navbarText:hover{
+    background-color: rgba(155, 93, 141, 0.377);
+    transition: 0.6s;
+    box-shadow: 0px 0px 10px 5px #D58EB8;
+    
+}
+.nbBg{
+    background-color: #F6F4FC!important;
+}
+.otCard{
+    background-color: rgba(255, 255, 255, 0.6)!important;
+   
+}

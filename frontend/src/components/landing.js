@@ -78,7 +78,7 @@ const Landing = () => {
   return (
     <div className="body">
       {/* Navbar  Start*/}
-      <Navbar bg="" expand="lg" className="fixed-top bg-light">
+      <Navbar bg="" expand="lg" className="fixed-top nbBg">
         <Container fluid>
           <Navbar.Brand href="#Home">
             <img className="img-fluid" src={logo} alt="HeaderImage"></img>
@@ -91,24 +91,23 @@ const Landing = () => {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link href="#action1">Home</Nav.Link>
-              <Nav.Link href="#action2">About</Nav.Link>
-              <Nav.Link href="#3">Services</Nav.Link>
-              <Nav.Link href="#action2">News</Nav.Link>
-              <Nav.Link href="#action2">Teams</Nav.Link>
-              <Nav.Link href="#action2">Contact</Nav.Link>
+              <Nav.Link className='navbarText' href="#Home">Home</Nav.Link>
+              <Nav.Link className='navbarText' href="#wwR">About</Nav.Link>
+              <Nav.Link className='navbarText' href="#rService">Services</Nav.Link>
+              <Nav.Link className='navbarText' href="#rOTeams">Team</Nav.Link>
+              <Nav.Link className='navbarText' href="#rFAQ">FAQ</Nav.Link>
+              <Nav.Link className='navbarText' href="#rContact">Contact</Nav.Link>
             </Nav>
             <Form className="d-flex">
               <Button
                 onClick={connectWallet}
                 variant="outline-success"
-                className="navbarBtn"
+                className="navbarBtn mmBtn"
+                style={{ backgroundColor: '#C5C9F6', borderColor: '#C5C9F6', width: '6em', height: '5em' }}
               >
-                <img src={metamask} className="img-fluid w-75" alt="" />
+                <img src={metamask} className=" w-75" alt="" />
               </Button>
-              <div className="mText d-flex align-items-center">
-                {metamaskBtnText}
-              </div>
+
             </Form>
           </Navbar.Collapse>
         </Container>
@@ -118,6 +117,7 @@ const Landing = () => {
       {/* Mini Title Start */}
       <div
         className="container-fluid d-flex justify-content-center"
+        id="Home"
         style={{ marginTop: "6em" }}
       >
         <div
@@ -139,11 +139,11 @@ const Landing = () => {
         </div>
         <div className="col-3 col-md-3 d-flex align-self-center flex-column">
           <div className="container-fluid  roboto">
-            <h3 style={{ color: "blue" }}>
+            <h3 style={{ color: "purple" }}>
               Manage your <br /> finances like a pro <br /> in no time
             </h3>
           </div>
-          <div className="container-fluid">
+          <div className="container-fluid" id="wwR">
             <p style={{ color: "black", fontWeight: "bold" }}>
               With the application, information such as seeing the summary of
               your account status, viewing the last transaction and financial
@@ -156,16 +156,16 @@ const Landing = () => {
 
       {/* Main Section End */}
       {/* Who are we Section Start */}
-      <div class="row justify-content-center text-center container-fluid">
+      <div class="row justify-content-center text-center container-fluid" >
         <div class="col-8">
-          <h1 style={{ color: "blue" }}>
+          <h1 style={{ color: "purple" }}>
             Who are <span style={{ color: "purple" }}>we ?</span>
           </h1>
         </div>
       </div>
       <div class="row justify-content-center text-center container-fluid">
         <div class="col-6">
-          <p style={{ color: "white", fontWeight: "bold" }}>
+          <p style={{ color: "black", fontWeight: "bold" }} id="rService">
             {" "}
             Inheritium is a revolutionary creation created to help you manage
             your money, save money and leave a legacy for future generations. If
@@ -178,13 +178,12 @@ const Landing = () => {
       {/* Services Section Start */}
       <div
         class="row justify-content-center text-center container-fluid"
-        id="3"
       >
-        <div class="col-12" style={{ marginTop: "75px" }}>
-          <h1 style={{ color: "blue" }}>Our Services</h1>
+        <div class="col-12 " style={{ marginTop: "75px", marginBottom: '55px' }}>
+          <h1 style={{ color: "purple", fontSize: '3em' }}>Our Services</h1>
         </div>
-        <div class="col-3">
-          <div class="card" style={{ width: "18rem;" }}>
+        <div class="col-2 justify-content-center d-flex" >
+          <div class="card ServicesBox" style={{ width: "18rem;" }}>
             <div class="card-body">
               <h5 class="card-title fa-3x">
                 <FontAwesomeIcon
@@ -192,17 +191,12 @@ const Landing = () => {
                   icon={faMoneyBillTransfer}
                 />
               </h5>
-              <h6 class="card-title mb-2 ">Transfer</h6>
-              <p class="card-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                placerat, odio sed elementum porttitor, lectus lacus consectetur
-                purus, eget eleifend lacus turpis a lorem.
-              </p>
+              <h6 class="card-title mb-2 sBTitle">Transfer</h6>
             </div>
           </div>
         </div>
-        <div class="col-3">
-          <div class="card" style={{ width: "18rem;" }}>
+        <div class="col-2 justify-content-center d-flex">
+          <div class="card ServicesBox" style={{ width: "18rem;" }}>
             <div class="card-body">
               <h5 class="card-title fa-3x">
                 <FontAwesomeIcon
@@ -210,17 +204,12 @@ const Landing = () => {
                   icon={faHandHoldingDollar}
                 />
               </h5>
-              <h6 class="card-title mb-2 ">Withdraws</h6>
-              <p class="card-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                placerat, odio sed elementum porttitor, lectus lacus consectetur
-                purus, eget eleifend lacus turpis a lorem.
-              </p>
+              <h6 class="card-title mb-2 sBTitle">Withdraws</h6>
             </div>
           </div>
         </div>
-        <div class="col-3">
-          <div class="card" style={{ width: "18rem;" }}>
+        <div class="col-2 justify-content-center d-flex">
+          <div class="card ServicesBox" style={{ width: "18rem;" }}>
             <div class="card-body">
               <h5 class="card-title fa-3x">
                 <FontAwesomeIcon
@@ -228,12 +217,7 @@ const Landing = () => {
                   icon={faBitcoinSign}
                 />
               </h5>
-              <h6 class="card-title mb-2 ">Purchase</h6>
-              <p class="card-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                placerat, odio sed elementum porttitor, lectus lacus consectetur
-                purus, eget eleifend lacus turpis a lorem.
-              </p>
+              <h6 class="card-title mb-2 sBTitle">Purchase</h6>
             </div>
           </div>
         </div>
@@ -241,8 +225,8 @@ const Landing = () => {
 
       <div class="row justify-content-center text-center container-fluid">
         <div class="col-12" style={{ marginTop: "75px" }}></div>
-        <div class="col-3">
-          <div class="card" style={{ width: "18rem;" }}>
+        <div class="col-2 justify-content-center d-flex">
+          <div class="card ServicesBox" style={{ width: "18rem;" }}>
             <div class="card-body">
               <h5 class="card-title fa-3x">
                 <FontAwesomeIcon
@@ -250,55 +234,87 @@ const Landing = () => {
                   icon={faPersonBreastfeeding}
                 />
               </h5>
-              <h6 class="card-title mb-2 ">Inheritance Transactions</h6>
-              <p class="card-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                placerat, odio sed elementum porttitor, lectus lacus consectetur
-                purus, eget eleifend lacus turpis a lorem.
-              </p>
+              <h6 class="card-title mb-2  sBTitle">Inheritance Transactions</h6>
+
             </div>
           </div>
         </div>
-        <div class="col-3">
-          <div class="card" style={{ width: "18rem;" }}>
+        <div class="col-2 justify-content-center d-flex">
+          <div class="card ServicesBox" style={{ width: "18rem;" }}>
             <div class="card-body">
-              <h5 class="card-title fa-3x">
+              <h5 class="card-title  fa-3x">
                 <FontAwesomeIcon
                   className="ServicesIcon"
                   icon={faBuildingColumns}
                 />
               </h5>
-              <h6 class="card-title mb-2 ">Bank Statement</h6>
-              <p class="card-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                placerat, odio sed elementum porttitor, lectus lacus consectetur
-                purus, eget eleifend lacus turpis a lorem.
-              </p>
+              <h6 class="card-title sBTitle mb-2 ">Bank Statement</h6>
             </div>
           </div>
         </div>
-        <div class="col-3">
-          <div class="card" style={{ width: "18rem;" }}>
+        <div class="col-2 justify-content-center d-flex">
+          <div class="card ServicesBox">
             <div class="card-body">
-              <h5 class="card-title fa-3x">
+              <h5 class="card-title  fa-3x">
                 <FontAwesomeIcon
                   className="ServicesIcon"
                   icon={faChartSimple}
                 />
               </h5>
-              <h6 class="card-title mb-2 ">Instantaneous Financial Analyses</h6>
-              <p class="card-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                placerat, odio sed elementum porttitor, lectus lacus consectetur
-                purus, eget eleifend lacus turpis a lorem.
-              </p>
+              <h6 class="card-title mb-2 sBTitle " id="rOTeams">Instantaneous Financial Analyses</h6>
             </div>
           </div>
         </div>
       </div>
       {/* Services Section End */}
+
+      {/*Our Team Section Start */}
+      <div className="row justify-content-center container-fluid" style={{ marginTop: "75px" }}>
+        <div class="col-12 text-center">
+          <h1 style={{ color: "purple" }}>Our Teams</h1>
+        </div>
+        <div className="col-5 justify-content-center">
+          <div class="card otCard">
+            <div class="card-body" >
+              <div className="row d-flex">
+                <div className="col-4 text-center">
+                  <h6 class="card-title mb-2 ">
+                    <span style={{ color: 'rgb(153, 153, 255)', fontWeight: 'bold' }}>Development Team:</span>  <br />
+                    Abdullah Küsgülü<br />
+                    Arda Sönmezler<br />
+                    Berkay Tuğut<br />
+                    Gizem Zorba<br />
+                    Hüseyin Özkale<br />
+                    Kıvanç Aydoğmuş<br />
+                    Musa Meriç<br /><br />
+                  </h6>
+                </div>
+                <div className="col-4 text-center">
+                  <h6 class="card-title mb-2 ">
+                    <span style={{ color: 'rgb(153, 153, 255)', fontWeight: 'bold' }}>Analysts:</span> <br />
+                    Simge Batur<br />
+                    Sinejan Yıldırım<br />
+                    Kaan Kaftanoğlu<br /><br />
+
+                  </h6>
+                </div>
+                <div className="col-4 text-center">
+                  <h6 class="card-title mb-2 " >
+                    <span  style={{color:'rgb(153, 153, 255)', fontWeight:'bold'}}>Special thanks to:</span> <br />
+                    Ayşen Bakış - Agile Coach<br />
+                    Senanur Katipoğlu - Product Owner
+                  </h6>
+                </div>
+              </div>
+              
+
+            </div>
+          </div>
+        </div>
+      </div>
+<div id="rFAQ"></div>
       {/* News Section Start */}
-      <div
+      {/*  <div
         class="row justify-content-center text-center container-fluid"
         style={{ marginTop: "75px" }}
       >
@@ -321,7 +337,7 @@ const Landing = () => {
               </MDBCarouselItem>
             </MDBCarouselInner>
           </MDBCarousel>
-          {/*<Carousel responsive={responsive}>
+          <Carousel responsive={responsive}>
             <div>
 
               <img className='img-fluid newsP'
@@ -350,11 +366,13 @@ const Landing = () => {
                 alt='icerik'></img>
 
             </div>
-  </Carousel>*/}
+  </Carousel>
         </div>
       </div>
+      */}
       {/* News Section End */}
       {/* Teams Section Start */}
+      {/*
       <div class="row justify-content-center text-center container-fluid">
         <div class="col-12" style={{ marginTop: "75px" }}>
           <h1 style={{ color: "blue" }}>Our Teams</h1>
@@ -489,6 +507,7 @@ const Landing = () => {
           </div>
         </div>
       </div>
+      */}
       {/* Teams Section End */}
 
       {/*FAQ Section Start */}
@@ -498,7 +517,7 @@ const Landing = () => {
       >
         <div class="col-8">
           <h1 style={{ color: "purple" }}>
-            Frequently <span style={{ color: "blue" }}>asked question</span>
+            Frequently <span style={{ color: "rgb(114, 114, 194)" }}>asked question</span>
           </h1>
         </div>
       </div>
@@ -512,7 +531,7 @@ const Landing = () => {
       </div>
       <div className="row justify-content-center text-center container-fluid">
         <div className="col-6 text-center">
-          <Accordion className="accordion">
+          <Accordion className="accordion" allowZeroExpanded='true'>
             <AccordionItem className="accordion-item">
               <AccordionItemHeading className="accordion-header">
                 <AccordionItemButton className="accordion-button">
@@ -582,8 +601,11 @@ const Landing = () => {
         </div>
       </div>
       {/*FAQ Section End */}
-      <div class="container-fluid bg-light">
-        <footer class="row row-cols-5 py-5 my-5 border-top">
+      <div class="container-fluid nbBg " id="rContact">
+        <footer class="row row-cols-5 py-3 my-5 border-top">
+          <div class="col-2 text-center">
+
+          </div>
           <div class="col-8 text-center">
             <h6>Contact :</h6>
             <p>
@@ -597,7 +619,7 @@ const Landing = () => {
           </div>
 
           <div class="col-2 align-self-center text-center">
-            <img className="img-fluid footerLogo" src={logo} alt="icerik"></img>
+            <img className="img-fluid footerLogo w-50" src={logo} alt="icerik"></img>
             <p className="text-center footerText">INHERITIUM</p>
           </div>
         </footer>

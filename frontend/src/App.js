@@ -14,7 +14,7 @@ import Transaction from "./components/Transaction"
 function App() {
   return (
     <div>
-      <Dashboard />
+      <Landing />
     </div>
   );
 }

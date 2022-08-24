@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@700&display=swap');
 
 .body{
-    background-image: url(./raw/background.jpg);
     background-size: cover;
     
     height: 100vh!important;
