@@ -1,7 +1,7 @@
 import { Layout, Menu } from "antd";
 import { MDBRow, MDBCol } from "mdb-react-ui-kit";
 import { Swiper, SwiperSlide } from "swiper/react";
-import React from "react";
+import React,{useState,useEffect} from "react";
 import logo from "./raw/logoveyazi.png";
 import intertech from "./raw/intertechLogo.png";
 import "./dashboard.css";
@@ -20,6 +20,7 @@ import {
   faEuroSign,
   faSterlingSign,
   faCoins,
+  faWallet
 } from "@fortawesome/free-solid-svg-icons";
 import "swiper/css";
 import btc from "./raw/btc.png";
@@ -47,6 +48,7 @@ import {
 } from "victory";
 import { getExchangeRates } from "../utils/exchangeRate";
 const { Header, Content, Footer, Sider } = Layout;
+
 const dataBar = [
   { x: "Jan", y: 2, y0: 1 },
   { x: "Feb", y: 5, y0: 1 },

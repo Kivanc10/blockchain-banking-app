@@ -4,10 +4,10 @@ export const { setGlobalState, getGlobalState, useGlobalState } =
   createGlobalState({
     alert: { show: false, msg: "", color: "" },
     loading: { show: false, msg: "" },
-    contractBankForOwner: null,
-    contractTokenForOwner: null,
-    contractBankForUsers : null,
-    contractTokenForUsers : null
+    contractBank: null,
+    contractToken: null,
+    // contractBankForUsers : null,
+    // contractTokenForUsers : null
   });
 
 // set alert func

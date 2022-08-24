@@ -4,14 +4,17 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BankingProvider } from "./context/BankingContext";
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <BankingProvider>
-      <App />
-    </BankingProvider>
-  </React.StrictMode>
+  <BrowserRouter>
+    <React.StrictMode>
+      <BankingProvider>
+        <App />
+      </BankingProvider>
+    </React.StrictMode>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
