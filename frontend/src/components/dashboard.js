@@ -1,28 +1,13 @@
-import {
-  AppstoreOutlined,
-  BarChartOutlined,
-  CloudOutlined,
-  ShopOutlined,
-  TeamOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
 import { Layout, Menu } from "antd";
-import Container from "react-bootstrap/Container";
 import { MDBRow, MDBCol } from "mdb-react-ui-kit";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import { Swiper, SwiperSlide } from "swiper/react";
-import Carousel from "react-bootstrap/Carousel";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import logo from "./raw/logoveyazi.png";
 import intertech from "./raw/intertechLogo.png";
 import "./dashboard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
-  faWallet,
   faGlobe,
   faDollarSign,
   faArrowRightFromBracket,
@@ -37,16 +22,15 @@ import {
   faCoins,
 } from "@fortawesome/free-solid-svg-icons";
 import "swiper/css";
-import * as V from "victory";
 import btc from "./raw/btc.png";
 import eth from "./raw/eth.png";
-import usdt from "./raw/usdt.png";
-import usdc from "./raw/usdc.png";
 import bnb from "./raw/bnb.png";
 import xrp from "./raw/xrp.png";
 import ada from "./raw/ada.png";
 import sol from "./raw/sol.png";
+import Chart from "./monthlyChart";
 import doge from "./raw/doge.png";
+import ChartP from "./monthlyChart";
 import {
   MDBCarousel,
   MDBCarouselInner,
@@ -244,7 +228,7 @@ const Dashboard = () => {
                 <MDBRow className="d-flex justify-content-evenly">
                   <MDBCol md="8">
                     <div
-                      className="d-flex justify-content-evenly mb-3 font3"
+                      className="d-flex justify-content-evenly mb-5 font3"
                       style={{ marginTop: "30px" }}
                     >
                       My Wallet Summary
@@ -257,15 +241,6 @@ const Dashboard = () => {
                     </div>
                     <div className="d-flex justify-content-evenly mb-4">
                       Last Transaction
-                    </div>
-
-                    <div className="d-flex justify-content-evenly">
-                      <button type="button" className="btn btn-primary wallet">
-                        Withdraw
-                      </button>
-                      <button type="button" className="btn btn-primary wallet">
-                        Top up
-                      </button>
                     </div>
                   </MDBCol>
                   <MDBCol md="4">
@@ -411,7 +386,7 @@ const Dashboard = () => {
                 className="font2 mb-2"
                 style={{ marginTop: "15px", marginLeft: "20px" }}
               >
-                Chain Allocation
+                Market Values
               </div>
               <MDBTable>
                 <MDBTableBody>
@@ -425,7 +400,7 @@ const Dashboard = () => {
                     </th>
                     <td className="trans">Bitcoin</td>
                     <td className="d-flex justify-content-end trans">
-                      ${currencyData.BTC}
+                      $21,280.84
                     </td>
                   </tr>
                   <tr>
@@ -439,7 +414,21 @@ const Dashboard = () => {
                     <td className="trans">Ethereum</td>
                     <td className="d-flex justify-content-end trans">
                       {" "}
-                      ${currencyData.ETH}
+                      $1,573.05
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <img
+                        className="d-flex mb-3 coins"
+                        src={bnb}
+                        alt="HeaderImage"
+                      ></img>
+                    </th>
+                    <td className="trans">BNB</td>
+                    <td className="d-flex justify-content-end trans">
+                      {" "}
+                      $296.41
                     </td>
                   </tr>
                   <tr>
@@ -453,7 +442,7 @@ const Dashboard = () => {
                     <td className="trans">XRP</td>
                     <td className="d-flex justify-content-end trans">
                       {" "}
-                      ${currencyData.XRP}
+                      $0.3354
                     </td>
                   </tr>
                   <tr>
@@ -466,7 +455,7 @@ const Dashboard = () => {
                     </th>
                     <td className="trans">Cardano</td>
                     <td className="d-flex justify-content-end trans">
-                      ${currencyData.ADA}
+                      $0.4518
                     </td>
                   </tr>
                   <tr>
@@ -478,9 +467,7 @@ const Dashboard = () => {
                       ></img>
                     </th>
                     <td className="trans">Solana</td>
-                    <td className="d-flex justify-content-end trans">
-                      ${currencyData.SOL}
-                    </td>
+                    <td className="d-flex justify-content-end trans">$34.74</td>
                   </tr>
                   <tr>
                     <th scope="row">
@@ -492,7 +479,7 @@ const Dashboard = () => {
                     </th>
                     <td className="trans">Dogecoin</td>
                     <td className="d-flex justify-content-end trans">
-                      ${currencyData.DOGE}
+                      $0.06689
                     </td>
                   </tr>
                 </MDBTableBody>
