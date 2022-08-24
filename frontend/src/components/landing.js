@@ -71,7 +71,7 @@ const responsive = {
     items: 1,
   },
 };
-function App() {
+const Landing = () => {
   const { currentAccount, connectWallet, metamaskBtnText } =
     useContext(BankingContext);
 
@@ -604,6 +604,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
-export default App;
+export default Landing;

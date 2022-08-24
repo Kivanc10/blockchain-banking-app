@@ -41,7 +41,7 @@ const dataBar = [
   { x: 2, y: 3, y0: 1 },
 ];
 
-const App = () => (
+const GuestMain = () => (
   <Layout hasSider>
     <Sider
       className="menu"
@@ -127,4 +127,4 @@ const App = () => (
   </Layout>
 );
 
-export default App;
+export default GuestMain;
