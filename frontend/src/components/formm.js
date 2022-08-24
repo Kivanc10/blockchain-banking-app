@@ -4,7 +4,7 @@ import "./App.css";
 import { Typography } from "antd";
 const { Title } = Typography;
 
-const App = () => {
+const Formm = () => {
   const onFinish = (values) => {
     console.log("Success:", values);
   };
@@ -148,4 +148,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Formm;

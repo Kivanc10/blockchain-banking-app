@@ -14,7 +14,7 @@ import {
 import "swiper/css";
 const { Content, Sider } = Layout;
 
-const App = () => (
+const LogPage = () => (
   <Layout hasSider>
     <Sider
       className="menu"
@@ -158,4 +158,4 @@ const App = () => (
   </Layout>
 );
 
-export default App;
+export default LogPage;
