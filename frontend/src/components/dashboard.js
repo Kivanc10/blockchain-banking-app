@@ -33,7 +33,6 @@ import sol from "./raw/sol.png";
 import doge from "./raw/doge.png";
 import Chart from "./monthlyChart";
 import { MDBTable, MDBTableBody } from "mdb-react-ui-kit";
-import { VictoryChart, VictoryTheme, VictoryPie, VictoryBar } from "victory";
 import { getExchangeRates } from "../utils/exchangeRate";
 const { Content, Sider } = Layout;
 const dataBar = [
@@ -101,7 +100,7 @@ const Dashboard = () => {
               className="ServiceIcon"
               icon={faArrowRightFromBracket}
             />{" "}
-            Signout
+            Sign out
           </Menu.Item>
           <img
             className="rounded mx-auto d-block fixed-bottom intertech2"
@@ -119,67 +118,11 @@ const Dashboard = () => {
         <Content className="bodyDashboard">
           <MDBRow
             className="header d-flex justify-content-between text-center align-items-center"
-            style={{ marginTop: "25px" }}
-          >
-            <MDBCol md="1" className="top1 align-items-center"></MDBCol>
-            <MDBCol md="6" className="top2">
-              <Swiper
-                spaceBetween={1}
-                slidesPerView={4}
-                onSlideChange={() => console.log("slide change")}
-                onSwiper={(swiper) => console.log(swiper)}
-              >
-                <SwiperSlide>
-                  <button type="button" className="btn btn-primary account">
-                    Main Account
-                  </button>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <button type="button" className="btn btn-primary account">
-                    Inheritor
-                  </button>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <button type="button" className="btn btn-primary account">
-                    Inheritor
-                  </button>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <button type="button" className="btn btn-primary account">
-                    Inheritor
-                  </button>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <button type="button" className="btn btn-primary account">
-                    Inheritor
-                  </button>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <button type="button" className="btn btn-primary account">
-                    Inheritor
-                  </button>
-                </SwiperSlide>
-              </Swiper>
-            </MDBCol>
-            <MDBCol
-              md="3"
-              className="d-flex justify-content-evenly text-center top3"
-            >
-              <button type="account" className="btn btn-primary buttons">
-                <FontAwesomeIcon
-                  className="ServiceIcon fa-2x"
-                  icon={faCirclePlus}
-                />
-                <div>Create New Account</div>
-              </button>
-              <button type="notifications" className="btn btn-primary buttons">
-                <FontAwesomeIcon className="ServiceIcon fa-2x" icon={faBell} />
-                <div>Notifications</div>
-              </button>
-            </MDBCol>
-          </MDBRow>
+            style={{ marginTop: "25px", marginBottom: "25px", height: "50px" }}
+          ></MDBRow>
 
           <MDBRow className="test3 d-flex justify-content-evenly">
+<<<<<<< HEAD
             <MDBCol md="4">
               <MDBCol className="TopLine boxShadow">
                 <MDBRow className="d-flex justify-content-evenly">
@@ -414,8 +357,12 @@ const Dashboard = () => {
               style={{ marginTop: "15px" }}
             >
               <MDBCol className="boxes boxShadow">
+=======
+            <MDBCol md="4 box5-2" className="d-flex justify-content-evenly">
+              <MDBCol>
+>>>>>>> 04d86c6f905bda1dfd9371e09fb10bf88021e743
                 <div
-                  className="font2 mb-4"
+                  className="font2 mb-3"
                   style={{ marginTop: "15px", marginLeft: "20px" }}
                 >
                   Latest Transactions
@@ -486,6 +433,185 @@ const Dashboard = () => {
                 </MDBTable>
               </MDBCol>
             </MDBCol>
+
+            <MDBCol md="4 box5-1 ">
+              <MDBRow>
+                <MDBCol>
+                  <div
+                    className="font2 mb-3"
+                    style={{ marginTop: "15px", marginLeft: "20px" }}
+                  >
+                    Inheritors
+                  </div>
+                </MDBCol>
+                <MDBCol>
+                  <button
+                    type="account"
+                    className="btn btn-primary buttons float-end"
+                    title="Create new Inheritor"
+                  >
+                    <FontAwesomeIcon
+                      className="ServiceIcon fa-2x"
+                      icon={faCirclePlus}
+                    />
+                  </button>
+                </MDBCol>
+              </MDBRow>
+              <MDBRow
+                style={{ marginTop: "15px" }}
+                // className="test4 justify-content-between"
+              ></MDBRow>
+            </MDBCol>
+
+            <MDBCol md="3 box5 boxShadow">
+              <div
+                className="font2 mb-2"
+                style={{ marginTop: "15px", marginLeft: "20px" }}
+              >
+                Market Values
+              </div>
+              <MDBTable>
+                <MDBTableBody>
+                  <tr>
+                    <th scope="row">
+                      <img
+                        className="d-flex mb-3 coins"
+                        src={btc}
+                        alt="HeaderImage"
+                      ></img>
+                    </th>
+                    <td className="trans">Bitcoin</td>
+                    <td className="d-flex justify-content-end trans">
+                      ${currencyData.BTC}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <img
+                        className="d-flex mb-3 coins"
+                        src={eth}
+                        alt="HeaderImage"
+                      ></img>
+                    </th>
+                    <td className="trans">Ethereum</td>
+                    <td className="d-flex justify-content-end trans">
+                      {" "}
+                      ${currencyData.ETH}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <img
+                        className="d-flex mb-3 coins"
+                        src={xrp}
+                        alt="HeaderImage"
+                      ></img>
+                    </th>
+                    <td className="trans">XRP</td>
+                    <td className="d-flex justify-content-end trans">
+                      {" "}
+                      ${currencyData.XRP}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <img
+                        className="d-flex mb-3 coins"
+                        src={ada}
+                        alt="HeaderImage"
+                      ></img>{" "}
+                    </th>
+                    <td className="trans">Cardano</td>
+                    <td className="d-flex justify-content-end trans">
+                      ${currencyData.ADA}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <img
+                        className="d-flex mb-3 coins"
+                        src={sol}
+                        alt="HeaderImage"
+                      ></img>
+                    </th>
+                    <td className="trans">Solana</td>
+                    <td className="d-flex justify-content-end trans">
+                      ${currencyData.SOL}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <img
+                        className="d-flex coins"
+                        src={doge}
+                        alt="HeaderImage"
+                      ></img>
+                    </th>
+                    <td className="trans">Dogecoin</td>
+                    <td className="d-flex justify-content-end trans">
+                      ${currencyData.DOGE}
+                    </td>
+                  </tr>
+                </MDBTableBody>
+              </MDBTable>
+            </MDBCol>
+
+            <MDBCol md="4">
+              <MDBCol
+                className="TopLine boxShadow"
+                style={{ marginTop: "15px" }}
+              >
+                <MDBRow className="d-flex justify-content-evenly">
+                  <div
+                    className="d-flex justify-content-evenly mb-3 font3"
+                    style={{ marginTop: "30px" }}
+                  >
+                    Summary
+                  </div>
+                </MDBRow>
+                <MDBRow>
+                  <MDBCol>
+                    <div className="d-flex justify-content-evenly mb-3 font2">
+                      Portfolio
+                    </div>
+                    <div className="d-flex justify-content-evenly mb-1 font1">
+                      $2008.55
+                    </div>
+                  </MDBCol>
+                  <MDBCol>
+                    <div className="d-flex justify-content-evenly mb-3 font2">
+                      PNL
+                    </div>
+                    <div className="d-flex justify-content-evenly mb-1 font1">
+                      $2008.55
+                    </div>
+
+                    <div
+                      className="greenBox text-center justify-content-evenly"
+                      style={{ width: "6.5em" }}
+                    >
+                      <FontAwesomeIcon
+                        className="faArrowTrendUp greenBoxYazilar"
+                        icon={faArrowTrendUp}
+                      />
+                      <label
+                        className="greenBoxYazilar"
+                        style={{ paddingLeft: "5px" }}
+                      >
+                        {" "}
+                        +8%
+                      </label>
+                    </div>
+                  </MDBCol>
+                </MDBRow>
+              </MDBCol>
+
+              <MDBRow
+                style={{ marginTop: "15px" }}
+                className="test4 justify-content-between"
+              ></MDBRow>
+            </MDBCol>
+
             <MDBCol md="4 " style={{ marginTop: "15px" }}>
               <MDBCol className="boxes boxShadow">
                 <div>

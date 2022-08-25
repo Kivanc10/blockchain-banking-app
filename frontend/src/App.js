@@ -18,10 +18,17 @@ function App() {
   return (
     <div className="App">
       <>
+<<<<<<< HEAD
         <Routes>
           <Route path="/" element={<Logpage />} />
+=======
+        {/* <Routes>
+          <Route path="/" element={<Landing />} />
+>>>>>>> 04d86c6f905bda1dfd9371e09fb10bf88021e743
           <Route path="/dashboard" element={<Dashboard />} />
-        </Routes>
+        </Routes> */}
+        <Dashboard></Dashboard>
+        {/* <Transaction></Transaction> */}
       </>
     </div>
   );
