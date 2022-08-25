@@ -10,6 +10,7 @@ import GuestMain from "./components/GuestMain";
 import LogPage from "./components/logPage";
 import MyWallet from "./components/myWallet";
 import Transaction from "./components/Transaction";
+import AdminPanel from "./components/adminPanel";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
         <Route path="/guestmain" element={<GuestMain />} />
         <Route path="/logpage" element={<LogPage />} />
         <Route path="/transaction" element={<Transaction />} />
-        {/* <Route path="/adminpanel" element={<AdminPanel />} /> */}
+        <Route path="/adminpanel" element={<AdminPanel />} />
       </Routes>
     </div>
   );
