@@ -63,7 +63,7 @@ const Dashboard = () => {
   useEffect(() => {
     callApi();
 
-    let interval = setInterval(() => {}, 1000 * 60 * 60);
+    let interval = setInterval(() => { }, 1000 * 60 * 60);
 
     return () => clearInterval(interval);
   }, []);
@@ -222,7 +222,7 @@ const Dashboard = () => {
               </MDBRow>
               <MDBRow
                 style={{ marginTop: "15px" }}
-                // className="test4 justify-content-between"
+              // className="test4 justify-content-between"
               ></MDBRow>
             </MDBCol>
 
@@ -348,9 +348,14 @@ const Dashboard = () => {
                     <div className="d-flex justify-content-evenly mb-1 font1">
                       $2008.55
                     </div>
-
-                    <div
-                      className="greenBox text-center justify-content-evenly"
+                    
+                  </MDBCol>
+                </MDBRow>
+                <MDBRow>
+                  <MDBCol></MDBCol>
+                  <MDBCol className="justify-content-center d-flex">
+                  <div
+                      className="greenBox text-center justify-content-center"
                       style={{ width: "6.5em" }}
                     >
                       <FontAwesomeIcon
@@ -367,6 +372,7 @@ const Dashboard = () => {
                     </div>
                   </MDBCol>
                 </MDBRow>
+
               </MDBCol>
 
               <MDBRow
