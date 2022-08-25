@@ -1,27 +1,13 @@
 import logo from "./raw/logo.png";
 import "./landing.css";
-import icerik1 from "./raw/1.jpeg";
-import icerik2 from "./raw/2.jpeg";
 import "bootstrap/dist/css/bootstrap.css";
 import Container from "react-bootstrap/Container";
-import { Form, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Form, Nav, Navbar } from "react-bootstrap";
 import chart from "./raw/Charts Section.png";
 import Button from "react-bootstrap/Button";
 import metamask from "./raw/metamask-icon.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import AbdullahK from "./raw/AbdullahKusgulu.png";
-import ArdaS from "./raw/ArdaSonmezler.png";
-import aysenB from "./raw/aysenBakis.png";
-import BerkayT from "./raw/BerkayTugut.png";
-import GizemZ from "./raw/GizemZorba.png";
-import HuseyinO from "./raw/HuseyinOzkale.png";
-import KaanK from "./raw/kaanKaftanoglu.png";
-import KivancK from "./raw/KvancAydogmus.png";
-import MusaM from "./raw/MusaMeric.png";
-import senaN from "./raw/senanur.png";
-import SimgeB from "./raw/simgeBatur.png";
 import {
   Accordion,
   AccordionItem,
@@ -29,13 +15,6 @@ import {
   AccordionItemButton,
   AccordionItemPanel,
 } from "react-accessible-accordion";
-import SinejanY from "./raw/sinejanYildirim.png";
-import {
-  MDBCarousel,
-  MDBCarouselInner,
-  MDBCarouselItem,
-  MDBCarouselElement,
-} from "mdb-react-ui-kit";
 import {
   faMoneyBillTransfer,
   faChartSimple,
@@ -46,6 +25,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
 import { BankingContext } from "../context/BankingContext";
+import Team from "./team";
 <link
   href="//db.onlinewebfonts.com/c/9dc59b82721662bb26b8afb510dc29c8?family=Arima+Madurai"
   rel="stylesheet"
@@ -91,23 +71,39 @@ const Landing = () => {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link className='navbarText' href="#Home">Home</Nav.Link>
-              <Nav.Link className='navbarText' href="#wwR">About</Nav.Link>
-              <Nav.Link className='navbarText' href="#rService">Services</Nav.Link>
-              <Nav.Link className='navbarText' href="#rOTeams">Team</Nav.Link>
-              <Nav.Link className='navbarText' href="#rFAQ">FAQ</Nav.Link>
-              <Nav.Link className='navbarText' href="#rContact">Contact</Nav.Link>
+              <Nav.Link className="navbarText" href="#Home">
+                Home
+              </Nav.Link>
+              <Nav.Link className="navbarText" href="#wwR">
+                About
+              </Nav.Link>
+              <Nav.Link className="navbarText" href="#rService">
+                Services
+              </Nav.Link>
+              <Nav.Link className="navbarText" href="#Team">
+                Team
+              </Nav.Link>
+              <Nav.Link className="navbarText" href="#rFAQ">
+                FAQ
+              </Nav.Link>
+              <Nav.Link className="navbarText" href="#rContact">
+                Contact
+              </Nav.Link>
             </Nav>
             <Form className="d-flex">
               <Button
                 onClick={connectWallet}
                 variant="outline-success"
                 className="navbarBtn mmBtn"
-                style={{ backgroundColor: '#C5C9F6', borderColor: '#C5C9F6', width: '6em', height: '5em' }}
+                style={{
+                  backgroundColor: "#C5C9F6",
+                  borderColor: "#C5C9F6",
+                  width: "6em",
+                  height: "5em",
+                }}
               >
                 <img src={metamask} className=" w-75" alt="" />
               </Button>
-
             </Form>
           </Navbar.Collapse>
         </Container>
@@ -156,7 +152,7 @@ const Landing = () => {
 
       {/* Main Section End */}
       {/* Who are we Section Start */}
-      <div class="row justify-content-center text-center container-fluid" >
+      <div class="row justify-content-center text-center container-fluid">
         <div class="col-8">
           <h1 style={{ color: "purple" }}>
             Who are <span style={{ color: "purple" }}>we ?</span>
@@ -176,13 +172,14 @@ const Landing = () => {
       </div>
       {/* Who are we Section End */}
       {/* Services Section Start */}
-      <div
-        class="row justify-content-center text-center container-fluid"
-      >
-        <div class="col-12 " style={{ marginTop: "75px", marginBottom: '55px' }}>
-          <h1 style={{ color: "purple", fontSize: '3em' }}>Our Services</h1>
+      <div class="row justify-content-center text-center container-fluid">
+        <div
+          class="col-12 "
+          style={{ marginTop: "75px", marginBottom: "55px" }}
+        >
+          <h1 style={{ color: "purple", fontSize: "3em" }}>Our Services</h1>
         </div>
-        <div class="col-2 justify-content-center d-flex" >
+        <div class="col-2 justify-content-center d-flex">
           <div class="card ServicesBox" style={{ width: "18rem;" }}>
             <div class="card-body">
               <h5 class="card-title fa-3x">
@@ -235,7 +232,6 @@ const Landing = () => {
                 />
               </h5>
               <h6 class="card-title mb-2  sBTitle">Inheritance Transactions</h6>
-
             </div>
           </div>
         </div>
@@ -261,58 +257,16 @@ const Landing = () => {
                   icon={faChartSimple}
                 />
               </h5>
-              <h6 class="card-title mb-2 sBTitle " id="rOTeams">Instantaneous Financial Analyses</h6>
+              <h6 class="card-title mb-2 sBTitle " id="rOTeams">
+                Instantaneous Financial Analyses
+              </h6>
             </div>
           </div>
         </div>
       </div>
       {/* Services Section End */}
 
-      {/*Our Team Section Start */}
-      <div className="row justify-content-center container-fluid" style={{ marginTop: "75px" }}>
-        <div class="col-12 text-center">
-          <h1 style={{ color: "purple" }}>Our Teams</h1>
-        </div>
-        <div className="col-5 justify-content-center">
-          <div class="card otCard">
-            <div class="card-body" >
-              <div className="row d-flex">
-                <div className="col-4 text-center">
-                  <h6 class="card-title mb-2 ">
-                    <span style={{ color: 'rgb(153, 153, 255)', fontWeight: 'bold' }}>Development Team:</span>  <br />
-                    Abdullah Küsgülü<br />
-                    Arda Sönmezler<br />
-                    Berkay Tuğut<br />
-                    Gizem Zorba<br />
-                    Hüseyin Özkale<br />
-                    Kıvanç Aydoğmuş<br />
-                    Musa Meriç<br /><br />
-                  </h6>
-                </div>
-                <div className="col-4 text-center">
-                  <h6 class="card-title mb-2 ">
-                    <span style={{ color: 'rgb(153, 153, 255)', fontWeight: 'bold' }}>Analysts:</span> <br />
-                    Simge Batur<br />
-                    Sinejan Yıldırım<br />
-                    Kaan Kaftanoğlu<br /><br />
-
-                  </h6>
-                </div>
-                <div className="col-4 text-center">
-                  <h6 class="card-title mb-2 " >
-                    <span  style={{color:'rgb(153, 153, 255)', fontWeight:'bold'}}>Special thanks to:</span> <br />
-                    Ayşen Bakış - Agile Coach<br />
-                    Senanur Katipoğlu - Product Owner
-                  </h6>
-                </div>
-              </div>
-              
-
-            </div>
-          </div>
-        </div>
-      </div>
-<div id="rFAQ"></div>
+      <div id="rFAQ"></div>
       {/* News Section Start */}
       {/*  <div
         class="row justify-content-center text-center container-fluid"
@@ -371,144 +325,8 @@ const Landing = () => {
       </div>
       */}
       {/* News Section End */}
-      {/* Teams Section Start */}
-      {/*
-      <div class="row justify-content-center text-center container-fluid">
-        <div class="col-12" style={{ marginTop: "75px" }}>
-          <h1 style={{ color: "blue" }}>Our Teams</h1>
-        </div>
-        <div class="col-2">
-          <div class="card TeamsBorder" style={{ width: "18rem;" }}>
-            <img className="card-img-top" src={senaN} alt="icerik"></img>
-            <div class="card-body">
-              <h6 class="card-title mb-2 teamsHeader">Senanur Katipoğlu</h6>
-              <p class="card-text">Mentor</p>
-              <p class="card-text">Product Owner</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="card TeamsBorder " style={{ width: "18rem;" }}>
-            <img className="card-img-top" src={SimgeB} alt="icerik"></img>
-            <div class="card-body">
-              <h6 class="card-title mb-2 teamsHeader">Simge Batur</h6>
-              <p class="card-text">Business Analysis</p>
-              <p class="card-text">Scrum Master</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="card TeamsBorder" style={{ width: "18rem;" }}>
-            <img className="card-img-top" src={aysenB} alt="icerik"></img>
-            <div class="card-body">
-              <h6 class="card-title mb-2 teamsHeader">Ayşen Bakış</h6>
-              <p class="card-text">Mentor</p>
-              <p class="card-text">Agile Coach</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="card TeamsBorder" style={{ width: "18rem;" }}>
-            <img className="card-img-top" src={ArdaS} alt="icerik"></img>
-            <div class="card-body">
-              <h6 class="card-title mb-2 teamsHeader">Arda Sönmezler</h6>
-              <p class="card-text">Software Developer</p>
-              <p class="card-text">Developer</p>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="row justify-content-center text-center container-fluid">
-        <div class="col-12" style={{ marginTop: "25px" }}></div>
-
-        <div class="col-2">
-          <div class="card TeamsBorder" style={{ width: "18rem;" }}>
-            <img className="card-img-top" src={KaanK} alt="icerik"></img>
-            <div class="card-body">
-              <h6 class="card-title mb-2 teamsHeader">Kaan Kaftanoğlu</h6>
-              <p class="card-text">Business Analysis</p>
-              <p class="card-text">Developer</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="card TeamsBorder" style={{ width: "18rem;" }}>
-            <img className="card-img-top" src={SinejanY} alt="icerik"></img>
-            <div class="card-body">
-              <h6 class="card-title mb-2 teamsHeader">Sinejan Yıldırım</h6>
-              <p class="card-text">Business Analysis</p>
-              <p class="card-text">Developer</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="card TeamsBorder" style={{ width: "18rem;" }}>
-            <img className="card-img-top" src={KivancK} alt="icerik"></img>
-            <div class="card-body">
-              <h6 class="card-title mb-2 teamsHeader">Kıvanç Aydoğmuş</h6>
-              <p class="card-text">Software Developer</p>
-              <p class="card-text">Developer</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="card TeamsBorder" style={{ width: "18rem;" }}>
-            <img className="card-img-top" src={GizemZ} alt="icerik"></img>
-            <div class="card-body">
-              <h6 class="card-title mb-2 teamsHeader">Gizem Zorba</h6>
-              <p class="card-text">Software Developer</p>
-              <p class="card-text">Developer</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row justify-content-center align-self-center text-center container-fluid">
-        <div class="col-12 " style={{ marginTop: "25px" }}></div>
-        <div class="col-2 ">
-          <div class="card TeamsBorder" style={{ width: "18rem;" }}>
-            <img className="card-img-top" src={BerkayT} alt="icerik"></img>
-            <div class="card-body">
-              <h6 class="card-title mb-2 teamsHeader">Berkay Tuğut</h6>
-              <p class="card-text">Software Developer</p>
-              <p class="card-text">Developer</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="card TeamsBorder" style={{ width: "18rem;" }}>
-            <img className="card-img-top" src={AbdullahK} alt="icerik"></img>
-            <div class="card-body">
-              <h6 class="card-title mb-2 teamsHeader">Abdullah Küsgülü</h6>
-              <p class="card-text">Software Developer</p>
-              <p class="card-text">Developer</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-2">
-          <div class="card TeamsBorder" style={{ width: "18rem;" }}>
-            <img className="card-img-top" src={HuseyinO} alt="icerik"></img>
-            <div class="card-body">
-              <h6 class="card-title mb-2 teamsHeader">Hüseyin Özkale</h6>
-              <p class="card-text">Software Developer</p>
-              <p class="card-text">Developer</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-2 ">
-          <div class="card TeamsBorder" style={{ width: "18rem;" }}>
-            <img className="card-img-top" src={MusaM} alt="icerik"></img>
-            <div class="card-body">
-              <h6 class="card-title mb-2 teamsHeader ">Musa Meriç</h6>
-              <p class="card-text">Software Developer</p>
-              <p class="card-text">Developer</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      */}
-      {/* Teams Section End */}
+      <Team></Team>
 
       {/*FAQ Section Start */}
       <div
@@ -517,7 +335,8 @@ const Landing = () => {
       >
         <div class="col-8">
           <h1 style={{ color: "purple" }}>
-            Frequently <span style={{ color: "rgb(114, 114, 194)" }}>asked question</span>
+            Frequently{" "}
+            <span style={{ color: "rgb(114, 114, 194)" }}>asked question</span>
           </h1>
         </div>
       </div>
@@ -531,7 +350,7 @@ const Landing = () => {
       </div>
       <div className="row justify-content-center text-center container-fluid">
         <div className="col-6 text-center">
-          <Accordion className="accordion" allowZeroExpanded='true'>
+          <Accordion className="accordion" allowZeroExpanded="true">
             <AccordionItem className="accordion-item">
               <AccordionItemHeading className="accordion-header">
                 <AccordionItemButton className="accordion-button">
@@ -603,9 +422,7 @@ const Landing = () => {
       {/*FAQ Section End */}
       <div class="container-fluid nbBg " id="rContact">
         <footer class="row row-cols-5 py-3 my-5 border-top">
-          <div class="col-2 text-center">
-
-          </div>
+          <div class="col-2 text-center"></div>
           <div class="col-8 text-center">
             <h6>Contact :</h6>
             <p>
@@ -619,7 +436,11 @@ const Landing = () => {
           </div>
 
           <div class="col-2 align-self-center text-center">
-            <img className="img-fluid footerLogo w-50" src={logo} alt="icerik"></img>
+            <img
+              className="img-fluid footerLogo w-50"
+              src={logo}
+              alt="icerik"
+            ></img>
             <p className="text-center footerText">INHERITIUM</p>
           </div>
         </footer>
