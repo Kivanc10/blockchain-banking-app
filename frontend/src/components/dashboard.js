@@ -1,11 +1,13 @@
 import { Layout, Menu } from "antd";
-import { MDBRow, MDBCol } from "mdb-react-ui-kit";
+import { MDBRow, MDBCol, } from "mdb-react-ui-kit";
 import { Swiper, SwiperSlide } from "swiper/react";
 import React from "react";
 import { useState, useEffect } from "react";
 import logo from "./raw/logoveyazi.png";
 import intertech from "./raw/intertechLogo.png";
 import "./css/dashboard.css";
+import Modal from './Modal';
+import ModalCreate from './ModalCreate';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -21,7 +23,8 @@ import {
   faEuroSign,
   faSterlingSign,
   faCoins,
-  faWallet,
+  faArrowLeft,
+  faArrowRight
 } from "@fortawesome/free-solid-svg-icons";
 import "swiper/css";
 import btc from "./raw/btc.png";
@@ -136,7 +139,7 @@ const Dashboard = () => {
                       <th scope="row">
                         <FontAwesomeIcon
                           className="ServiceIcon iconRed"
-                          icon={faCreditCard}
+                          icon={faArrowRight}
                         ></FontAwesomeIcon>
                       </th>
                       <td className="trans">Personal Payment</td>
@@ -148,7 +151,7 @@ const Dashboard = () => {
                       <th scope="row">
                         <FontAwesomeIcon
                           className="ServiceIcon iconRed"
-                          icon={faMoneyBillWave}
+                          icon={faArrowRight}
                         ></FontAwesomeIcon>
                       </th>
                       <td className="trans">Purchasing</td>
@@ -160,7 +163,7 @@ const Dashboard = () => {
                       <th scope="row">
                         <FontAwesomeIcon
                           className="ServiceIcon iconGreen"
-                          icon={faCreditCard}
+                          icon={faArrowLeft}
                         ></FontAwesomeIcon>
                       </th>
                       <td className="trans">Personal Payment</td>
@@ -172,7 +175,7 @@ const Dashboard = () => {
                       <th scope="row">
                         <FontAwesomeIcon
                           className="ServiceIcon iconGreen"
-                          icon={faMoneyBillWave}
+                          icon={faArrowLeft}
                         ></FontAwesomeIcon>
                       </th>
                       <td className="trans">Selling</td>
@@ -184,7 +187,7 @@ const Dashboard = () => {
                       <th scope="row">
                         <FontAwesomeIcon
                           className="ServiceIcon iconRed"
-                          icon={faCreditCard}
+                          icon={faArrowRight}
                         ></FontAwesomeIcon>
                       </th>
                       <td className="trans">Personal Payment</td>
@@ -208,22 +211,13 @@ const Dashboard = () => {
                   </div>
                 </MDBCol>
                 <MDBCol>
-                  <button
-                    type="account"
-                    className="btn btn-primary buttons float-end"
-                    title="Create new Inheritor"
-                  >
-                    <FontAwesomeIcon
-                      className="ServiceIcon fa-2x"
-                      icon={faCirclePlus}
-                    />
-                  </button>
+                  <ModalCreate/>
                 </MDBCol>
               </MDBRow>
-              <MDBRow
-                style={{ marginTop: "15px" }}
-              // className="test4 justify-content-between"
-              ></MDBRow>
+              
+                  <Modal />
+                  <Modal />
+            
             </MDBCol>
 
             <MDBCol md="3 box5 boxShadow">
@@ -348,13 +342,13 @@ const Dashboard = () => {
                     <div className="d-flex justify-content-evenly mb-1 font1">
                       $2008.55
                     </div>
-                    
+
                   </MDBCol>
                 </MDBRow>
                 <MDBRow>
                   <MDBCol></MDBCol>
                   <MDBCol className="justify-content-center d-flex">
-                  <div
+                    <div
                       className="greenBox text-center justify-content-center"
                       style={{ width: "6.5em" }}
                     >

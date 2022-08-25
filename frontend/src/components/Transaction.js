@@ -5,6 +5,7 @@ import "./css/dashboard.css";
 import Table from "react-bootstrap/Table";
 import "./css/Transaction.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import DataList from "./datalist";
 import {
   faHome,
   faWallet,
@@ -37,10 +38,6 @@ const App = () => (
           <FontAwesomeIcon className="ServiceIcon" icon={faHome} /> Dashboard
         </Menu.Item>
         <Menu.Item className="item">
-          <FontAwesomeIcon className="ServiceIcon fa-light" icon={faWallet} />{" "}
-          My Wallet
-        </Menu.Item>
-        <Menu.Item className="item">
           <FontAwesomeIcon className="ServiceIcon" icon={faGlobe} />{" "}
           Transactions
         </Menu.Item>
@@ -59,18 +56,17 @@ const App = () => (
         marginLeft: 200,
       }}
     >
-      <Content className="body ">
+      <Content className="bodyTransaction ">
         <div
           className="justify-content-center transactionTable"
           style={{
-            backgroundColor: "white",
             marginLeft: "10%",
             marginRight: "10%",
             marginBottom: "7%",
             marginTop: "4%",
           }}
         >
-          <h1
+          <h2
             className="inter"
             style={{
               paddingLeft: "20px",
@@ -78,167 +74,11 @@ const App = () => (
               paddingTop: "10px",
             }}
           >
-            History
-          </h1>
-
-          <Table striped className="table">
-            <tbody>
-              <tr>
-                <td>
-                  <FontAwesomeIcon
-                    className="greenButton icons"
-                    icon={faCircleUp}
-                  ></FontAwesomeIcon>
-                </td>
-                <td className="text">Deposit</td>
-                <td className="greenText">+$24.78</td>
-                <td className="text text-center">11:34PM</td>
-              </tr>
-              <tr>
-                <td>
-                  <FontAwesomeIcon
-                    className="redButton icons"
-                    icon={faCircleDown}
-                  ></FontAwesomeIcon>
-                </td>
-                <td className="text">SANDUSDT</td>
-                <td className="redText">-$576</td>
-                <td className="text text-center ">06.01AM</td>
-              </tr>
-              <tr>
-                <td>
-                  <FontAwesomeIcon
-                    className="greenButton icons"
-                    icon={faCircleUp}
-                  ></FontAwesomeIcon>
-                </td>
-                <td className="text">DOGUSDT</td>
-                <td className="greenText">+$300</td>
-                <td className="text text-center">06:45AM</td>
-              </tr>
-              <tr>
-                <td>
-                  <FontAwesomeIcon
-                    className="greenButton icons"
-                    icon={faCircleUp}
-                  ></FontAwesomeIcon>
-                </td>
-                <td className="text">DOGUSDT</td>
-                <td className="greenText">+$300</td>
-                <td className="text text-center">06:45AM</td>
-              </tr>
-              <tr>
-                <td>
-                  <FontAwesomeIcon
-                    className="greenButton icons"
-                    icon={faCircleUp}
-                  ></FontAwesomeIcon>
-                </td>
-                <td className="text">DOGUSDT</td>
-                <td className="greenText">+$300</td>
-                <td className="text text-center">06:45AM</td>
-              </tr>
-              <tr>
-                <td>
-                  <FontAwesomeIcon
-                    className="greenButton icons"
-                    icon={faCircleUp}
-                  ></FontAwesomeIcon>
-                </td>
-                <td className="text">DOGUSDT</td>
-                <td className="greenText">+$300</td>
-                <td className="text text-center">06:45AM</td>
-              </tr>
-              <tr>
-                <td>
-                  <FontAwesomeIcon
-                    className="greenButton icons"
-                    icon={faCircleUp}
-                  ></FontAwesomeIcon>
-                </td>
-                <td className="text">DOGUSDT</td>
-                <td className="greenText">+$300</td>
-                <td className="text text-center">06:45AM</td>
-              </tr>{" "}
-              <tr>
-                <td>
-                  <FontAwesomeIcon
-                    className="greenButton icons"
-                    icon={faCircleUp}
-                  ></FontAwesomeIcon>
-                </td>
-                <td className="text">DOGUSDT</td>
-                <td className="greenText">+$300</td>
-                <td className="text text-center">06:45AM</td>
-              </tr>
-              <tr>
-                <td>
-                  <FontAwesomeIcon
-                    className="greenButton icons"
-                    icon={faCircleUp}
-                  ></FontAwesomeIcon>
-                </td>
-                <td className="text">DOGUSDT</td>
-                <td className="greenText">+$300</td>
-                <td className="text text-center">06:45AM</td>
-              </tr>
-              <tr>
-                <td>
-                  <FontAwesomeIcon
-                    className="greenButton icons"
-                    icon={faCircleUp}
-                  ></FontAwesomeIcon>
-                </td>
-                <td className="text">DOGUSDT</td>
-                <td className="greenText">+$300</td>
-                <td className="text text-center">06:45AM</td>
-              </tr>
-              <tr>
-                <td>
-                  <FontAwesomeIcon
-                    className="greenButton icons"
-                    icon={faCircleUp}
-                  ></FontAwesomeIcon>
-                </td>
-                <td className="text">DOGUSDT</td>
-                <td className="greenText">+$300</td>
-                <td className="text text-center">06:45AM</td>
-              </tr>
-              <tr>
-                <td>
-                  <FontAwesomeIcon
-                    className="greenButton icons"
-                    icon={faCircleUp}
-                  ></FontAwesomeIcon>
-                </td>
-                <td className="text">DOGUSDT</td>
-                <td className="greenText">+$300</td>
-                <td className="text text-center">06:45AM</td>
-              </tr>
-              <tr>
-                <td>
-                  <FontAwesomeIcon
-                    className="greenButton icons"
-                    icon={faCircleUp}
-                  ></FontAwesomeIcon>
-                </td>
-                <td className="text">DOGUSDT</td>
-                <td className="greenText">+$300</td>
-                <td className="text text-center">06:45AM</td>
-              </tr>
-              <tr>
-                <td>
-                  <FontAwesomeIcon
-                    className="greenButton icons"
-                    icon={faCircleUp}
-                  ></FontAwesomeIcon>
-                </td>
-                <td className="text">DOGUSDT</td>
-                <td className="greenText">+$300</td>
-                <td className="text text-center">06:45AM</td>
-              </tr>
-            </tbody>
-          </Table>
+            Transaction History
+          </h2>
+          <div style={{ marginRight: "10px", marginLeft: "10px" }}>
+            <DataList />
+          </div>
         </div>
       </Content>
     </Layout>

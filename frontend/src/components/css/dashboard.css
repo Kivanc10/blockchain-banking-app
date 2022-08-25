@@ -10,6 +10,12 @@
 .item {
   color: white;
 }
+.iButton{
+  background-color: grey!important;
+  width: 60%!important;
+  border-radius: 25px;
+  border-color: grey!important;
+}
 
 .item:hover {
   color: white !important;
@@ -109,7 +115,15 @@ b .nav {
   width: 100%;
   color: white;
 }
-
+.ant-modal-content, .ant-modal-header{
+  border-radius: 25px!important;
+}
+.ant-modal-footer{
+  visibility: hidden!important;
+}
+.sButton{
+  background-color: red!important;
+}
 .box5 {
   /* background-color: rgb(255, 255, 255); */
   border-radius: 20px;
@@ -120,6 +134,7 @@ b .nav {
   -webkit-backdrop-filter: blur(7px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
+  height: fit-content!important;
 }
 
 .box5-1 {
