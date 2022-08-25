@@ -102,12 +102,12 @@ b .nav {
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
-.emptyArea{
-    background-color: rgb(255, 255, 255) !important;
-    height: 200px;
-    border-radius: 20px;
-    width: 100%;
-    color: white;
+.emptyArea {
+  background-color: rgb(255, 255, 255) !important;
+  height: 200px;
+  border-radius: 20px;
+  width: 100%;
+  color: white;
 }
 
 .box5 {
@@ -163,7 +163,13 @@ b .nav {
 }
 
 .TopLine {
-  background-image: linear-gradient(to right, #faebf1, #fab4d1, #f55d9a);
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
   height: 300px;
   border-radius: 20px;
 }

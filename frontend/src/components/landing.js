@@ -266,72 +266,13 @@ const Landing = () => {
       </div>
       {/* Services Section End */}
 
-      <div id="rFAQ"></div>
-      {/* News Section Start */}
-      {/*  <div
-        class="row justify-content-center text-center container-fluid"
-        style={{ marginTop: "75px" }}
-      >
-        <div class="col-8">
-          <h1 style={{ color: "blue" }}>Agenda & News</h1>
-        </div>
-      </div>
-      <div
-        class="row justify-content-center text-center container-fluid"
-        style={{ marginTop: "15px" }}
-      >
-        <div class="col-12">
-          <MDBCarousel showControls interval={10000}>
-            <MDBCarouselInner>
-              <MDBCarouselItem className="active">
-                <MDBCarouselElement src={icerik1} alt="..." />
-              </MDBCarouselItem>
-              <MDBCarouselItem>
-                <MDBCarouselElement src={icerik2} alt="..." />
-              </MDBCarouselItem>
-            </MDBCarouselInner>
-          </MDBCarousel>
-          <Carousel responsive={responsive}>
-            <div>
-
-              <img className='img-fluid newsP'
-                src={icerik1}
-                alt='icerik'></img>
-
-            </div>
-            <div>
-
-              <img className='img-fluid newsP'
-                src={icerik2}
-                alt='icerik'></img>
-
-            </div>
-            <div>
-
-              <img className='img-fluid newsP'
-                src={icerik1}
-                alt='icerik'></img>
-
-            </div>
-            <div>
-
-              <img className='img-fluid newsP'
-                src={icerik2}
-                alt='icerik'></img>
-
-            </div>
-  </Carousel>
-        </div>
-      </div>
-      */}
-      {/* News Section End */}
-
       <Team></Team>
 
       {/*FAQ Section Start */}
       <div
         class="row justify-content-center text-center container-fluid"
         style={{ marginTop: "75px" }}
+        id="rFAQ"
       >
         <div class="col-8">
           <h1 style={{ color: "purple" }}>
