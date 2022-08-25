@@ -1,14 +1,16 @@
-// import "antd/dist/antd.css";
 import "./components/css/App.css";
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import AdminPanel from "./components/adminPanel";
-import Dashboard from "./components/dashboard";
-import GuestMain from "./components/GuestMain"; // needs a lot of tweaking
+import "antd/dist/antd.css";
+import Formm from "./components/formm";
 import Landing from "./components/landing";
-import LogPage from "./components/logPage"; // broken background
+import Dashboard from "./components/dashboard";
+import AdminLogin from "./components/adminLogin";
 import Register from "./components/register";
+import GuestMain from "./components/GuestMain";
+import LogPage from "./components/logPage";
+import MyWallet from "./components/myWallet";
 import Transaction from "./components/Transaction";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
@@ -20,7 +22,7 @@ function App() {
         <Route path="/guestmain" element={<GuestMain />} />
         <Route path="/logpage" element={<LogPage />} />
         <Route path="/transaction" element={<Transaction />} />
-        <Route path="/adminpanel" element={<AdminPanel />} />
+        {/* <Route path="/adminpanel" element={<AdminPanel />} /> */}
       </Routes>
     </div>
   );
