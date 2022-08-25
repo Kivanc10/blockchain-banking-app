@@ -122,7 +122,7 @@ const Dashboard = () => {
           ></MDBRow>
 
           <MDBRow className="test3 d-flex justify-content-evenly">
-            <MDBCol md="4 box5" className="d-flex justify-content-evenly">
+            <MDBCol md="4 box5-2" className="d-flex justify-content-evenly">
               <MDBCol>
                 <div
                   className="font2 mb-3"
@@ -197,7 +197,7 @@ const Dashboard = () => {
               </MDBCol>
             </MDBCol>
 
-            <MDBCol md="4 box5 ">
+            <MDBCol md="4 box5-1 ">
               <MDBRow>
                 <MDBCol>
                   <div

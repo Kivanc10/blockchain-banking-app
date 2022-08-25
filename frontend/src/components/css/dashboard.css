@@ -115,6 +115,30 @@ b .nav {
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
+.box5-1 {
+  /* background-color: rgb(255, 255, 255); */
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.box5-2 {
+  /* background-color: rgb(255, 255, 255); */
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
 .test2 {
   background-color: rgba(0, 128, 0, 0) !important;
   padding-bottom: 1000px;
@@ -240,7 +264,7 @@ b .nav {
   border-radius: 20px;
   /* background-color: white; */
 
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.3);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(7px);
   -webkit-backdrop-filter: blur(7px);
