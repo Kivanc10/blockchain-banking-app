@@ -1,7 +1,8 @@
 import { Layout, Menu } from "antd";
 import { MDBRow, MDBCol } from "mdb-react-ui-kit";
 import { Swiper, SwiperSlide } from "swiper/react";
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
 import logo from "./raw/logoveyazi.png";
 import intertech from "./raw/intertechLogo.png";
 import "./css/dashboard.css";
@@ -29,26 +30,12 @@ import bnb from "./raw/bnb.png";
 import xrp from "./raw/xrp.png";
 import ada from "./raw/ada.png";
 import sol from "./raw/sol.png";
-import Chart from "./monthlyChart";
 import doge from "./raw/doge.png";
-import ChartP from "./monthlyChart";
-import {
-  MDBCarousel,
-  MDBCarouselInner,
-  MDBCarouselItem,
-  MDBCarouselElement,
-} from "mdb-react-ui-kit";
-import { MDBTable, MDBTableHead, MDBTableBody } from "mdb-react-ui-kit";
-import {
-  VictoryChart,
-  VictoryLine,
-  VictoryTheme,
-  VictoryPie,
-  VictoryBar,
-} from "victory";
+import Chart from "./monthlyChart";
+import { MDBTable, MDBTableBody } from "mdb-react-ui-kit";
+import { VictoryChart, VictoryTheme, VictoryPie, VictoryBar } from "victory";
 import { getExchangeRates } from "../utils/exchangeRate";
-const { Header, Content, Footer, Sider } = Layout;
-
+const { Content, Sider } = Layout;
 const dataBar = [
   { x: "Jan", y: 2, y0: 1 },
   { x: "Feb", y: 5, y0: 1 },
@@ -106,10 +93,6 @@ const Dashboard = () => {
             <FontAwesomeIcon className="ServiceIcon" icon={faHome} /> Dashboard
           </Menu.Item>
           <Menu.Item className="item mb-3">
-            <FontAwesomeIcon className="ServiceIcon fa-light" icon={faWallet} />{" "}
-            My Wallet
-          </Menu.Item>
-          <Menu.Item className="item mb-3">
             <FontAwesomeIcon className="ServiceIcon" icon={faGlobe} />{" "}
             Transactions
           </Menu.Item>
@@ -133,41 +116,13 @@ const Dashboard = () => {
           marginLeft: 200,
         }}
       >
-        <Content className="body">
+        <Content className="bodyDashboard">
           <MDBRow
             className="header d-flex justify-content-between text-center align-items-center"
             style={{ marginTop: "25px" }}
           >
-            <MDBCol md="3" className="top1 align-items-center">
-              {/*<Swiper
-              spaceBetween={1}
-              slidesPerView={1}
-              onSlideChange={() => console.log('slide change')}
-              onSwiper={(swiper) => console.log(swiper)}
-            >
-              <SwiperSlide><button type="button" className="btn btn-primary months">January</button></SwiperSlide>
-              <SwiperSlide><button type="button" className="btn btn-primary months">February</button></SwiperSlide>
-              <SwiperSlide><button type="button" className="btn btn-primary months">March</button></SwiperSlide>
-              <SwiperSlide><button type="button" className="btn btn-primary months">April</button></SwiperSlide>
-    </Swiper>*/}
-              <MDBCarousel showControls>
-                <MDBCarouselInner className="months">
-                  <MDBCarouselItem className="active">January</MDBCarouselItem>
-                  <MDBCarouselItem>February</MDBCarouselItem>
-                  <MDBCarouselItem>March</MDBCarouselItem>
-                  <MDBCarouselItem>April</MDBCarouselItem>
-                  <MDBCarouselItem>May</MDBCarouselItem>
-                  <MDBCarouselItem>June</MDBCarouselItem>
-                  <MDBCarouselItem>July</MDBCarouselItem>
-                  <MDBCarouselItem>August</MDBCarouselItem>
-                  <MDBCarouselItem>September</MDBCarouselItem>
-                  <MDBCarouselItem>October</MDBCarouselItem>
-                  <MDBCarouselItem>November</MDBCarouselItem>
-                  <MDBCarouselItem>December</MDBCarouselItem>
-                </MDBCarouselInner>
-              </MDBCarousel>
-            </MDBCol>
-            <MDBCol md="5" className="top2">
+            <MDBCol md="1" className="top1 align-items-center"></MDBCol>
+            <MDBCol md="6" className="top2">
               <Swiper
                 spaceBetween={1}
                 slidesPerView={4}
@@ -312,20 +267,7 @@ const Dashboard = () => {
             </MDBCol>
 
             <MDBCol md="4 box4 ">
-              <MDBCol className="boxes boxShadow">
-                <VictoryChart
-                  className="chart"
-                  width={600}
-                  theme={VictoryTheme.material}
-                  domainPadding={10}
-                >
-                  <VictoryBar
-                    className="chart"
-                    style={{ data: { fill: "blue" } }}
-                    data={dataBar}
-                  />
-                </VictoryChart>
-              </MDBCol>
+              <MDBCol className="boxes boxShadow">{/*DOLDURULACAK */}</MDBCol>
               <MDBRow
                 style={{ marginTop: "15px" }}
                 className="test4 justify-content-between"
@@ -402,7 +344,7 @@ const Dashboard = () => {
                     </th>
                     <td className="trans">Bitcoin</td>
                     <td className="d-flex justify-content-end trans">
-                      $21,280.84
+                      ${currencyData.BTC}
                     </td>
                   </tr>
                   <tr>
@@ -416,10 +358,10 @@ const Dashboard = () => {
                     <td className="trans">Ethereum</td>
                     <td className="d-flex justify-content-end trans">
                       {" "}
-                      $1,573.05
+                      ${currencyData.ETH}
                     </td>
                   </tr>
-                  <tr>
+                  {/* <tr>
                     <th scope="row">
                       <img
                         className="d-flex mb-3 coins"
@@ -430,9 +372,9 @@ const Dashboard = () => {
                     <td className="trans">BNB</td>
                     <td className="d-flex justify-content-end trans">
                       {" "}
-                      $296.41
+                      ${currencyData.BNB}
                     </td>
-                  </tr>
+                  </tr> */}
                   <tr>
                     <th scope="row">
                       <img
@@ -444,7 +386,7 @@ const Dashboard = () => {
                     <td className="trans">XRP</td>
                     <td className="d-flex justify-content-end trans">
                       {" "}
-                      $0.3354
+                      ${currencyData.XRP}
                     </td>
                   </tr>
                   <tr>
@@ -457,7 +399,7 @@ const Dashboard = () => {
                     </th>
                     <td className="trans">Cardano</td>
                     <td className="d-flex justify-content-end trans">
-                      $0.4518
+                      ${currencyData.ADA}
                     </td>
                   </tr>
                   <tr>
@@ -469,7 +411,9 @@ const Dashboard = () => {
                       ></img>
                     </th>
                     <td className="trans">Solana</td>
-                    <td className="d-flex justify-content-end trans">$34.74</td>
+                    <td className="d-flex justify-content-end trans">
+                      ${currencyData.SOL}
+                    </td>
                   </tr>
                   <tr>
                     <th scope="row">
@@ -481,7 +425,7 @@ const Dashboard = () => {
                     </th>
                     <td className="trans">Dogecoin</td>
                     <td className="d-flex justify-content-end trans">
-                      $0.06689
+                      ${currencyData.DOGE}
                     </td>
                   </tr>
                 </MDBTableBody>
@@ -568,28 +512,8 @@ const Dashboard = () => {
             </MDBCol>
             <MDBCol md="4 " style={{ marginTop: "15px" }}>
               <MDBCol className="boxes boxShadow">
-                <div
-                  className="text-center mb-12 font2"
-                  style={{ paddingTop: "10px", marginBottom: "-25px" }}
-                >
-                  Transaction History Of This Month
-                </div>
-                <div className="chartpie">
-                  <VictoryPie
-                    colorScale={["#ED2482", "#6638F9", "#3D0358"]}
-                    labelRadius={({ innerRadius }) => innerRadius + 5}
-                    data={[
-                      { x: "0", y: "%" + 10 },
-                      { x: "0", y: "%" + 20 },
-                      { x: "0", y: "%" + 70 },
-                    ]}
-                  />
-                </div>
-
-                <div className="d-flex justify-content-evenly">
-                  <div className="historyText1">Own Upload</div>
-                  <div className="historyText2">Shopping</div>
-                  <div className="historyText3">Saving</div>
+                <div>
+                  <Chart />
                 </div>
               </MDBCol>
             </MDBCol>
