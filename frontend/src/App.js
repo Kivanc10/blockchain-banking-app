@@ -10,26 +10,18 @@ import GuestMain from "./components/GuestMain";
 import Logpage from "./components/logPage";
 import MyWallet from "./components/myWallet";
 import Transaction from "./components/Transaction";
-import AdminPanel from './components/adminPanel'
+import AdminPanel from "./components/adminPanel";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LogPage from "./components/logPage";
 
 function App() {
   return (
     <div className="App">
-      <>
-<<<<<<< HEAD
-        <Routes>
-          <Route path="/" element={<Logpage />} />
-=======
-        {/* <Routes>
-          <Route path="/" element={<Landing />} />
->>>>>>> 04d86c6f905bda1dfd9371e09fb10bf88021e743
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Routes> */}
-        <Dashboard></Dashboard>
-        {/* <Transaction></Transaction> */}
-      </>
+      <Routes>
+        <Route path="/" element={<Logpage />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
     </div>
   );
 }
