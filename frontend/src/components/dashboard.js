@@ -33,7 +33,6 @@ import sol from "./raw/sol.png";
 import doge from "./raw/doge.png";
 import Chart from "./monthlyChart";
 import { MDBTable, MDBTableBody } from "mdb-react-ui-kit";
-import { VictoryChart, VictoryTheme, VictoryPie, VictoryBar } from "victory";
 import { getExchangeRates } from "../utils/exchangeRate";
 const { Content, Sider } = Layout;
 const dataBar = [
@@ -101,7 +100,7 @@ const Dashboard = () => {
               className="ServiceIcon"
               icon={faArrowRightFromBracket}
             />{" "}
-            Signout
+            Sign out
           </Menu.Item>
           <img
             className="rounded mx-auto d-block fixed-bottom intertech2"
@@ -119,56 +118,8 @@ const Dashboard = () => {
         <Content className="bodyDashboard">
           <MDBRow
             className="header d-flex justify-content-between text-center align-items-center"
-            style={{ marginTop: "25px" }}
-          >
-            <MDBCol md="1" className="top1 align-items-center"></MDBCol>
-            <MDBCol md="6" className="top2">
-              <Swiper
-                spaceBetween={1}
-                slidesPerView={4}
-                onSlideChange={() => console.log("slide change")}
-                onSwiper={(swiper) => console.log(swiper)}
-              >
-                <SwiperSlide>
-                  <button type="button" className="btn btn-primary account">
-                    Inheritor
-                  </button>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <button type="button" className="btn btn-primary account">
-                    Inheritor
-                  </button>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <button type="button" className="btn btn-primary account">
-                    Inheritor
-                  </button>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <button type="button" className="btn btn-primary account">
-                    Inheritor 1: name
-                  </button>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <button type="button" className="btn btn-primary account">
-                    Inheritor
-                  </button>
-                </SwiperSlide>
-              </Swiper>
-            </MDBCol>
-            <MDBCol
-              md="3"
-              className="d-flex justify-content-evenly text-center top3"
-            >
-              <button type="account" className="btn btn-primary buttons">
-                <FontAwesomeIcon
-                  className="ServiceIcon fa-2x"
-                  icon={faCirclePlus}
-                />
-                <div>Create New Inheritor</div>
-              </button>
-            </MDBCol>
-          </MDBRow>
+            style={{ marginTop: "25px", marginBottom: "25px", height: "50px" }}
+          ></MDBRow>
 
           <MDBRow className="test3 d-flex justify-content-evenly">
             <MDBCol md="4 box5" className="d-flex justify-content-evenly">
@@ -247,18 +198,31 @@ const Dashboard = () => {
             </MDBCol>
 
             <MDBCol md="4 box5 ">
-              <MDBCol>
-                {/*DOLDURULACAK */}{" "}
-                <div
-                  className="font2 mb-3"
-                  style={{ marginTop: "15px", marginLeft: "20px" }}
-                >
-                  Inheritors
-                </div>
-              </MDBCol>
+              <MDBRow>
+                <MDBCol>
+                  <div
+                    className="font2 mb-3"
+                    style={{ marginTop: "15px", marginLeft: "20px" }}
+                  >
+                    Inheritors
+                  </div>
+                </MDBCol>
+                <MDBCol>
+                  <button
+                    type="account"
+                    className="btn btn-primary buttons float-end"
+                    title="Create new Inheritor"
+                  >
+                    <FontAwesomeIcon
+                      className="ServiceIcon fa-2x"
+                      icon={faCirclePlus}
+                    />
+                  </button>
+                </MDBCol>
+              </MDBRow>
               <MDBRow
                 style={{ marginTop: "15px" }}
-                className="test4 justify-content-between"
+                // className="test4 justify-content-between"
               ></MDBRow>
             </MDBCol>
 
