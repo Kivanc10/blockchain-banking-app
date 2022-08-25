@@ -76,6 +76,13 @@
 
     height: 200px;
 }
+.emptyArea{
+    background-color: rgb(255, 255, 255) !important;
+    height: 200px;
+    border-radius: 20px;
+    width: 100%;
+    color: white;
+}
 
 .box5 {
     background-color: rgb(255, 255, 255);

@@ -273,7 +273,7 @@ const Dashboard = () => {
                 className="test4 justify-content-between"
               >
                 <MDBCol
-                  md="5 box"
+                  md="4 box3 emptyArea"
                   className="justify-content-center p-4 boxShadow"
                 >
                   <div className="box-title" style={{ paddingTop: "0.8em" }}>
@@ -297,31 +297,7 @@ const Dashboard = () => {
                     </label>
                   </div>
                 </MDBCol>
-                <MDBCol
-                  md="5 box2"
-                  className="justify-content-center p-4 boxShadow"
-                >
-                  <div className="box-title" style={{ paddingTop: "0.8em" }}>
-                    Output
-                  </div>
-                  <div className="box-subtitle ">$ 201.48</div>
-                  <div
-                    className="redBox text-center"
-                    style={{ width: "6.5em" }}
-                  >
-                    <FontAwesomeIcon
-                      className="faArrowTrendDown redBoxYazilar"
-                      icon={faArrowTrendDown}
-                    />
-                    <label
-                      className="redBoxYazilar"
-                      style={{ paddingLeft: "5px" }}
-                    >
-                      {" "}
-                      -3%
-                    </label>
-                  </div>
-                </MDBCol>
+                
               </MDBRow>
             </MDBCol>
 

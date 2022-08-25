@@ -2,10 +2,11 @@ import { Layout, Menu } from "antd";
 import React from "react";
 import logo from "./raw/logoveyazi.png";
 import "./adminPanel.css";
-import "./GuestMain.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as V from "victory";
 import intertech from "./raw/intertechLogo.png";
+import Chart from './panelChart';
+import Chart2 from './panelChart2';
 import {
     VictoryChart,
     VictoryLine,
@@ -114,93 +115,17 @@ const App = () => (
                 }}
             >
                 <Content className="body">
-                    <div className="container-fluid mainWrapper">
-                        <div className="row">
-                            <div className="container">
-                                <div className="row py-5 firstSubContainer">
-                                    <div class="col-9"></div>
-                                    <div class="col-3">
-                                        <div className="firstTopRight p-5">
-                                            <p className="text-white">Number of accounts that will exceed the age of 18 that month</p>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div className="container-fluid mainWrapper justify-content-center">
+
+
+                        <div className="row ">
+                            <div class='col-6'>
+                                <Chart />
+                            </div>
+                            <div class='col-6'>
+                                <Chart2 />
                             </div>
                         </div>
-                        <div className="row">
-                            <div className="container">
-                                <div className="row">
-                                    {/* <div class="col-2">col-2</div> */}
-                                    <div class="col-8 graphicBig1">
-                                        <div className="victoryChartWrapper">
-                                            <div>
-                                                <p>Google+ User Statistics -Dec 2012</p>
-                                            </div>
-                                            <div>
-                                                <VictoryChart width={650} height={450}>
-
-                                                    <VictoryLine data={data} />
-                                                    <VictoryScatter
-                                                        size={5}
-                                                        data={data}
-                                                    />
-                                                </VictoryChart>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-1">
-
-                                    </div>
-                                    <div class="col-3 graphicBig2">
-                                       <img src={require("./raw/customerSatisfactionSurvey.png")} className="customerSatisfactionSurvey" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="row">
-                            <div className="container">
-                                <div className="row smallGraphics">
-                                    {/* <div class="col-2">col-2</div> */}
-                                    <div class="col-5 graphicSmall1">
-                                        <VictoryPie
-                                            colorScale={["red", "blue"]}
-                                            data={[
-                                                { x: "Male", y: 70 },
-                                                { x: "Female", y: 30 },
-                                            ]}
-                                        />
-                                    </div>
-                                    <div class="col-4 graphicSmall2">
-                                        <VictoryPie
-                                            colorScale={["#ED2482", "#6638F9", "#3D0358"]}
-                                            labelRadius={({ innerRadius }) => innerRadius + 5}
-                                            data={[
-                                                { x: "0", y: "%" + 10 },
-                                                { x: "0", y: "%" + 20 },
-                                                { x: "0", y: "%" + 5 },
-                                                { x: "0", y: "%" + 3 },
-                                                { x: "0", y: "%" + 2 },
-                                                { x: "0", y: "%" + 70 },
-
-                                            ]}
-                                        />
-                                    </div>
-                                    <div class="col-3 graphicSmall3">
-                                        <div className="smallGraphic3Div">
-                                            <div className="smg3Top"><p className="fs-3 px-2">Age distribution of the participants</p></div>
-                                            <div className="smg3Bottom">
-                                                <VictoryPie
-                                                    colorScale={["tomato", "orange", "gold", "cyan", "navy"]}
-                                                    data={sampleData}
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
 
                     <div className="navBarDiv">
@@ -221,11 +146,7 @@ const App = () => (
 
                                 </form>
 
-                                <div class="d-flex input-group w-auto">
-                                    <div className="fakeImage">
 
-                                    </div>
-                                </div>
                             </div>
                         </nav>
 
@@ -343,7 +264,7 @@ const App = () => (
                                 <tr>
                                     {/* <th scope="col">&#9634;</th> */}
                                     <th> <input type="checkbox" /></th>
-                                    <th scope="col">Image</th>
+
                                     <th scope="col">
                                         <div style={{
                                             display: "flex",
@@ -391,11 +312,6 @@ const App = () => (
                             <tbody>
                                 <tr>
                                     <th scope="row"> <input type="checkbox" /></th>
-                                    <td>
-                                        <div className="fakeImage">
-
-                                        </div>
-                                    </td>
                                     <td>Title</td>
                                     <td>Date</td>
                                     <td>Title</td>
@@ -403,11 +319,6 @@ const App = () => (
                                 </tr>
                                 <tr>
                                     <th scope="row"> <input type="checkbox" /></th>
-                                    <td>
-                                        <div className="fakeImage">
-
-                                        </div>
-                                    </td>
                                     <td>Title</td>
                                     <td>Date</td>
                                     <td>Title</td>
@@ -415,11 +326,6 @@ const App = () => (
                                 </tr>
                                 <tr>
                                     <th scope="row"> <input type="checkbox" /></th>
-                                    <td>
-                                        <div className="fakeImage">
-
-                                        </div>
-                                    </td>
                                     <td>Title</td>
                                     <td>Date</td>
                                     <td>Title</td>
@@ -427,11 +333,6 @@ const App = () => (
                                 </tr>
                                 <tr>
                                     <th scope="row"> <input type="checkbox" /></th>
-                                    <td>
-                                        <div className="fakeImage">
-
-                                        </div>
-                                    </td>
                                     <td>Title</td>
                                     <td>Date</td>
                                     <td>Title</td>
@@ -439,11 +340,6 @@ const App = () => (
                                 </tr>
                                 <tr>
                                     <th scope="row"> <input type="checkbox" /></th>
-                                    <td>
-                                        <div className="fakeImage">
-
-                                        </div>
-                                    </td>
                                     <td>Title</td>
                                     <td>Date</td>
                                     <td>Title</td>

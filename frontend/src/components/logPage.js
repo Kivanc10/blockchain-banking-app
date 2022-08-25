@@ -58,7 +58,7 @@ const LogPage = () => (
     >
       <Content className="body">
         <div className="container-fluid col-8 d-flex TopHead">
-          <h3>Transaction Information</h3>
+          <h3>Log Information</h3>
         </div>
         {/* Form  Start*/}
         <div className="container-fluid d-flex justify-content-between col-8">

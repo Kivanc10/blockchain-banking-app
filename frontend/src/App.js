@@ -10,14 +10,16 @@ import GuestMain from "./components/GuestMain";
 import Logpage from "./components/logPage";
 import MyWallet from "./components/myWallet";
 import Transaction from "./components/Transaction";
+import AdminPanel from './components/adminPanel'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LogPage from "./components/logPage";
 
 function App() {
   return (
     <div className="App">
       <>
         <Routes>
-          <Route path="/" element={<Landing />} />
+          <Route path="/" element={<Logpage />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </>
