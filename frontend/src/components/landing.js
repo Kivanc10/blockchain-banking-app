@@ -1,5 +1,5 @@
 import logo from "./raw/logo.png";
-import "./landing.css";
+import "./css/landing.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Container from "react-bootstrap/Container";
 import { Form, Nav, Navbar } from "react-bootstrap";

@@ -1,7 +1,7 @@
 import { Layout, Menu } from "antd";
 import React from "react";
 import logo from "./raw/logoveyazi.png";
-import "./logPage.css";
+import "./css/logPage.css";
 import Form from "react-bootstrap/Form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

@@ -1,10 +1,10 @@
 import { Layout, Menu } from "antd";
 import { MDBRow, MDBCol } from "mdb-react-ui-kit";
 import { Swiper, SwiperSlide } from "swiper/react";
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import logo from "./raw/logoveyazi.png";
 import intertech from "./raw/intertechLogo.png";
-import "./dashboard.css";
+import "./css/dashboard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -20,7 +20,7 @@ import {
   faEuroSign,
   faSterlingSign,
   faCoins,
-  faWallet
+  faWallet,
 } from "@fortawesome/free-solid-svg-icons";
 import "swiper/css";
 import btc from "./raw/btc.png";

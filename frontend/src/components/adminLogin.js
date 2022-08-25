@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import "./adminLogin.css";
-import logo from "./raw/logoveyazi.png";
+import "./css/adminLogin.css";
 import intertechLogo from "./raw/intertechLogo.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import logo from "./raw/logoveyazi.png";
 
 const adminLogin = () => {
   return (

@@ -1,12 +1,12 @@
 import { Layout, Menu } from "antd";
 import React from "react";
 import logo from "./raw/logoveyazi.png";
-import "./dashboard.css";
-import "./GuestMain.css";
+import "./css/dashboard.css";
+import "./css/GuestMain.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import intertech from "./raw/intertechLogo.png";
 import { MDBRow, MDBCol } from "mdb-react-ui-kit";
-import "./myWallet.css";
+import "./css/myWallet.css";
 import {
   faHome,
   faWallet,

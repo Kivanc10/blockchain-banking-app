@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Layout, Menu } from "antd";
 import logo from "./raw/logoveyazi.png";
-import "./dashboard.css";
+import "./css/dashboard.css";
 import Table from "react-bootstrap/Table";
-import "./Transaction.css";
+import "./css/Transaction.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,

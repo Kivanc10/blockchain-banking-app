@@ -1,5 +1,5 @@
 import logo from "./raw/logoveyazi.png";
-import "./register.css";
+import "./css/register.css";
 import "bootstrap/dist/css/bootstrap.css";
 import Container from "react-bootstrap/Container";
 import { DatePicker, Space } from "antd";
