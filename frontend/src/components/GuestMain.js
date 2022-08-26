@@ -1,6 +1,7 @@
 import { Layout, Menu, Row } from "antd";
 import React from "react";
 import logo from "./raw/logoveyazi.png";
+import "./css/GuestMain.css";
 import "./css/logPage.css";
 import Count from "./count";
 import Form from "react-bootstrap/Form";
@@ -57,17 +58,17 @@ const LogPage = () => (
         <Row style={{ marginTop: '10em' }}>
           <div className="container-fluid col-6 d-flex justify-content-center">
             <div className="container tRemain">
-              
+
               <h4 className="text-center">28/12/2027</h4>
               <Count />
               <Row>
                 <div className="container-fluid text-center d-flex justify-content-center">
-                  <p style={{fontSize:'0.7em',fontWeight:'Bold'}}>Years</p>
-                  <p style={{fontSize:'0.7em' , marginLeft:'2.6em',fontWeight:'Bold'}}>Minutes</p>
-                  <p style={{fontSize:'0.7em' , marginLeft:'2.6em',fontWeight:'Bold'}}>Days</p>
-                  <p style={{fontSize:'0.7em',fontWeight:'Bold', marginLeft:'2.6em',fontWeight:'Bold'}}>Hours</p>
-                  <p style={{fontSize:'0.7em' , marginLeft:'2.6em',fontWeight:'Bold'}}>Minutes</p>
-                  <p style={{fontSize:'0.7em' , marginLeft:'2.6em',fontWeight:'Bold'}}>Seconds</p>
+                  <p style={{ fontSize: '0.7em', fontWeight: 'Bold' }}>Years</p>
+                  <p style={{ fontSize: '0.7em', marginLeft: '2.6em', fontWeight: 'Bold' }}>Minutes</p>
+                  <p style={{ fontSize: '0.7em', marginLeft: '2.6em', fontWeight: 'Bold' }}>Days</p>
+                  <p style={{ fontSize: '0.7em', fontWeight: 'Bold', marginLeft: '2.6em', fontWeight: 'Bold' }}>Hours</p>
+                  <p style={{ fontSize: '0.7em', marginLeft: '2.6em', fontWeight: 'Bold' }}>Minutes</p>
+                  <p style={{ fontSize: '0.7em', marginLeft: '2.6em', fontWeight: 'Bold' }}>Seconds</p>
                 </div>
               </Row>
               <h3 className="text-center">Remaining</h3>
@@ -76,7 +77,7 @@ const LogPage = () => (
         </Row>
         <Row style={{ marginTop: '1em' }}>
           <div className="container-fluid col-8 d-flex justify-content-between ">
-            <div style={{ height: "300px" }} className="BPbox">
+            <div style={{ height: "300px" }} className="BPbox portfolioGuest">
               <div style={{ marginTop: "50px" }} className="d-flex justify-content-evenly mb-3 portfolioFont">
                 Portfolio
               </div>

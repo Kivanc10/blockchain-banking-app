@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import CanvasJSReact from "./canvasjs.react";
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 class App extends Component {
+
   render() {
     const options = {
       animationEnabled: true,
@@ -18,11 +19,11 @@ class App extends Component {
           indexLabelFontSize: 16,
           indexLabel: "{label} - {y}%",
           dataPoints: [
-            { y: 18, label: "Inheritor 1 name" },
-            { y: 49, label: "Your balance" },
-            { y: 9, label: "Inheritor 2 name" },
-            { y: 5, label: "Inheritor 3 name" },
-            { y: 19, label: "Inheritor 4 name" },
+            { y: 18, label: "Inheritor 1 name", color: "#FD006A" },
+            { y: 49, label: "Your balance", color: "#F4298F" },
+            { y: 9, label: "Inheritor 2 name", color: "#EB52B3" },
+            { y: 5, label: "Inheritor 3 name", color: "#E17AD8" },
+            { y: 19, label: "Inheritor 4 name", color: "#D8A3FC" },
           ],
         },
       ],

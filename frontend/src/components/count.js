@@ -15,13 +15,13 @@ const App = () => {
   };
   return (
     <div className="App">
-        <Row>
-                <div className="container-fluid text-center d-flex justify-content-center">
-                <Countdown title="" value={deadline} format="YY MM DD HH mm ss"  className='countItems' style={{backgroundColor:'rgba(0,0,0,0.4)',width:'28em',borderRadius:'25px' }}/>
+      <Row>
+        <div className="container-fluid text-center d-flex justify-content-center">
+          <Countdown title="" value={deadline} format="YY MM DD HH mm ss" className='countItems' style={{ backgroundColor: '#ff5481', width: '28em', borderRadius: '25px' }} />
 
-                </div>
-        </Row>
-    
+        </div>
+      </Row>
+
     </div>
   )
 };

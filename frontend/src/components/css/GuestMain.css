@@ -14,13 +14,11 @@ main {
 .BPbox {
     /* background-color: rgb(255, 255, 255); */
     border-radius: 20px;
-
     background: rgba(255, 255, 255, 0.6);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(7px);
     -webkit-backdrop-filter: blur(7px);
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
     width: 33em;
     height: 16em;
 }
@@ -47,5 +45,10 @@ main {
 .portfolioFont-2{
     font-size:72px;
     font-weight: bolder;
-    color: green;
+    color: #0000008f;
+}
+.portfolioGuest{
+    background:linear-gradient(to right,#fd006a,rgba(255, 255, 255, 0.6),transparent);
+    background-color:rgba(255, 255, 255, 0.6);
+    
 }

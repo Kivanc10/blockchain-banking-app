@@ -58,8 +58,8 @@ const Dashboard = () => {
   const [currencyData, setCurrencyData] = useState({});
   const [userBalance, setUserBalance] = useState(0);
   const [transactions, setTransactions] = useState([]);
-  const [childObjects,setChildObjects] = useState([])
-  const { currentAccount, addUser, sendEthereum, getEtherBalanceOfCurrentUser, getTransactionHistory,formatEther,getMyChildrenInfos } = useContext(BankingContext);
+  const [childObjects, setChildObjects] = useState([])
+  const { currentAccount, addUser, sendEthereum, getEtherBalanceOfCurrentUser, getTransactionHistory, formatEther, getMyChildrenInfos } = useContext(BankingContext);
   const callApi = async () => {
     const data = await getExchangeRates();
     setCurrencyData(data);
@@ -105,10 +105,10 @@ const Dashboard = () => {
   }
 
   const getChildrenFeatures = async () => {
-      
+
   }
 
-  
+
 
 
 
@@ -151,13 +151,13 @@ const Dashboard = () => {
             Sign out
           </Menu.Item>
 
-          <Menu.Item className="item mb-3">
-            <FontAwesomeIcon
+          {/*  <Menu.Item className="item mb-3">
+           <FontAwesomeIcon
               className="ServiceIcon"
               icon={faArrowRightFromBracket}
             />{" "}
             <button onClick={sendEther}>Send</button>
-          </Menu.Item>
+      </Menu.Item>*/}
           <img
             className="rounded mx-auto d-block fixed-bottom intertech2"
             src={intertech}
@@ -178,242 +178,11 @@ const Dashboard = () => {
           ></MDBRow>
 
           <MDBRow className="test3 d-flex justify-content-evenly">
-            <MDBCol md="4 box5-2" className="d-flex justify-content-evenly">
-              <MDBCol>
-                <div
-                  className="font2 mb-3"
-                  style={{ marginTop: "15px", marginLeft: "20px" }}
-                >
-                  Latest Transactions
-                </div>
 
-                <MDBTable>
-
-                  <MDBTableBody>
-                    {transactions.length === 0 && (
-                      <tr>
-                        
-                      <td className="trans">No transactions</td>
-                     
-                    </tr>
-                    )}
-                    {transactions.map((e) => (
-                      (Number(e.sender) === Number(currentAccount) ? (
-                        // <p>asdsadasd</p>
-                        <tr>
-                          <th scope="row">
-                            <FontAwesomeIcon
-                              className="ServiceIcon iconRed"
-                              icon={faArrowRight}
-                            ></FontAwesomeIcon>
-                          </th>
-                          <td className="trans">Outgoing</td>
-                          <td className="d-flex justify-content-end redValue">
-                            - {formatEther(e.amount.toString()) + " ETH"}
-                          </td>
-                        </tr>
-                      ) : (
-                        <tr>
-                        <th scope="row">
-                          <FontAwesomeIcon
-                            className="ServiceIcon iconGreen"
-                            icon={faArrowRight}
-                          ></FontAwesomeIcon>
-                        </th>
-                        <td className="trans">Incoming</td>
-                        <td className="d-flex justify-content-end greenValue">
-                          + {formatEther(e.amount.toString()) + " ETH"}
-                        </td>
-                      </tr>
-                      ))
-
-                    ))}
-
-
-                    {/* <tr>
-                      <th scope="row">
-                        <FontAwesomeIcon
-                          className="ServiceIcon iconRed"
-                          icon={faArrowRight}
-                        ></FontAwesomeIcon>
-                      </th>
-                      <td className="trans">Personal Payment</td>
-                      <td className="d-flex justify-content-end redValue">
-                        -$35
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        <FontAwesomeIcon
-                          className="ServiceIcon iconRed"
-                          icon={faArrowRight}
-                        ></FontAwesomeIcon>
-                      </th>
-                      <td className="trans">Purchasing</td>
-                      <td className="d-flex justify-content-end redValue">
-                        -$128
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        <FontAwesomeIcon
-                          className="ServiceIcon iconGreen"
-                          icon={faArrowLeft}
-                        ></FontAwesomeIcon>
-                      </th>
-                      <td className="trans">Personal Payment</td>
-                      <td className="d-flex justify-content-end greenValue">
-                        $10
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        <FontAwesomeIcon
-                          className="ServiceIcon iconGreen"
-                          icon={faArrowLeft}
-                        ></FontAwesomeIcon>
-                      </th>
-                      <td className="trans">Selling</td>
-                      <td className="d-flex justify-content-end greenValue">
-                        $35
-                      </td>
-                    </tr>
-                    <tr>
-                      <th scope="row">
-                        <FontAwesomeIcon
-                          className="ServiceIcon iconRed"
-                          icon={faArrowRight}
-                        ></FontAwesomeIcon>
-                      </th>
-                      <td className="trans">Personal Payment</td>
-                      <td className="d-flex justify-content-end redValue">
-                        -$35
-                      </td>
-                    </tr> */}
-                  </MDBTableBody>
-                </MDBTable>
-              </MDBCol>
-            </MDBCol>
-
-            <MDBCol md="4 box5-1 ">
-              <MDBRow>
-                <MDBCol>
-                  <div
-                    className="font2 mb-3"
-                    style={{ marginTop: "15px", marginLeft: "20px" }}
-                  >
-                    Inheritors
-                  </div>
-                </MDBCol>
-                <MDBCol>
-                  <ModalCreate />
-                </MDBCol>
-              </MDBRow>
-              
-                {childObjects.map((e) => ( // veri çekerken balance blockchainden all..(sonra) , reamining day
-                  <Modal inheritor_name={e[0].name} age = {e[0].age} remainingDay = {(18-e[0].age)*365} value={e[1]} />
-                ))}
-             
-          
-
-            </MDBCol>
-
-            <MDBCol md="3 box5 boxShadow">
-              <div
-                className="font2 mb-2"
-                style={{ marginTop: "15px", marginLeft: "20px" }}
-              >
-                Market Values
-              </div>
-              <MDBTable>
-                <MDBTableBody>
-                  <tr>
-                    <th scope="row">
-                      <img
-                        className="d-flex mb-3 coins"
-                        src={btc}
-                        alt="HeaderImage"
-                      ></img>
-                    </th>
-                    <td className="trans">Bitcoin</td>
-                    <td className="d-flex justify-content-end trans">
-                      ${currencyData.BTC}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      <img
-                        className="d-flex mb-3 coins"
-                        src={eth}
-                        alt="HeaderImage"
-                      ></img>
-                    </th>
-                    <td className="trans">Ethereum</td>
-                    <td className="d-flex justify-content-end trans">
-                      {" "}
-                      ${currencyData.ETH}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      <img
-                        className="d-flex mb-3 coins"
-                        src={xrp}
-                        alt="HeaderImage"
-                      ></img>
-                    </th>
-                    <td className="trans">XRP</td>
-                    <td className="d-flex justify-content-end trans">
-                      {" "}
-                      ${currencyData.XRP}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      <img
-                        className="d-flex mb-3 coins"
-                        src={ada}
-                        alt="HeaderImage"
-                      ></img>{" "}
-                    </th>
-                    <td className="trans">Cardano</td>
-                    <td className="d-flex justify-content-end trans">
-                      ${currencyData.ADA}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      <img
-                        className="d-flex mb-3 coins"
-                        src={sol}
-                        alt="HeaderImage"
-                      ></img>
-                    </th>
-                    <td className="trans">Solana</td>
-                    <td className="d-flex justify-content-end trans">
-                      ${currencyData.SOL}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      <img
-                        className="d-flex coins"
-                        src={doge}
-                        alt="HeaderImage"
-                      ></img>
-                    </th>
-                    <td className="trans">Dogecoin</td>
-                    <td className="d-flex justify-content-end trans">
-                      ${currencyData.DOGE}
-                    </td>
-                  </tr>
-                </MDBTableBody>
-              </MDBTable>
-            </MDBCol>
 
             <MDBCol md="4">
               <MDBCol
-                className="TopLine boxShadow"
+                className="TopLine boxShadow portfolioDash"
                 style={{ marginTop: "15px" }}
               >
                 <MDBRow className="d-flex justify-content-evenly">
@@ -421,7 +190,7 @@ const Dashboard = () => {
                     className="d-flex justify-content-evenly mb-3 font3"
                     style={{ marginTop: "30px" }}
                   >
-                    Summary
+                    My Wallet Summary
                   </div>
                 </MDBRow>
                 <MDBRow>
@@ -431,8 +200,8 @@ const Dashboard = () => {
                     </div>
                     <div className="d-flex text-center align-items-center justify-content-evenly mb-1 font1">
                       {userBalance}<div style={{
-                        fontSize : 20,
-                        color : "gray"
+                        fontSize: 20,
+                        color: "white"
                       }}>ETH</div>
                     </div>
                   </MDBCol>
@@ -440,7 +209,7 @@ const Dashboard = () => {
                     <div className="d-flex justify-content-evenly mb-3 font2">
                       PNL
                     </div>
-                    <div className="d-flex justify-content-evenly mb-1 font1">
+                    <div className="d-flex justify-content-evenly mb-1 font1-2">
                       {userBalance === "0" && (
                         <p>$0</p>
                       )}
@@ -560,6 +329,177 @@ const Dashboard = () => {
                     <td className="currencyTableText">ONS/USD</td>
                     <td className="currencyTableText d-flex justify-content-end currenciesText">
                       {currencyData.XAU}
+                    </td>
+                  </tr>
+                </MDBTableBody>
+              </MDBTable>
+            </MDBCol>
+            <MDBCol md="4 box5-2" className="d-flex justify-content-evenly boxShadow">
+              <MDBCol>
+                <div
+                  className="font2 mb-3"
+                  style={{ marginTop: "15px", marginLeft: "20px" }}
+                >
+                  Latest Transactions
+                </div>
+
+                <MDBTable>
+
+                  <MDBTableBody>
+                    {transactions.length === 0 && (
+
+                      <p style={{ marginLeft: '20px', marginTop: '20px', fontSize: '20px' }}>There is no recorded transactions.<br /> Recorded transactions will be shown here.</p>
+
+                    )}
+                    {transactions.map((e) => (
+                      (Number(e.sender) === Number(currentAccount) ? (
+                        // <p>asdsadasd</p>
+                        <tr>
+                          <th scope="row">
+                            <FontAwesomeIcon
+                              className="ServiceIcon iconRed"
+                              icon={faArrowRight}
+                            ></FontAwesomeIcon>
+                          </th>
+                          <td className="trans">Outgoing</td>
+                          <td className="d-flex justify-content-end redValue">
+                            - {formatEther(e.amount.toString()) + " ETH"}
+                          </td>
+                        </tr>
+                      ) : (
+                        <tr>
+                          <th scope="row">
+                            <FontAwesomeIcon
+                              className="ServiceIcon iconGreen"
+                              icon={faArrowRight}
+                            ></FontAwesomeIcon>
+                          </th>
+                          <td className="trans">Incoming</td>
+                          <td className="d-flex justify-content-end greenValue">
+                            + {formatEther(e.amount.toString()) + " ETH"}
+                          </td>
+                        </tr>
+                      ))
+
+                    ))}
+                  </MDBTableBody>
+                </MDBTable>
+              </MDBCol>
+            </MDBCol>
+
+            <MDBCol md="4 box5-1 boxShadow">
+              <MDBRow>
+                <MDBCol>
+                  <div
+                    className="font2 mb-3"
+                    style={{ marginTop: "15px", marginLeft: "20px" }}
+                  >
+                    Inheritors
+                  </div>
+                </MDBCol>
+                <MDBCol>
+                  <ModalCreate />
+                </MDBCol>
+              </MDBRow>
+
+              {(childObjects === undefined || childObjects === null) ? (
+                <p style={{ marginLeft: '20px', marginTop: '20px', fontSize: '20px' }}>There is no registered inheritor.<br /> If you want to create one, please use the button above.</p>
+              ) : (
+                childObjects.map((e) => ( // veri çekerken balance blockchainden all..(sonra) , reamining day
+                  <Modal inheritor_name={e[0].name} age={e[0].age} remainingDay={(18 - e[0].age) * 365} value={e[1]} />
+                ))
+              )}
+
+
+            </MDBCol>
+
+            <MDBCol md="3 box5 boxShadow">
+              <div
+                className="font2 mb-2"
+                style={{ marginTop: "15px", marginLeft: "20px" }}
+              >
+                Market Values
+              </div>
+              <MDBTable>
+                <MDBTableBody>
+                  <tr>
+                    <th scope="row">
+                      <img
+                        className="d-flex mb-3 coins"
+                        src={btc}
+                        alt="HeaderImage"
+                      ></img>
+                    </th>
+                    <td className="trans">Bitcoin</td>
+                    <td className="d-flex justify-content-end trans">
+                      ${currencyData.BTC}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <img
+                        className="d-flex mb-3 coins"
+                        src={eth}
+                        alt="HeaderImage"
+                      ></img>
+                    </th>
+                    <td className="trans">Ethereum</td>
+                    <td className="d-flex justify-content-end trans">
+                      {" "}
+                      ${currencyData.ETH}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <img
+                        className="d-flex mb-3 coins"
+                        src={xrp}
+                        alt="HeaderImage"
+                      ></img>
+                    </th>
+                    <td className="trans">XRP</td>
+                    <td className="d-flex justify-content-end trans">
+                      {" "}
+                      ${currencyData.XRP}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <img
+                        className="d-flex mb-3 coins"
+                        src={ada}
+                        alt="HeaderImage"
+                      ></img>{" "}
+                    </th>
+                    <td className="trans">Cardano</td>
+                    <td className="d-flex justify-content-end trans">
+                      ${currencyData.ADA}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <img
+                        className="d-flex mb-3 coins"
+                        src={sol}
+                        alt="HeaderImage"
+                      ></img>
+                    </th>
+                    <td className="trans">Solana</td>
+                    <td className="d-flex justify-content-end trans">
+                      ${currencyData.SOL}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <img
+                        className="d-flex coins"
+                        src={doge}
+                        alt="HeaderImage"
+                      ></img>
+                    </th>
+                    <td className="trans">Dogecoin</td>
+                    <td className="d-flex justify-content-end trans">
+                      ${currencyData.DOGE}
                     </td>
                   </tr>
                 </MDBTableBody>

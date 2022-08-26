@@ -1,5 +1,5 @@
 import { Button, Modal } from 'antd';
-import React, { useState,useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { DatePicker, Space } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BankingContext } from "../context/BankingContext";
@@ -12,21 +12,21 @@ import {
 
 const App = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [name,setName] = useState("");
-  const [wallet_address,setWalletAddress] = useState("")
-  const [age,setAge] = useState(0);
-  const {linkAccountToCurrentUser} = useContext(BankingContext);
+  const [name, setName] = useState("");
+  const [wallet_address, setWalletAddress] = useState("")
+  const [age, setAge] = useState(0);
+  const { linkAccountToCurrentUser } = useContext(BankingContext);
 
-  const linkAccount = async (wallet_address,name,age) => {
-    console.log(wallet_address,name,age)
-    linkAccountToCurrentUser(wallet_address,name,age)
-    .then((res) => {
-      console.log(res)
-      //window.location.reload();
-      //linkAccount("0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC","salih",25)
-    }).catch((e) => {
-      console.log("errro ->", e)
-    })
+  const linkAccount = async (wallet_address, name, age) => {
+    console.log(wallet_address, name, age)
+    linkAccountToCurrentUser(wallet_address, name, age)
+      .then((res) => {
+        console.log(res)
+        //window.location.reload();
+        //linkAccount("0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC","salih",25)
+      }).catch((e) => {
+        console.log("errro ->", e)
+      })
   }
 
 
@@ -47,26 +47,31 @@ const App = () => {
     const currentYear = new Date().getFullYear()
     console.log(date);
     setAge(currentYear - birthDate);
-    console.log("age --> ",age)
+    console.log("age --> ", age)
   };
 
   return (
     <>
-      <button       
-                    onClick={showModal}
-                    type="account"
-                    className="btn btn-primary buttons float-end"
-                    title="Create new Inheritor"
-                  >
-                    <FontAwesomeIcon
-                      className="ServiceIcon fa-2x"
-                      icon={faCirclePlus}
-                    />
-                  </button>
+      <button
+        onClick={showModal}
+        type="account"
+        className="btn btn-primary buttons float-end d-flex align-items-center "
+        title="Create new Inheritor"
+        style={{ marginTop: '10px', marginRight: '10px' }}
+      >
+        <label style={{ marginRight: '5px', fontSize: '20px' }}>
+          Create New Inheritor
+        </label>
+
+        <FontAwesomeIcon
+          className="ServiceIcon fa-2x"
+          icon={faCirclePlus}
+        />
+      </button>
       <Modal title="Connect a new Inheritor account" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-      <div className="col-12 col-md-12 register">
+        <div className="col-12 col-md-12 register">
           {/*FORM START*/}
-          <form style={{marginTop:'-3.4em'}} >
+          <form style={{ marginTop: '-3.4em' }} >
             <div className="mb-3">
               <label>Full name</label>
               <input
@@ -75,7 +80,7 @@ const App = () => {
                 placeholder="Enter your Full name"
                 onChange={e => setName(e.target.value)}
               />
-            </div>  
+            </div>
             <div className="mb-3">
               <label>Wallet number</label>
               <input
@@ -94,7 +99,7 @@ const App = () => {
               </div>
             </div>
             <div className="d-grid mb-2">
-              <button onClick={() => linkAccount(wallet_address,name,age)} type="submit" className="btn btn-primary continue">
+              <button onClick={() => linkAccount(wallet_address, name, age)} type="submit" className="btn btn-primary continue">
                 Continue
               </button>
             </div>
