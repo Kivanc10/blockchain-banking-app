@@ -5,7 +5,7 @@ import "./css/dashboard.css";
 import Table from "react-bootstrap/Table";
 import "./css/Transaction.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import DataList from "./datalist";
+import DataList from './datalist';
 import {
   faHome,
   faWallet,
