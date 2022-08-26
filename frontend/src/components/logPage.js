@@ -34,10 +34,6 @@ const LogPage = () => (
           <FontAwesomeIcon className="ServiceIcon" icon={faHome} /> Dashboard
         </Menu.Item>
         <Menu.Item className="item">
-          <FontAwesomeIcon className="ServiceIcon fa-light" icon={faWallet} />{" "}
-          My Wallet
-        </Menu.Item>
-        <Menu.Item className="item">
           <FontAwesomeIcon className="ServiceIcon" icon={faGlobe} />{" "}
           Transactions
         </Menu.Item>
