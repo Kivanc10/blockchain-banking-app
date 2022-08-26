@@ -2,13 +2,14 @@ import { Layout, Menu } from "antd";
 import { MDBRow, MDBCol, } from "mdb-react-ui-kit";
 import { Swiper, SwiperSlide } from "swiper/react";
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useContext } from "react";
 import logo from "./raw/logoveyazi.png";
 import intertech from "./raw/intertechLogo.png";
 import "./css/dashboard.css";
 import Modal from './Modal';
 import ModalCreate from './ModalCreate';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { BankingContext } from "../context/BankingContext";
 import {
   faHome,
   faGlobe,

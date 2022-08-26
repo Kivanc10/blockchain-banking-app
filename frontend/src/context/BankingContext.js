@@ -369,7 +369,7 @@ export const BankingProvider = ({ children }) => {
     }
 
 
-    //getOwnerTest()
+    getOwnerTest()
     getAllUsers()
    // getMyChildren()
     //getBalanceOfCurrentUser()""""
