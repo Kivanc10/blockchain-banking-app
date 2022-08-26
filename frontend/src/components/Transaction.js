@@ -5,7 +5,9 @@ import "./css/dashboard.css";
 import Table from "react-bootstrap/Table";
 import "./css/Transaction.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import DataList from './datalist';
+import DataList from "./datalist";
+import { Input } from "antd";
+import { Button } from "antd";
 import {
   faHome,
   faWallet,
@@ -14,6 +16,7 @@ import {
   faUser,
   faCircleDown,
   faCircleUp,
+  faPaperPlane,
 } from "@fortawesome/free-solid-svg-icons";
 import "swiper/css";
 const { Header, Content, Footer, Sider } = Layout;
@@ -58,12 +61,45 @@ const App = () => (
     >
       <Content className="bodyTransaction ">
         <div
+          className="col-9 transactionTable  "
+          style={{
+            width: "80%",
+            marginTop: "2%",
+            height: "4em",
+            marginLeft: "10%",
+          }}
+        >
+          <Input
+            className="sendButtons "
+            size="large"
+            style={{ width: "40%", marginLeft: "1%", marginTop: "10px" }}
+            placeholder="Sender Wallet Address"
+          />
+          <Input
+            className="sendButtons"
+            size="large"
+            style={{ width: "25%", marginLeft: "2%" }}
+            placeholder="Amount of Ethereum to Transfer"
+          />
+          <Button
+            className="sendButtons"
+            style={{ marginLeft: "18%", height: "3em" }}
+          >
+            <FontAwesomeIcon
+              icon={faPaperPlane}
+              style={{ marginRight: "8px" }}
+            />
+            Send Ethereum
+          </Button>
+        </div>
+
+        <div
           className="justify-content-center transactionTable"
           style={{
             marginLeft: "10%",
             marginRight: "10%",
             marginBottom: "7%",
-            marginTop: "4%",
+            marginTop: "2%",
           }}
         >
           <h2
