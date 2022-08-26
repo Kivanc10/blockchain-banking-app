@@ -55,7 +55,7 @@ const dataBar = [
 
 const Dashboard = () => {
   const [currencyData, setCurrencyData] = useState({});
-
+  const { currentAccount,addUser,sendEthereum,linkAccountToCurrentUser } = useContext(BankingContext);
   const callApi = async () => {
     const data = await getExchangeRates();
     setCurrencyData(data);

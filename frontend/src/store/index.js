@@ -6,6 +6,8 @@ export const { setGlobalState, getGlobalState, useGlobalState } =
     loading: { show: false, msg: "" },
     contractBank: null,
     contractToken: null,
+    contractTokenAdmin : null,
+    contractBankAdmin : null
     // contractBankForUsers : null,
     // contractTokenForUsers : null
   });
