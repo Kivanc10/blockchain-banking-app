@@ -40,7 +40,7 @@ contract BankingApp {
 
 
     // persona ait transactionlar
-    mapping(address => Transaction[]) transactions;
+     mapping(address => Transaction[]) public transactions;
     mapping(address => Person) userList; // getUser fonk old için private yapıldı
 
     // child ve normal person depolama yeri (db gibi düşün)
@@ -146,7 +146,7 @@ contract BankingApp {
         Person storage newPerson = userList[msg.sender];
         newPerson.name = _name;
         newPerson.age = _age;
-        newPerson.balance = 0;
+        newPerson.balance = msg.sender.balance;
         newPerson.isLimited = isLimited; //_isLimited
         newPerson.children = new address[](0);
         newPerson.parents = new address[](0);
@@ -218,7 +218,7 @@ contract BankingApp {
         userList[childAccount] = Person(
             _name,
             _age,
-            0,
+            0, // childAccount.balance
             true,
             new address[](0),
             new address[](1), // 1 ebeveyn (max) (degisebilir)
@@ -403,29 +403,13 @@ contract BankingApp {
         public
         payable
         isAdult(userList[msg.sender].isLimited)
-        checkAllowance(amount)
+        // checkAllowance(amount)
     {
         // amount kadar token göndermek için kontrol yapılıyor.(admin izin vermeli)
         //require(userList[msg.sender].isLimited == false,"You have a limited account");
         (bool sent, ) = _to.call{value: amount}(""); // msg.value
         require(sent, "Failed to send Ether");
-        if (
-            getUser(msg.sender).children.length != 0 &&
-            getUser(msg.sender).children[0] != address(0)
-        ) {
-            // parent ise
-            // if msg.sender is a person
-            addTransaction(_to, amount, true);
-            //   addTransaction(_to, amount, true); // add transaction to child
-            // send token to the user
-            // token.transferFrom(owner,msg.sender,amount); // send token to the user
-            // owner will transfer token to the user ---> transfer(user_address,_amount,{from : owner)
-        } else if (getUser(msg.sender).children.length == 0) {
-            addTransaction(_to, amount, false);
-            //addTransaction(_to, amount, false);
-        }
-        //addTransactionToPerson(_to,amount);
-        //addTransactionToChild()
+        addTransaction(_to, amount, true);
     }
 
     // send tokens to child
