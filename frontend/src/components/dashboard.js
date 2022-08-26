@@ -2,7 +2,7 @@ import { Layout, Menu } from "antd";
 import { MDBRow, MDBCol, } from "mdb-react-ui-kit";
 import { Swiper, SwiperSlide } from "swiper/react";
 import React from "react";
-import { useState, useEffect,useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import logo from "./raw/logoveyazi.png";
 import intertech from "./raw/intertechLogo.png";
 import "./css/dashboard.css";
@@ -37,7 +37,7 @@ import sol from "./raw/sol.png";
 import doge from "./raw/doge.png";
 import Chart from "./monthlyChart";
 import { MDBTable, MDBTableBody } from "mdb-react-ui-kit";
-import { getExchangeRates } from "../utils/exchangeRate";
+import { getExchangeRates, getChangeRates } from "../utils/exchangeRate";
 const { Content, Sider } = Layout;
 const dataBar = [
   { x: "Jan", y: 2, y0: 1 },
@@ -56,7 +56,10 @@ const dataBar = [
 
 const Dashboard = () => {
   const [currencyData, setCurrencyData] = useState({});
-  const { currentAccount,addUser,sendEthereum,linkAccountToCurrentUser } = useContext(BankingContext);
+  const [userBalance, setUserBalance] = useState(0);
+  const [transactions, setTransactions] = useState([]);
+  const [childObjects,setChildObjects] = useState([])
+  const { currentAccount, addUser, sendEthereum, getEtherBalanceOfCurrentUser, getTransactionHistory,formatEther,getMyChildrenInfos } = useContext(BankingContext);
   const callApi = async () => {
     const data = await getExchangeRates();
     setCurrencyData(data);
@@ -69,8 +72,49 @@ const Dashboard = () => {
 
     let interval = setInterval(() => { }, 1000 * 60 * 60);
 
+    const load = async () => {
+      const userBalance = await getEtherBalanceOfCurrentUser()
+      const transactions = await getTransactionHistory();
+      let childObjects = await getMyChildrenInfos();
+      setChildObjects(childObjects)
+      setUserBalance(userBalance.toString())
+      console.log("transactions --> ", transactions)
+      setTransactions(transactions)
+    }
+    load()
+    // getChangeRates()
     return () => clearInterval(interval);
-  }, []);
+  }, [userBalance]);
+
+  const sendEther = async () => {
+    sendEthereum("0x70997970C51812dc3A010C7d01b50e0d17dc79C8", "0.5")
+      .then((res) => {
+        console.log(res)
+      }).catch((e) => {
+        console.log(e)
+      })
+  }
+
+  const addUserToSystem = async () => {
+    addUser("Numan", 55, false)
+      .then((res) => {
+        console.log(res)
+      }).catch((e) => {
+        console.log("errro ->", e)
+      })
+  }
+
+  const getChildrenFeatures = async () => {
+      
+  }
+
+  
+
+
+
+
+
+
 
   return (
     <Layout hasSider>
@@ -106,6 +150,14 @@ const Dashboard = () => {
             />{" "}
             Sign out
           </Menu.Item>
+
+          <Menu.Item className="item mb-3">
+            <FontAwesomeIcon
+              className="ServiceIcon"
+              icon={faArrowRightFromBracket}
+            />{" "}
+            <button onClick={sendEther}>Send</button>
+          </Menu.Item>
           <img
             className="rounded mx-auto d-block fixed-bottom intertech2"
             src={intertech}
@@ -134,9 +186,51 @@ const Dashboard = () => {
                 >
                   Latest Transactions
                 </div>
+
                 <MDBTable>
+
                   <MDBTableBody>
-                    <tr>
+                    {transactions.length === 0 && (
+                      <tr>
+                        
+                      <td className="trans">No transactions</td>
+                     
+                    </tr>
+                    )}
+                    {transactions.map((e) => (
+                      (Number(e.sender) === Number(currentAccount) ? (
+                        // <p>asdsadasd</p>
+                        <tr>
+                          <th scope="row">
+                            <FontAwesomeIcon
+                              className="ServiceIcon iconRed"
+                              icon={faArrowRight}
+                            ></FontAwesomeIcon>
+                          </th>
+                          <td className="trans">Outgoing</td>
+                          <td className="d-flex justify-content-end redValue">
+                            - {formatEther(e.amount.toString()) + " ETH"}
+                          </td>
+                        </tr>
+                      ) : (
+                        <tr>
+                        <th scope="row">
+                          <FontAwesomeIcon
+                            className="ServiceIcon iconGreen"
+                            icon={faArrowRight}
+                          ></FontAwesomeIcon>
+                        </th>
+                        <td className="trans">Incoming</td>
+                        <td className="d-flex justify-content-end greenValue">
+                          + {formatEther(e.amount.toString()) + " ETH"}
+                        </td>
+                      </tr>
+                      ))
+
+                    ))}
+
+
+                    {/* <tr>
                       <th scope="row">
                         <FontAwesomeIcon
                           className="ServiceIcon iconRed"
@@ -195,7 +289,7 @@ const Dashboard = () => {
                       <td className="d-flex justify-content-end redValue">
                         -$35
                       </td>
-                    </tr>
+                    </tr> */}
                   </MDBTableBody>
                 </MDBTable>
               </MDBCol>
@@ -212,13 +306,16 @@ const Dashboard = () => {
                   </div>
                 </MDBCol>
                 <MDBCol>
-                  <ModalCreate/>
+                  <ModalCreate />
                 </MDBCol>
               </MDBRow>
               
-                  <Modal />
-                  <Modal />
-            
+                {childObjects.map((e) => ( // veri çekerken balance blockchainden all..(sonra) , reamining day
+                  <Modal inheritor_name={e[0].name} age = {e[0].age} remainingDay = {(18-e[0].age)*365} value={e[1]} />
+                ))}
+             
+          
+
             </MDBCol>
 
             <MDBCol md="3 box5 boxShadow">
@@ -332,8 +429,11 @@ const Dashboard = () => {
                     <div className="d-flex justify-content-evenly mb-3 font2">
                       Portfolio
                     </div>
-                    <div className="d-flex justify-content-evenly mb-1 font1">
-                      $2008.55
+                    <div className="d-flex text-center align-items-center justify-content-evenly mb-1 font1">
+                      {userBalance}<div style={{
+                        fontSize : 20,
+                        color : "gray"
+                      }}>ETH</div>
                     </div>
                   </MDBCol>
                   <MDBCol>
@@ -341,7 +441,12 @@ const Dashboard = () => {
                       PNL
                     </div>
                     <div className="d-flex justify-content-evenly mb-1 font1">
-                      $2008.55
+                      {userBalance === "0" && (
+                        <p>$0</p>
+                      )}
+                      {userBalance !== "0" && ( // yapılcak
+                        <p>$2555</p>
+                      )}
                     </div>
 
                   </MDBCol>

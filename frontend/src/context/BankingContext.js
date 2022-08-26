@@ -102,7 +102,7 @@ export const BankingProvider = ({ children }) => {
       if (accounts.length) {
         setCurrentAccount(accounts[0]);
         setMetamaskBtnText(metamaskBtnChange(accounts[0].toString()));
-        navigate("/dashboard");
+        //navigate("/dashboard");
       } else {
         console.log("No accounts found");
       }
@@ -122,7 +122,7 @@ export const BankingProvider = ({ children }) => {
       });
 
       setCurrentAccount(accounts[0]);
-      navigate("/dashboard");
+      //navigate("/dashboard");
       window.location.reload();
     } catch (error) {
       console.log(error);
@@ -232,6 +232,36 @@ export const BankingProvider = ({ children }) => {
     }
   }
 
+
+  const getMyChildrenInfos = async () => {
+    try {
+      let myChildrenAddrs = await getMyChildren();
+      if (myChildrenAddrs.length === 0) {
+        return []
+      }
+      let contractV2Bank = getGlobalState("contractBank")
+      let childObjects = []
+
+      for (let i = 0; i < myChildrenAddrs.length; i++) {
+        console.log("data --> ",myChildrenAddrs[i])
+        //console.log("res --> ",await contractBank.methods.getUser(myChildrenAddrs[i]).call())
+        let childObj = await contractV2Bank.getUser(myChildrenAddrs[i]);
+
+        // get balance = ""
+        let balance_new = await contractV2Bank.getMyBalance({
+          from : myChildrenAddrs[i]
+        })
+        childObjects.push([childObj,balance_new])
+      console.log("balance -> ",balance_new)
+      console.log("childObjjjj -> ",childObj)
+      }
+      console.log("Child obj ---> ",childObjects)
+      return childObjects
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
   const getEtherBalanceOfCurrentUser = async () => {
     try {
       let contractV2Bank = getGlobalState("contractBank")
@@ -239,10 +269,20 @@ export const BankingProvider = ({ children }) => {
         from: currentAccount
       });
       console.log("my balance -> ", myBalance.toString())
-      return myBalance;
+      let val = ethers.utils.formatEther(myBalance).split(".")[0] + ethers.utils.formatEther(myBalance).split(".")[1][0]
+      if (val === "00") {
+        return "0"
+      }
+      return val
+
     } catch (error) {
       console.log(error.message);
     }
+  }
+
+  const a = (str) => {
+    let x = str.split(".")[0] + str.split(".")[1][2]
+    return x;
   }
 
 
@@ -303,7 +343,7 @@ export const BankingProvider = ({ children }) => {
       console.log(error.message)
     }
   }
-// sisteme admin olarak giriş yapınca siliyor.
+  // sisteme admin olarak giriş yapınca siliyor.
   const makeLimitedAccountLimited = async (child_address) => {
     try {
 
@@ -334,12 +374,17 @@ export const BankingProvider = ({ children }) => {
       let transactions = await contractV2Bank.getTranscationHistory({
         from: currentAccount
       })
-      console.log("transactions -> ", transactions)
+      //console.log("transactions -> ", transactions)
+      return transactions
     } catch (error) {
       console.log(error.message)
     }
   }
 
+
+  const formatEther = (weiValue) => {
+    return ethers.utils.formatEther(weiValue);
+  }
 
 
   useEffect(() => {
@@ -369,23 +414,27 @@ export const BankingProvider = ({ children }) => {
     }
 
 
-    getOwnerTest()
-    getAllUsers()
-   // getMyChildren()
+    // getOwnerTest()
+    // getAllUsers()
+    // getMyChildren()
     //getBalanceOfCurrentUser()""""
     //getTransactionHistory()
     //getCurrentUserInfo(currentAccount)
-    getBalanceOfInheritumToken("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266")
+    //getBalanceOfInheritumToken("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266")
+    // getMyChildrenInfos() // ---
     //0x70997970C51812dc3A010C7d01b50e0d17dc79C8
     // sendTokenToUserByAdmin(25)
     // sendTokenToUserByAdmin(convertEtherToWei("0.5"))
     //console.log("0.1 ether -> ",convertEtherToWei("0.1"))
     //getMyChildBalance("salih")
     //findTheChild("salih",false)
-   // makeLimitedAccountLimited("0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC")
+    // makeLimitedAccountLimited("0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC")
 
 
-
+    /*
+    0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65   4
+    0x47e179ec197488593b187f80a00eb0da91f1b9d0b13f8733639f19c30a34926a
+    */
 
   }, [currentAccount, contractBank, contractToken]);
 
@@ -397,7 +446,11 @@ export const BankingProvider = ({ children }) => {
         metamaskBtnText,
         addUser,
         sendEthereum,
-        linkAccountToCurrentUser
+        linkAccountToCurrentUser,
+        getEtherBalanceOfCurrentUser,
+        getTransactionHistory,
+        formatEther,
+        getMyChildrenInfos
       }}
     >
       {children}
