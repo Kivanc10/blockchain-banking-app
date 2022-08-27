@@ -151,13 +151,13 @@ const Dashboard = () => {
             Sign out
           </Menu.Item>
 
-          {/*  <Menu.Item className="item mb-3">
+           {/* <Menu.Item className="item mb-3">
            <FontAwesomeIcon
               className="ServiceIcon"
               icon={faArrowRightFromBracket}
             />{" "}
-            <button onClick={sendEther}>Send</button>
-      </Menu.Item>*/}
+            <button onClick={addUserToSystem}>Send</button>
+      </Menu.Item> */}
           <img
             className="rounded mx-auto d-block fixed-bottom intertech2"
             src={intertech}
