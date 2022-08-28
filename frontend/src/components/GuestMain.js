@@ -33,6 +33,7 @@ const App = () => {
     const load = async () => {
       const childBalance = await getEtherBalanceOfCurrentUser(); // setBalance option 2
       setFakeBal(childBalance)
+      // window.alert(typeof fakeBal)
       let childObj = await getCurrentUserInfo(currentAccount)
       // window.alert(parseInt(childObj.balance))
       // if(childObj === undefined || childObj === null) {
@@ -134,7 +135,8 @@ const App = () => {
                   Portfolio
                 </div>
                 <div className="d-flex justify-content-evenly mb-1 portfolioFont-2">
-               $ {childBalance * 1499}
+               {/* $ {childBalance * 1499} */}
+               ${parseInt(fakeBal) * 1499}
                   
                 </div>
               </div>

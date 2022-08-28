@@ -34,6 +34,7 @@ class App extends Component {
     // window.alert(this.props.userBalance)
     console.log("props.userbalance - > ", this.props.userBalance)
     let userBalance = parseInt(this.props.userBalance)
+    // window.alert(JSON.stringify(this.props.chartData))
     if (this.props.chartData !== undefined) {
       let numberOFChild = this.props.chartData.length;
       let childBals = 0;
@@ -42,7 +43,10 @@ class App extends Component {
 
         this.props.chartData[0].forEach((e, i) => {
           if (e.name !== undefined) {
-            childBals += parseInt(e.balance.toString());
+            // window.alert(e[1].toString())
+            window.alert(this.props.chartData)
+            childBals += parseInt(e.balance.toString());   
+
             //window.alert(e.balance.toString())
           }
         })
