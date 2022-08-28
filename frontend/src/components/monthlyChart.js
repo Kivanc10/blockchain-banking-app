@@ -29,8 +29,10 @@ class App extends Component {
         },
       ],
     };
+
+    let colors = ["#FD006A", "#F4298F", "#E17AD8", "#D8A3FC"];
     // window.alert(this.props.userBalance)
-    console.log("props.userbalance - > ",this.props.userBalance)
+    console.log("props.userbalance - > ", this.props.userBalance)
     let userBalance = parseInt(this.props.userBalance)
     if (this.props.chartData !== undefined) {
       let numberOFChild = this.props.chartData.length;
@@ -38,7 +40,7 @@ class App extends Component {
       if (numberOFChild !== 0) {
         console.log("chartdata ---> ", this.props.chartData[0][0])
 
-        this.props.chartData[0].forEach((e) => {
+        this.props.chartData[0].forEach((e, i) => {
           if (e.name !== undefined) {
             childBals += parseInt(e.balance.toString());
             //window.alert(e.balance.toString())
@@ -47,17 +49,25 @@ class App extends Component {
         //  window.alert(childBals)
         this.props.chartData[0].forEach((e, i) => {
           if (e.name !== undefined) {
-            options.data[0].dataPoints.push(
-              { y: (e.balance * 100)/(userBalance + childBals), label: e.name, color: "#F4298F" } // parseInt((e.balance * 100)/(userBalance + childBals))
-            )
+            if (i >= colors.length) {
+              options.data[0].dataPoints.push(
+                { y: (e.balance * 100) / (userBalance + childBals), label: e.name, color: "aqua" } // parseInt((e.balance * 100)/(userBalance + childBals))
+              )
+            } else {
+              options.data[0].dataPoints.push(
+                { y: (e.balance * 100) / (userBalance + childBals), label: e.name, color: colors[i] } // parseInt((e.balance * 100)/(userBalance + childBals))
+              )
+            }
+
           }
         })
+        
         options.data[0].dataPoints.push(
-          { y: parseInt((userBalance * 100) / (userBalance + childBals)), label: "Your balance", color: "yellow" } // parseInt((userBalance * 100) / (userBalance + childBals))
+          { y: parseInt((userBalance * 100) / (userBalance + childBals)), label: "Your balance", color: "red" } // parseInt((userBalance * 100) / (userBalance + childBals))
         )
       } else {
         options.data[0].dataPoints.push(
-          { y:  parseInt((userBalance * 100) / (userBalance + childBals)), label: "Your balance", color: "yellow" }
+          { y: parseInt((userBalance * 100) / (userBalance + childBals)), label: "Your balance", color: "red" }
         )
       }
     } else {

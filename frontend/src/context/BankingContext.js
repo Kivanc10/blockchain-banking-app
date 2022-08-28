@@ -102,10 +102,22 @@ export const BankingProvider = ({ children }) => {
       if (accounts.length) {
         setCurrentAccount(accounts[0]);
         setMetamaskBtnText(metamaskBtnChange(accounts[0].toString()));
-        //navigate("/dashboard");
-      } else {
-        console.log("No accounts found");
+        setCurrentAccount(accounts[0]);
+        // window.alert(currentAccount)
+        let userObj = await getCurrentUserInfo(currentAccount)
+        if (currentAccount !== "") {
+          console.log("userObj ---> ", userObj)
+          if (userObj.name === "" && userObj.age === "0") {
+            navigate("/register");
+          } else {
+            navigate("/dashboard");
+          }
+          //navigate("/dashboard");
+        } else {
+          console.log("No accounts found");
+        }
       }
+
     } catch (error) {
       console.log(error);
     }
@@ -122,6 +134,12 @@ export const BankingProvider = ({ children }) => {
       });
 
       setCurrentAccount(accounts[0]);
+      let userObj = await getCurrentUserInfo("0xbE8D4707B4D9b7A87DE9bAc74A9Fa583ca04BfC1")
+      if (userObj.name === "" && userObj.age === 0) {
+        navigate("/register");
+      } else {
+        navigate("/dashboard");
+      }
       //navigate("/dashboard");
       window.location.reload();
     } catch (error) {
@@ -211,8 +229,15 @@ export const BankingProvider = ({ children }) => {
 
   const getCurrentUserInfo = async (address) => {
     try {
-      const user = await contractBank.methods.getUser(address).call()
-      console.log(user)
+      if (address !== "") {
+        const user = await contractBank.methods.getUser(address).call()
+        console.log(user)
+        return user
+      }
+      return {
+        name : "",
+        age : "0"
+      }
     } catch (error) {
       console.log(error.message)
     }
@@ -243,19 +268,19 @@ export const BankingProvider = ({ children }) => {
       let childObjects = []
 
       for (let i = 0; i < myChildrenAddrs.length; i++) {
-        console.log("data --> ",myChildrenAddrs[i])
+        console.log("data --> ", myChildrenAddrs[i])
         //console.log("res --> ",await contractBank.methods.getUser(myChildrenAddrs[i]).call())
         let childObj = await contractV2Bank.getUser(myChildrenAddrs[i]);
 
         // get balance = ""
         let balance_new = await contractV2Bank.getMyBalance({
-          from : myChildrenAddrs[i]
+          from: myChildrenAddrs[i]
         })
-        childObjects.push([childObj,balance_new])
-      console.log("balance -> ",balance_new)
-      console.log("childObjjjj -> ",childObj)
+        childObjects.push([childObj, balance_new])
+        console.log("balance -> ", balance_new)
+        console.log("childObjjjj -> ", childObj)
       }
-      console.log("Child obj ---> ",childObjects)
+      console.log("Child obj ---> ", childObjects)
       return childObjects
     } catch (error) {
       console.log(error.message)
@@ -392,6 +417,8 @@ export const BankingProvider = ({ children }) => {
     const load = async () => {
       //await createEthereumContract();
       await loadWeb3ForBank();
+      // const data = await getCurrentUserInfo("0xbE8D4707B4D9b7A87DE9bAc74A9Fa583ca04BfC1")
+      // window.alert(data)
     }
     load()
 
@@ -415,7 +442,7 @@ export const BankingProvider = ({ children }) => {
 
 
     // getOwnerTest()
-    // getAllUsers()
+     getAllUsers()
     // getMyChildren()
     //getBalanceOfCurrentUser()""""
     //getTransactionHistory()

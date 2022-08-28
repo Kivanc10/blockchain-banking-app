@@ -13,12 +13,55 @@ import {
   faHandHoldingDollar,
 } from "@fortawesome/free-solid-svg-icons";
 import intertech from "./raw/intertech.png";
+import { BankingContext } from "../context/BankingContext";
+import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
-const onChange = (date, dateString) => {
-  console.log(date, dateString);
-};
+
 
 function Register() {
+
+  useEffect(() => {
+    
+  })
+
+  const[fNmae,setFname] = useState("")
+  const [lName,setLname] = useState("")
+  const [age,setAge] = useState(0)
+  const [fakeAgeStr,setFakeAgeStr] = useState("")
+  const [email,setEmail] = useState("")
+  const [phone,setPhone] = useState("")
+  const [id,setId] = useState("")
+
+
+
+  let navigate = useNavigate();
+  const { currentAccount, addUser } = useContext(BankingContext);
+
+
+
+  const onChange = (date, dateString) => {
+    const birthDate = date._d.getFullYear();
+    const currentYear = new Date().getFullYear()
+    console.log(date);
+    setAge(currentYear - birthDate);
+    console.log("age --> ", age)
+    
+  };
+
+
+  const addUserToSystem = async (name,age,isLimited) => {
+    addUser(name,age,isLimited)
+    .then((res) => {
+      //console.log(res)
+      navigate("/dashboard");
+      window.location.reload()
+    }).catch((e) => {
+      console.log("error ->", e.message)
+    })
+  }
+
+
   return (
     <div className="body">
       <div className="container-fluid d-flex justify-content-center">
@@ -46,6 +89,8 @@ function Register() {
                 type="text"
                 className="form-control"
                 placeholder="Enter your first name"
+                onChange={e => setFname(e.target.value)}
+                value = {fNmae}
               />
             </div>
             <div className="mb-3">
@@ -54,6 +99,8 @@ function Register() {
                 type="text"
                 className="form-control"
                 placeholder="Enter your last name"
+                onChange={e => setLname(e.target.value)}
+                value = {lName}
               />
             </div>
             <div className="mb-3">
@@ -62,6 +109,7 @@ function Register() {
                 type="email"
                 className="form-control"
                 placeholder="Enter your email"
+                onChange={e => setEmail(e.target.value)}
               />
             </div>
             <div className="mb-3">
@@ -70,6 +118,8 @@ function Register() {
                 type="text"
                 className="form-control"
                 placeholder="(+123) 9876543210"
+                onChange={e => setPhone(e.target.value)}                
+                value = {phone}
               />
             </div>
             <div className="mb-3">
@@ -78,6 +128,8 @@ function Register() {
                 type="text"
                 className="form-control"
                 placeholder="Enter your ID number"
+                onChange={e => setId(e.target.value)}
+                value = {id}
               />
             </div>
             <div className="mb-3 date">
@@ -89,7 +141,7 @@ function Register() {
               </div>
             </div>
             <div className="d-grid mb-2">
-              <button type="submit" className="btn btn-primary continue">
+              <button onClick={() => addUserToSystem(fNmae + " " + lName,age,false)} type="submit" className="btn btn-primary continue">
                 Continue
               </button>
             </div>
