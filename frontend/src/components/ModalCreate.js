@@ -17,17 +17,33 @@ const App = () => {
   const [age, setAge] = useState(0);
   const { linkAccountToCurrentUser } = useContext(BankingContext);
 
-  const linkAccount = async (wallet_address, name, age) => {
+  // const linkAccount = async (wallet_address, name, age) => {
+  //   console.log(wallet_address, name, age)
+  //   linkAccountToCurrentUser(wallet_address, name, age)
+  //     .then((res) => {
+  //       console.log(res)
+  //       //window.location.reload();
+  //       //linkAccount("0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC","salih",25)
+  //     }).catch((e) => {
+  //       console.log("errro ->", e)
+  //     })
+  // }
+
+  const linkAccount = async () => {
     console.log(wallet_address, name, age)
-    linkAccountToCurrentUser(wallet_address, name, age)
-      .then((res) => {
-        console.log(res)
-        //window.location.reload();
-        //linkAccount("0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC","salih",25)
-      }).catch((e) => {
-        console.log("errro ->", e)
-      })
+    if (wallet_address !== "" && name !== "" && age !== 0) {
+      linkAccountToCurrentUser(wallet_address, name, age)
+        .then((res) => {
+          console.log(res)
+          //window.location.reload();
+          //linkAccount("0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC","salih",25)
+        }).catch((e) => {
+          console.log("errro ->", e)
+        })
+    }
+
   }
+
 
 
   const showModal = () => {
@@ -79,6 +95,7 @@ const App = () => {
                 className="form-control"
                 placeholder="Enter your Full name"
                 onChange={e => setName(e.target.value)}
+                value={name}
               />
             </div>
             <div className="mb-3">
@@ -88,6 +105,7 @@ const App = () => {
                 className="form-control"
                 placeholder="Enter your Wallet number"
                 onChange={e => setWalletAddress(e.target.value)}
+                value={wallet_address}
               />
             </div>
             <div className="mb-3 date">
@@ -99,7 +117,7 @@ const App = () => {
               </div>
             </div>
             <div className="d-grid mb-2">
-              <button onClick={() => linkAccount(wallet_address, name, age)} type="submit" className="btn btn-primary continue">
+              <button onClick={linkAccount} type="submit" className="btn btn-primary continue">
                 Continue
               </button>
             </div>

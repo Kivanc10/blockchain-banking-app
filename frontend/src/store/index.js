@@ -7,7 +7,10 @@ export const { setGlobalState, getGlobalState, useGlobalState } =
     contractBank: null,
     contractToken: null,
     contractTokenAdmin : null,
-    contractBankAdmin : null
+    contractBankAdmin : null,
+    tempVal : {
+      isLoggedIn : false
+    }
     // contractBankForUsers : null,
     // contractTokenForUsers : null
   });
@@ -26,3 +29,9 @@ export const setLoadingMsg = (msg) => {
   const loading = getGlobalState("loading");
   setGlobalState("loading", { ...loading, msg });
 };
+
+
+export const setTempVal = (val) => {
+  const tempVal = getGlobalState("tempVal");
+  setGlobalState("tempVal",{isLoggedIn : val})
+}

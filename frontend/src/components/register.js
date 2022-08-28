@@ -50,8 +50,8 @@ function Register() {
   };
 
 
-  const addUserToSystem = async (name,age,isLimited) => {
-    addUser(name,age,isLimited)
+  const addUserToSystem = async () => {
+    addUser(fNmae + lName,age,false)
     .then((res) => {
       //console.log(res)
       navigate("/dashboard");
@@ -110,6 +110,7 @@ function Register() {
                 className="form-control"
                 placeholder="Enter your email"
                 onChange={e => setEmail(e.target.value)}
+                value = {email}
               />
             </div>
             <div className="mb-3">
@@ -141,7 +142,7 @@ function Register() {
               </div>
             </div>
             <div className="d-grid mb-2">
-              <button onClick={() => addUserToSystem(fNmae + " " + lName,age,false)} type="submit" className="btn btn-primary continue">
+              <button onClick={addUserToSystem} type="submit" className="btn btn-primary continue">
                 Continue
               </button>
             </div>

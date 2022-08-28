@@ -6,10 +6,11 @@ import contractAddrs from "../contracts/contract-address.json";
 import tokenContract from "../contracts/Inheritium.json";
 import {
   setGlobalState,
-  getGlobalState
+  getGlobalState,
+  setTempVal
 } from "../store";
 import Web3 from "web3";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 window.web3 = new Web3(window.web3.currentProvider)
 const web3 = window.web3; // BankContract
@@ -92,8 +93,9 @@ export const BankingProvider = ({ children }) => {
   const [metamaskBtnText, setMetamaskBtnText] = useState("Connect With Metamask")
 
   let navigate = useNavigate();
-
+  let location = useLocation();
   const isWalletConnected = async () => {
+
     try {
       if (!ethereum) return alert("Please install MetaMask.");
 
@@ -109,8 +111,15 @@ export const BankingProvider = ({ children }) => {
           console.log("userObj ---> ", userObj)
           if (userObj.name === "" && userObj.age === "0") {
             navigate("/register");
+          } else if (userObj.isLimited === false) {
+            setTempVal(true)
+            console.log("path --> ", location.pathname)
+            if (location.pathname === "/" || location.pathname === "/register") {
+              navigate("/dashboard");
+            }
+
           } else {
-            navigate("/dashboard");
+            navigate("/guestmain");
           }
           //navigate("/dashboard");
         } else {
@@ -138,7 +147,11 @@ export const BankingProvider = ({ children }) => {
       if (userObj.name === "" && userObj.age === 0) {
         navigate("/register");
       } else {
-        navigate("/dashboard");
+        console.log("path --> ", location.pathname)
+        if (location.pathname === "/" || location.pathname === "/register") {
+          navigate("/dashboard");
+        }
+
       }
       //navigate("/dashboard");
       window.location.reload();
@@ -235,8 +248,8 @@ export const BankingProvider = ({ children }) => {
         return user
       }
       return {
-        name : "",
-        age : "0"
+        name: "",
+        age: "0"
       }
     } catch (error) {
       console.log(error.message)
@@ -430,11 +443,13 @@ export const BankingProvider = ({ children }) => {
     if (window.ethereum) { // if metamask connection is interrupted
       window.ethereum.on('chainChanged', () => {
         //window.location.reload();
+        setTempVal(false)
         navigate("/")
         window.location.reload();
       })
       window.ethereum.on('accountsChanged', () => {
         //window.location.reload();
+        setTempVal(false)
         navigate("/")
         window.location.reload();
       })
@@ -442,7 +457,7 @@ export const BankingProvider = ({ children }) => {
 
 
     // getOwnerTest()
-     getAllUsers()
+    //getAllUsers()
     // getMyChildren()
     //getBalanceOfCurrentUser()""""
     //getTransactionHistory()
@@ -477,7 +492,8 @@ export const BankingProvider = ({ children }) => {
         getEtherBalanceOfCurrentUser,
         getTransactionHistory,
         formatEther,
-        getMyChildrenInfos
+        getMyChildrenInfos,
+        getCurrentUserInfo
       }}
     >
       {children}
