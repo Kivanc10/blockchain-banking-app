@@ -407,7 +407,7 @@ const Dashboard = () => {
                 <p style={{ marginLeft: '20px', marginTop: '20px', fontSize: '20px' }}>There is no registered inheritor.<br /> If you want to create one, please use the button above.</p>
               ) : (
                 childObjects.map((e) => ( // veri çekerken balance blockchainden all..(sonra) , reamining day
-                  <Modal inheritor_name={e[0].name} age={e[0].age} remainingDay={(18 - e[0].age) * 365} value={e[1]} /> //e[1]
+                  <Modal inheritor_name={e[0].name} age={e[0].age} remainingDay={(18 - e[0].age) * 365} value={formatEther(e[0].balance.toString())} /> //e[1]
                 ))
               )}
 

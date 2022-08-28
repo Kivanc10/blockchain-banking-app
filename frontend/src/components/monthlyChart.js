@@ -34,7 +34,7 @@ class App extends Component {
     // window.alert(this.props.userBalance)
     console.log("props.userbalance - > ", this.props.userBalance)
     let userBalance = parseInt(this.props.userBalance)
-    // window.alert(JSON.stringify(this.props.chartData))
+    //  window.alert(JSON.stringify(this.props.chartData))
     if (this.props.chartData !== undefined) {
       let numberOFChild = this.props.chartData.length;
       let childBals = 0;
@@ -44,8 +44,9 @@ class App extends Component {
         this.props.chartData[0].forEach((e, i) => {
           if (e.name !== undefined) {
             // window.alert(e[1].toString())
-            window.alert(this.props.chartData)
-            childBals += parseInt(e.balance.toString());   
+            //  window.alert(this.props.chartData)
+            // window.alert(parseInt(e.balance.toString()))
+            childBals += Math.round(parseInt(e.balance.toString())*0.000000000000000001)
 
             //window.alert(e.balance.toString())
           }
@@ -55,11 +56,11 @@ class App extends Component {
           if (e.name !== undefined) {
             if (i >= colors.length) {
               options.data[0].dataPoints.push(
-                { y: (e.balance * 100) / (userBalance + childBals), label: e.name, color: "aqua" } // parseInt((e.balance * 100)/(userBalance + childBals))
+                { y: (Math.round(e.balance.toString()) *0.000000000000000001 * 100) / (userBalance + childBals), label: e.name, color: "aqua" } // parseInt((e.balance * 100)/(userBalance + childBals))
               )
             } else {
               options.data[0].dataPoints.push(
-                { y: (e.balance * 100) / (userBalance + childBals), label: e.name, color: colors[i] } // parseInt((e.balance * 100)/(userBalance + childBals))
+                { y: (Math.round(e.balance.toString()) *0.000000000000000001 * 100) / (userBalance + childBals), label: e.name, color: colors[i] } // parseInt((e.balance * 100)/(userBalance + childBals))
               )
             }
 
