@@ -33,7 +33,6 @@ import {
   faUpDown,
 } from "@fortawesome/free-solid-svg-icons";
 import "swiper/css";
-import Navbar from "./Navbar";
 const { Header, Content, Footer, Sider } = Layout;
 
 const data = [
@@ -53,44 +52,104 @@ const sampleData = [
 ];
 
 const App = () => {
-  const { sendEthereum, getTransactionHistory, getEtherBalanceOfCurrentUser } =
+  const {getEtherBalanceOfCurrentUser ,getAllUsers,getAllAddressByOwner ,getCurrentUserInfo} =
     useContext(BankingContext);
-  const [wallet_address, setWalletAddress] = useState("");
-  const [amount, setAmount] = useState("0");
-  const [transactions, setTransactions] = useState([]);
   const [userBalance, setUserBalance] = useState(0);
+  const [allUsers,setAllUsers] = useState([]);
+  const [allAddresses,setAllAddresses] = useState([]);
+  const [userInfos,setUserInfos] = useState([])
 
   useEffect(() => {
-    // let interval = setInterval(() => { }, 1000 * 60 * 60);
-
-    //console.log("prev -> ",previous)
-
     const load = async () => {
       const userBalance = await getEtherBalanceOfCurrentUser();
-      const transactions = await getTransactionHistory();
+      const users = await getAllUsers();
+      const allAddresses = await getAllAddressByOwner();
+      // window.alert(allAddresses);
       setUserBalance(userBalance.toString());
-      console.log("transactions --> ", transactions);
-      setTransactions(transactions);
+      setAllUsers(users);
+      setAllAddresses(allAddresses)
+
+            
+      // window.alert(allUsers);
+      
+      //
+
+
+   
     };
     load().catch((e) => console.log("merr --> ", e.message));
+    if (allAddresses.length !== 0) {
+      fetchUserInfos()
+    }
+   
     //window.alert(JSON.stringify(transactions))
     //  return () => previous = transactions.length;
     // return () => clearInterval(interval);
-  }, [userBalance]);
+  }, [userBalance,allAddresses.length]);
 
-  const sendEther = async (wallet_address, amount) => {
-    sendEthereum(wallet_address, amount)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((e) => {
-        console.log(e);
+
+  const fetchUserInfos = async () => {
+    let td = []
+    for (let i = 0 ;i < allAddresses.length;i++) {
+      let ti = await getCurrentUserInfo(allAddresses[i]);
+
+      
+      // ti["address"] = allAddresses[i];
+      // window.alert(Object.keys(ti))
+      td.push({
+        data : ti,
+        address : allAddresses[i]
       });
-  };
+    }
+    setUserInfos(td);
+  }
+
+
   return (
     <div className="">
       <Layout hasSider>
-        <Navbar type="admin"></Navbar>
+        <Sider
+          className="menu"
+          style={{
+            overflow: "auto",
+            height: "100vh",
+            position: "fixed",
+            left: 0,
+            top: 0,
+            bottom: 0,
+          }}
+        >
+          <div className="logo" />
+          <Menu className="menu" defaultSelectedKeys={["4"]}>
+            <img
+              className="rounded mx-auto d-block mb-4 test"
+              src={logo}
+              alt="HeaderImage"
+            ></img>
+            <Menu.Item className="item mb-3">
+              <FontAwesomeIcon className="ServiceIcon" icon={faUsers} /> Users
+            </Menu.Item>
+            <Menu.Item className="item mb-3">
+              <FontAwesomeIcon
+                className="fa-solid fa-arrow-right-to-bracket"
+                icon={faArrowAltCircleRight}
+              />{" "}
+              Logs
+            </Menu.Item>
+            <Menu.Item className="item mb-3">
+              <FontAwesomeIcon
+                className="ServiceIcon"
+                icon={faArrowRightFromBracket}
+              />{" "}
+              Sign out
+            </Menu.Item>
+            <img
+              className="rounded mx-auto d-block fixed-bottom intertech2"
+              src={intertech}
+              alt="HeaderImage"
+            ></img>
+          </Menu>
+        </Sider>
         <Layout
           className="site-layout"
           style={{
@@ -123,7 +182,8 @@ const App = () => {
                 </nav>
               </div>
 
-              <DataList transactions={transactions} />
+              <DataList transactions={userInfos} type = "userList" />
+              {/* <p>{JSON.stringify(userInfos)}</p> */}
             </div>
             <div className="row"></div>
           </Content>

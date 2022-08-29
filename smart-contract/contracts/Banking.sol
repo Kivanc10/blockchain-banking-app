@@ -37,6 +37,7 @@ contract BankingApp {
     event allowanceTest(address recipient, uint256 amount);
 
     Transaction[] public GeneralTransactions;
+    address[] public user_address;
 
     // persona ait transactionlar
     mapping(address => Transaction[]) transactions;
@@ -191,6 +192,7 @@ contract BankingApp {
 
         //emit InheritumSent(owner,msg.sender,100000000000000000000);
         // tokens will be transferred by owner in fronted....
+        user_address.push(msg.sender);
 
         return person_instance;
     }
@@ -212,6 +214,11 @@ contract BankingApp {
      ardından findTheChild fonk ile persons arrayına pushlanan child personun kopyası ve indeksi alınır
      en son bu person objesi userListe eklenir ve chidl objesine çocuğun adresi eklenir
     */
+
+    function getUsersAddressByOwner() public view returns (address [] memory) {
+        return user_address;
+    }
+
     function linkAccount(
         address childAccount,
         string memory _name,

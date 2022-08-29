@@ -233,6 +233,7 @@ export const BankingProvider = ({ children }) => {
     try {
       let persons = await contractBank.methods.getPersons().call();
       console.log("persons -> ", persons);
+      return persons;
     } catch (error) {
       console.log(error.message);
     }
@@ -411,6 +412,17 @@ export const BankingProvider = ({ children }) => {
     return Math.round(ethers.utils.formatEther(weiValue) * 1e4) / 1e4;
   };
 
+  const getAllAddressByOwner = async () => {
+    try {
+      let addresses = await contractBank.methods.getUsersAddressByOwner().call();;
+      return addresses;
+
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
+
   useEffect(() => {
     isWalletConnected();
     const load = async () => {
@@ -492,6 +504,8 @@ export const BankingProvider = ({ children }) => {
         getCurrentUserInfo,
         getAllTransactionByOwner,
         getBalanceOfInheritumToken,
+        getAllAddressByOwner,
+        getAllUsers
       }}
     >
       {children}

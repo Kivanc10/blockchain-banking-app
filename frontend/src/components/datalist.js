@@ -9,34 +9,7 @@ import React, {
   useCallback,
 } from "react";
 import { BankingContext } from "../context/BankingContext";
-const columns = [
-  {
-    title: "Receiver",
-    dataIndex: "receiver",
-    sorter: false,
-    // render: (name) => `${name.first} ${name.last}`,
-    // render: (name) => `${name.sender}`,
-    width: "25%",
-  },
-  {
-    title: "Sender",
-    dataIndex: "sender",
-    sorter: false,
-    // render: (name) => `${name.first} ${name.last}`,
-    // render: (name) => `${name.sender}`,
-    width: "25%",
-  },
-  {
-    title: "Transaction Amount",
-    dataIndex: "amount",
-    width: "20%",
-  },
-  {
-    title: "Date",
-    dataIndex: "date",
-    width: "30%",
-  },
-];
+let columns;
 
 // const getRandomuserParams = (params) => ({
 //   results: params.pagination?.pageSize,
@@ -44,7 +17,7 @@ const columns = [
 //   ...params,
 // });
 
-const DataList = ({ transactions }) => {
+const DataList = ({ transactions,type}) => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
   const [pagination, setPagination] = useState({
@@ -58,17 +31,83 @@ const DataList = ({ transactions }) => {
 
   const convertDataSource = (arr) => {
     let data = [];
-    for (let i = 0; i < arr.length; i++) {
-      let trDate = new Date(arr[i].timestamp * 1000);
-      let tempObj = {
-        key: i,
-        date: trDate.toLocaleString(),
-        receiver: arr[i].receiver,
-        sender: arr[i].sender,
-        amount: formatEther(arr[i].amount.toString()) + " ETH",
-      };
-      data.push(tempObj);
+    if (type === "transaction") {
+      for (let i = 0; i < arr.length; i++) {
+        let trDate = new Date(arr[i].timestamp * 1000);
+        let tempObj = {
+          key: i,
+          date: trDate.toLocaleString(),
+          receiver: arr[i].receiver,
+          sender: arr[i].sender,
+          amount: formatEther(arr[i].amount.toString()) + " ETH",
+        };
+        data.push(tempObj);        
+      }
+      columns = [
+        {
+          title: "Receiver",
+          dataIndex: "receiver",
+          sorter: false,
+          // render: (name) => `${name.first} ${name.last}`,
+          // render: (name) => `${name.sender}`,
+          width: "25%",
+        },
+        {
+          title: "Sender",
+          dataIndex: "sender",
+          sorter: false,
+          // render: (name) => `${name.first} ${name.last}`,
+          // render: (name) => `${name.sender}`,
+          width: "25%",
+        },
+        {
+          title: "Transaction Amount",
+          dataIndex: "amount",
+          width: "20%",
+        },
+        {
+          title: "Date",
+          dataIndex: "date",
+          width: "30%",
+        },
+      ];
+    }else if (type === "userList") {
+      console.log("data ----> ", arr)
+      for (let i = 0;i<arr.length;i++) {
+        let trDate = new Date(arr[i].data.createdTime * 1000);
+        let tempObj = {
+          key: i,
+          date: trDate.toLocaleString(),
+          name: arr[i].data.name,
+          address : arr[i].address
+        };
+        data.push(tempObj);
+      }
+      columns =  [
+        {
+          title: "Name",
+          dataIndex: "name",
+          sorter: false,
+          // render: (name) => `${name.first} ${name.last}`,
+          // render: (name) => `${name.sender}`,
+          width: "25%",
+        },
+        {
+          title: "Address",
+          dataIndex: "address",
+          sorter: false,
+          // render: (name) => `${name.first} ${name.last}`,
+          // render: (name) => `${name.sender}`,
+          width: "45%",
+        },       
+        {
+          title: "Created Date",
+          dataIndex: "date",
+          width: "30%",
+        },
+      ];
     }
+  
     return data;
   };
 
