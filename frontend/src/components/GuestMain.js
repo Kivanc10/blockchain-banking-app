@@ -117,7 +117,7 @@ const App = () => {
                 <Row>
                   <div className="container-fluid text-center d-flex justify-content-center">
                     <p style={{ fontSize: '0.7em', fontWeight: 'Bold' }}>Years</p>
-                    <p style={{ fontSize: '0.7em', marginLeft: '2.6em', fontWeight: 'Bold' }}>Minutes</p>
+                    <p style={{ fontSize: '0.7em', marginLeft: '2.6em', fontWeight: 'Bold' }}>Month</p>
                     <p style={{ fontSize: '0.7em', marginLeft: '2.6em', fontWeight: 'Bold' }}>Days</p>
                     <p style={{ fontSize: '0.7em', fontWeight: 'Bold', marginLeft: '2.6em', fontWeight: 'Bold' }}>Hours</p>
                     <p style={{ fontSize: '0.7em', marginLeft: '2.6em', fontWeight: 'Bold' }}>Minutes</p>

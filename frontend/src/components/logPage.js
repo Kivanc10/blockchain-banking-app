@@ -1,9 +1,11 @@
 import { Button, Layout, Menu } from "antd";
-import React from "react";
+import React, { Component, useContext, useState, useEffect } from "react";
 import logo from "./raw/logoveyazi.png";
 import "./css/logPage.css";
 import Form from "react-bootstrap/Form";
+import { BankingContext } from "../context/BankingContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import DataList from './datalist';
 import {
   faHome,
   faWallet,
@@ -15,7 +17,42 @@ import {
 import "swiper/css";
 const { Content, Sider } = Layout;
 
-const LogPage = () => (
+const LogPage = () => {
+  const { sendEthereum, getTransactionHistory, getEtherBalanceOfCurrentUser } =
+  useContext(BankingContext);
+const [wallet_address, setWalletAddress] = useState("");
+const [amount, setAmount] = useState("0");
+const [transactions, setTransactions] = useState([]);
+const [userBalance, setUserBalance] = useState(0);
+
+useEffect(() => {
+  // let interval = setInterval(() => { }, 1000 * 60 * 60);
+
+  //console.log("prev -> ",previous)
+
+  const load = async () => {
+    const userBalance = await getEtherBalanceOfCurrentUser();
+    const transactions = await getTransactionHistory();
+    setUserBalance(userBalance.toString());
+    console.log("transactions --> ", transactions);
+    setTransactions(transactions);
+  };
+  load().catch((e) => console.log("merr --> ", e.message));
+  //window.alert(JSON.stringify(transactions))
+  //  return () => previous = transactions.length;
+  // return () => clearInterval(interval);
+}, [userBalance]);
+
+const sendEther = async (wallet_address, amount) => {
+  sendEthereum(wallet_address, amount)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
+  return(
   <Layout hasSider>
     <Sider
       className="menu"
@@ -85,78 +122,14 @@ const LogPage = () => (
         </div>
         {/* Form  End*/}
         {/* Table  Start*/}
-        <div className="container-fluid d-flex col-8 ">
-          <table class="table log_Table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Job</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Zuckerberg</td>
-                <td>Developer</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Lebron</td>
-                <td>James</td>
-                <td>Basketball Player</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Charles</td>
-                <td>Leclerc</td>
-                <td>F1 Pilot</td>
-              </tr>
-              <tr>
-                <th scope="row">4</th>
-                <td>Stephen</td>
-                <td>Curry</td>
-                <td>Basketball Player</td>
-              </tr>
-              <tr>
-                <th scope="row">5</th>
-                <td>Michael</td>
-                <td>Jordan</td>
-                <td>Basketball Player</td>
-              </tr>
-              <tr>
-                <th scope="row">6</th>
-                <td>Carlos</td>
-                <td>Sainz</td>
-                <td>F1 Pilot</td>
-              </tr>
-              <tr>
-                <th scope="row">7</th>
-                <td>Cristiano</td>
-                <td>Ronaldo</td>
-                <td>Football Player</td>
-              </tr>
-              <tr>
-                <th scope="row">8</th>
-                <td>Larry</td>
-                <td>Bird</td>
-                <td>Basketball Player</td>
-              </tr>
-              <tr>
-                <th>9</th>
-                <td>Larry</td>
-                <td>Bird</td>
-                <td>Basketball Player</td>
-              </tr>
-            </tbody>
-          </table>
+        <div className="container-fluid col-8 justify-content-center bg-light ">
+        <DataList transactions={transactions} style={{width:'100%'}} />
         </div>
         {/* Table  End*/}
       </Content>
     </Layout>
   </Layout>
 );
+    };
 
 export default LogPage;
