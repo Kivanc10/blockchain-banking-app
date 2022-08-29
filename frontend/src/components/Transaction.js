@@ -21,6 +21,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "swiper/css";
 import { useSearchParams } from "react-router-dom";
+import Navbar from "./Navbar";
 const { Header, Content, Footer, Sider } = Layout;
 
 const Transaction = () => {
@@ -61,36 +62,8 @@ const Transaction = () => {
 
   return (
     <Layout hasSider>
-      <Sider
-        className="menu"
-        style={{
-          overflow: "auto",
-          height: "100vh",
-          position: "fixed",
-          left: 0,
-          top: 0,
-          bottom: 0,
-        }}
-      >
-        <div className="logo" />
-        <Menu className="menu" defaultSelectedKeys={["4"]}>
-          <img className="img-fluid test" src={logo} alt="HeaderImage"></img>
-          <Menu.Item className="item">
-            <FontAwesomeIcon className="ServiceIcon" icon={faHome} /> Dashboard
-          </Menu.Item>
-          <Menu.Item className="item">
-            <FontAwesomeIcon className="ServiceIcon" icon={faGlobe} />{" "}
-            Transactions
-          </Menu.Item>
-          <Menu.Item className="item">
-            <FontAwesomeIcon
-              className="ServiceIcon"
-              icon={faArrowRightFromBracket}
-            />{" "}
-            Signout
-          </Menu.Item>
-        </Menu>
-      </Sider>
+      <Navbar type="normal"></Navbar>
+
       <Layout
         className="site-layout"
         style={{

@@ -38,6 +38,8 @@ import doge from "./raw/doge.png";
 import Chart from "./monthlyChart";
 import { MDBTable, MDBTableBody } from "mdb-react-ui-kit";
 import { getExchangeRates, getChangeRates } from "../utils/exchangeRate";
+import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 const { Content, Sider } = Layout;
 const dataBar = [
   { x: "Jan", y: 2, y0: 1 },
@@ -116,55 +118,10 @@ const Dashboard = () => {
 
   const getChildrenFeatures = async () => {};
 
+  const navigate = useNavigate();
   return (
     <Layout hasSider>
-      <Sider
-        className="menu"
-        style={{
-          overflow: "auto",
-          height: "100vh",
-          position: "fixed",
-          left: 0,
-          top: 0,
-          bottom: 0,
-        }}
-      >
-        <div className="logo" />
-        <Menu className="menu" defaultSelectedKeys={["4"]}>
-          <img
-            className="rounded mx-auto d-block mb-4 test"
-            src={logo}
-            alt="HeaderImage"
-          ></img>
-          <Menu.Item className="item mb-3">
-            <FontAwesomeIcon className="ServiceIcon" icon={faHome} /> Dashboard
-          </Menu.Item>
-          <Menu.Item className="item mb-3">
-            <FontAwesomeIcon className="ServiceIcon" icon={faGlobe} />{" "}
-            Transactions
-          </Menu.Item>
-          <Menu.Item className="item mb-3">
-            <FontAwesomeIcon
-              className="ServiceIcon"
-              icon={faArrowRightFromBracket}
-            />{" "}
-            Sign out
-          </Menu.Item>
-
-          {/* <Menu.Item className="item mb-3">
-           <FontAwesomeIcon
-              className="ServiceIcon"
-              icon={faArrowRightFromBracket}
-            />{" "}
-            <button onClick={addUserToSystem}>Send</button>
-      </Menu.Item> */}
-          <img
-            className="rounded mx-auto d-block fixed-bottom intertech2"
-            src={intertech}
-            alt="HeaderImage"
-          ></img>
-        </Menu>
-      </Sider>
+      <Navbar type="normal"></Navbar>
       <Layout
         className="site-layout"
         style={{

@@ -31,6 +31,7 @@ import {
   faUpDown,
 } from "@fortawesome/free-solid-svg-icons";
 import "swiper/css";
+import Navbar from "./Navbar";
 const { Header, Content, Footer, Sider } = Layout;
 
 const data = [
@@ -64,35 +65,7 @@ const App = () => (
         }}
       >
         <div className="logo" />
-        <Menu className="menu" defaultSelectedKeys={["4"]}>
-          <img
-            className="rounded mx-auto d-block mb-4 test"
-            src={logo}
-            alt="HeaderImage"
-          ></img>
-          <Menu.Item className="item mb-3">
-            <FontAwesomeIcon className="ServiceIcon" icon={faUsers} /> Users
-          </Menu.Item>
-          <Menu.Item className="item mb-3">
-            <FontAwesomeIcon
-              className="fa-solid fa-arrow-right-to-bracket"
-              icon={faArrowAltCircleRight}
-            />{" "}
-            Logs
-          </Menu.Item>
-          <Menu.Item className="item mb-3">
-            <FontAwesomeIcon
-              className="ServiceIcon"
-              icon={faArrowRightFromBracket}
-            />{" "}
-            Sign out
-          </Menu.Item>
-          <img
-            className="rounded mx-auto d-block fixed-bottom intertech2"
-            src={intertech}
-            alt="HeaderImage"
-          ></img>
-        </Menu>
+        <Navbar type="admin"></Navbar>
       </Sider>
       <Layout
         className="site-layout"
