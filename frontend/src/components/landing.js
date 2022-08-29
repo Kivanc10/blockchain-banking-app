@@ -140,7 +140,7 @@ const Landing = () => {
             </h3>
           </div>
           <div className="container-fluid" id="wwR">
-            <p style={{ color: "black", fontWeight: "bold" }}>
+            <p style={{ color: "black" }}>
               With the application, information such as seeing the summary of
               your account status, viewing the last transaction and financial
               analysis will be with you. You will be able to safely track your
@@ -155,13 +155,13 @@ const Landing = () => {
       <div class="row justify-content-center text-center container-fluid">
         <div class="col-8">
           <h1 style={{ color: "purple", marginBottom: "20px" }}>
-            Who are <span style={{ color: "purple" }}>we ?</span>
+            Who are  <span style={{ color: "rgb(114, 114, 194)" }}> we?</span>
           </h1>
         </div>
       </div>
       <div class="row justify-content-center text-center container-fluid">
         <div class="col-6">
-          <p style={{ color: "black", fontWeight: "bold" }} id="rService">
+          <p style={{ color: "black" }} id="rService">
             {" "}
             Inheritium is a product created to help you manage your money, save
             money and leave a legacy for future generations. If you want to
@@ -176,7 +176,7 @@ const Landing = () => {
           class="col-12 "
           style={{ marginTop: "75px", marginBottom: "55px" }}
         >
-          <h1 style={{ color: "purple", fontSize: "3em" }}>Our Services</h1>
+          <h1 style={{ color: "purple", fontSize: "2.5em" }}>Our <span style={{ color: "rgb(114, 114, 194)" }}>Services</span></h1>
         </div>
         <div class="col-2 justify-content-center d-flex">
           <div class="card ServicesBox" style={{ width: "18rem;" }}>
@@ -282,9 +282,9 @@ const Landing = () => {
       </div>
       <div class="row justify-content-center text-center container-fluid">
         <div class="col-6">
-          <p style={{ color: "grey", fontWeight: "bold" }}>
-            If you are not sure whether Draft is suitalbe for you or not, do not
-            worry. We are here to explain everything you might want to know
+          <p style={{ color: "black" }}>
+            If you are not sure whether Draft is suitable for you or not, do not
+            worry. We are here to explain everything you might want to know.
           </p>
         </div>
       </div>
@@ -294,7 +294,7 @@ const Landing = () => {
             <AccordionItem className="accordion-item">
               <AccordionItemHeading className="accordion-header">
                 <AccordionItemButton className="accordion-button">
-                  What is the difference between INHERITIUM and a Bank account ?
+                  What is the difference between INHERITIUM and a Bank account?
                 </AccordionItemButton>
               </AccordionItemHeading>
               <AccordionItemPanel className="accordion-body">
@@ -307,7 +307,7 @@ const Landing = () => {
             <AccordionItem className="accordion-item">
               <AccordionItemHeading className="accordion-header">
                 <AccordionItemButton className="accordion-button">
-                  Who can open INHERITIUM account ?
+                  Who can open INHERITIUM account?
                 </AccordionItemButton>
               </AccordionItemHeading>
               <AccordionItemPanel className="accordion-body">

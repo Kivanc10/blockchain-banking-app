@@ -1,4 +1,4 @@
-import React, { Component, useContext, useState,useEffect } from "react";
+import React, { Component, useContext, useState, useEffect } from "react";
 import { Layout, Menu } from "antd";
 import logo from "./raw/logoveyazi.png";
 import "./css/dashboard.css";
@@ -23,10 +23,11 @@ import "swiper/css";
 import { useSearchParams } from "react-router-dom";
 const { Header, Content, Footer, Sider } = Layout;
 
-const App = () => {
-  const { sendEthereum,getTransactionHistory,getEtherBalanceOfCurrentUser } = useContext(BankingContext);
-  const [wallet_address,setWalletAddress] = useState("")
-  const [amount,setAmount] = useState("0");
+const Transaction = () => {
+  const { sendEthereum, getTransactionHistory, getEtherBalanceOfCurrentUser } =
+    useContext(BankingContext);
+  const [wallet_address, setWalletAddress] = useState("");
+  const [amount, setAmount] = useState("0");
   const [transactions, setTransactions] = useState([]);
   const [userBalance, setUserBalance] = useState(0);
 
@@ -34,30 +35,29 @@ const App = () => {
     // let interval = setInterval(() => { }, 1000 * 60 * 60);
 
     //console.log("prev -> ",previous)
-    
+
     const load = async () => {
-      
-      const userBalance = await getEtherBalanceOfCurrentUser()
+      const userBalance = await getEtherBalanceOfCurrentUser();
       const transactions = await getTransactionHistory();
-      setUserBalance(userBalance.toString())
-      console.log("transactions --> ", transactions)
-      setTransactions(transactions)
-    }
-    load().catch((e) => console.log("merr --> ",e.message))
+      setUserBalance(userBalance.toString());
+      console.log("transactions --> ", transactions);
+      setTransactions(transactions);
+    };
+    load().catch((e) => console.log("merr --> ", e.message));
     //window.alert(JSON.stringify(transactions))
     //  return () => previous = transactions.length;
     // return () => clearInterval(interval);
-  },[userBalance])
+  }, [userBalance]);
 
-
-  const sendEther = async (wallet_address,amount) => {
+  const sendEther = async (wallet_address, amount) => {
     sendEthereum(wallet_address, amount)
       .then((res) => {
-        console.log(res)
-      }).catch((e) => {
-        console.log(e)
+        console.log(res);
       })
-  }
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
   return (
     <Layout hasSider>
@@ -110,21 +110,21 @@ const App = () => {
             <Input
               className="sendButtons "
               size="large"
-              style={{ width: "40%", marginLeft: "1%", marginTop: "10px" }}
-              placeholder="Sender Wallet Address"
-              onChange={e => setWalletAddress(e.target.value)}
+              style={{ width: "40%", marginLeft: "5%", marginTop: "10px" }}
+              placeholder="Wallet Address of Receiving Account"
+              onChange={(e) => setWalletAddress(e.target.value)}
             />
             <Input
               className="sendButtons"
               size="large"
               style={{ width: "25%", marginLeft: "2%" }}
-              placeholder="Amount of Ethereum to Transfer"
-              onChange={e => setAmount(e.target.value)}
+              placeholder="Transfer Amount(ETH)"
+              onChange={(e) => setAmount(e.target.value)}
             />
             <Button
               className="sendButtons"
-              style={{ marginLeft: "18%", height: "3em" }}
-              onClick = {() => sendEther(wallet_address,amount)}
+              style={{ marginLeft: "9%", height: "3em" }}
+              onClick={() => sendEther(wallet_address, amount)}
             >
               <FontAwesomeIcon
                 icon={faPaperPlane}
@@ -153,13 +153,19 @@ const App = () => {
             >
               Transaction History
             </h2>
-            <div style={{ marginRight: "10px", marginLeft: "10px" }}>
+            <div
+              style={{
+                marginRight: "10px",
+                marginLeft: "10px",
+                marginBottom: "10px",
+              }}
+            >
               <DataList transactions={transactions} />
             </div>
           </div>
         </Content>
       </Layout>
     </Layout>
-  )
+  );
 };
-export default App;
+export default Transaction;

@@ -128,3 +128,7 @@ body{
     background-color: rgba(255, 255, 255, 0.6)!important;
    
 }
+
+.nav-link{
+    color:black!important;
+}
