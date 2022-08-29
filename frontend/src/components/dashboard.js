@@ -165,7 +165,7 @@ const Dashboard = () => {
                         }}
                         className="col-4"
                       >
-                        {176200}
+                        {userBalance}
                       </div>
                       <div
                         style={{
@@ -188,7 +188,7 @@ const Dashboard = () => {
                         }}
                         className="col-4"
                       >
-                        {0}
+                        {INHBalance}
                       </div>
 
                       <div
