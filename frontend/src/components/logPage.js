@@ -18,7 +18,7 @@ import "swiper/css";
 const { Content, Sider } = Layout;
 
 const LogPage = () => {
-  const { getTransactionHistory, getEtherBalanceOfCurrentUser,getAllTransactionByOwner } = useContext(BankingContext);
+  const { getTransactionHistory, getEtherBalanceOfCurrentUser,getAllTransactionByOwner , formatEther} = useContext(BankingContext);
   const [allTransactions, setAllTransactions] = useState([]);
   const [filteredData, setFilteredData] = useState([])
   const [balance, setBalance] = useState("");
@@ -127,7 +127,7 @@ useEffect(() => {
                         <th scope="row">{i + 1}</th>
                         <td>{e.sender}</td>
                         <td>{e.receiver} </td> {/*{e.address}*/}
-                        <td>{e.amount.toString()}</td>
+                        <td>{formatEther(e.amount.toString()) + " ETH"}</td>
                         <td>{e.timestamp.toString()}</td>
                       </tr>
                     ) : (
@@ -136,7 +136,7 @@ useEffect(() => {
                           <th scope="row">{i + 1}</th>
                           <td>{e.sender}</td>
                           <td>{e.receiver} </td> {/*{e.address}*/}
-                          <td>{e.amount.toString()}</td>
+                          <td>{formatEther(e.amount.toString())+ " ETH"}</td>
                           <td>{e.timestamp.toString()}</td>
                         </tr>
                       ) : (
@@ -158,7 +158,7 @@ useEffect(() => {
           </div>
           {/* Table  End*/}
         {/* <div className="container-fluid col-8 justify-content-center bg-light ">
-        <DataList transactions={transactions} style={{width:'100%'}} />
+        <DataList transactions={allTransactions} style={{width:'100%'}} />
         </div> */}
         {/* Table  End*/}
       </Content>
