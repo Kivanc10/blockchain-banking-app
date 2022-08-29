@@ -183,40 +183,75 @@ const Dashboard = () => {
                     <div className="d-flex justify-content-evenly mb-3 font2">
                       PNL
                     </div>
-                    <div className="d-flex justify-content-evenly mb-1 font1-2">
-                      {userBalance === "0" && <p>$0</p>}
-                      {userBalance !== "0" && ( // yapılcak
-                        <p>
-                          $
-                          {(
-                            (ETHChange / 100) *
-                            currencyData.ETH *
-                            userBalance
-                          ).toFixed(2)}
-                        </p>
-                      )}
-                    </div>
+                    {ETHChange > 0 ? (
+                      <div className="d-flex justify-content-evenly mb-1 font1-2">
+                        {userBalance === "0" && <p>$0</p>}
+                        {userBalance !== "0" && ( // yapılcak
+                          <p>
+                            $
+                            {(
+                              (ETHChange / 100) *
+                              currencyData.ETH *
+                              userBalance
+                            ).toFixed(2)}
+                          </p>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="d-flex justify-content-evenly mb-1 font1-3">
+                        {userBalance === "0" && <p>$0</p>}
+                        {userBalance !== "0" && ( // yapılcak
+                          <p>
+                            $
+                            {(
+                              (ETHChange / 100) *
+                              currencyData.ETH *
+                              userBalance
+                            ).toFixed(2)}
+                          </p>
+                        )}
+                      </div>
+                    )}
                   </MDBCol>
                 </MDBRow>
                 <MDBRow>
                   <MDBCol></MDBCol>
                   <MDBCol className="justify-content-center d-flex">
-                    <div
-                      className="greenBox text-center justify-content-center"
-                      style={{ width: "6.5em" }}
-                    >
-                      <FontAwesomeIcon
-                        className="faArrowTrendUp greenBoxYazilar"
-                        icon={faArrowTrendUp}
-                      />
-                      <label
-                        className="greenBoxYazilar"
-                        style={{ paddingLeft: "5px" }}
+                    {ETHChange > 0 ? (
+                      <div
+                        className="greenBox text-center justify-content-center"
+                        style={{ width: "6.5em" }}
                       >
-                        {" "}
-                        {ETHChange}
-                      </label>
-                    </div>
+                        <FontAwesomeIcon
+                          className="faArrowTrendUp greenBoxYazilar"
+                          icon={faArrowTrendUp}
+                        />
+                        <label
+                          className="greenBoxYazilar"
+                          style={{ paddingLeft: "5px" }}
+                        >
+                          {" "}
+                          {ETHChange}
+                        </label>
+                      </div>
+                    ) : (
+                      <div
+                        className="redBox text-center justify-content-center"
+                        style={{ width: "6.5em" }}
+                      >
+                        <FontAwesomeIcon
+                          className="faArrowTrendDown redBoxYazilar"
+                          icon={faArrowTrendDown}
+                        />
+                        <label
+                          className="redBoxYazilar"
+                          style={{ paddingLeft: "5px" }}
+                        >
+                          {" "}
+                          {ETHChange}
+                        </label>
+                      </div>
+                    )}
                   </MDBCol>
                 </MDBRow>
               </MDBCol>

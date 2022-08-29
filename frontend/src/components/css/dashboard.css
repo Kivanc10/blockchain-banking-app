@@ -10,11 +10,11 @@
 .item {
   color: white;
 }
-.iButton{
-  background-color: grey!important;
-  width: 60%!important;
+.iButton {
+  background-color: grey !important;
+  width: 60% !important;
   border-radius: 25px;
-  border-color: grey!important;
+  border-color: grey !important;
 }
 
 .item:hover {
@@ -115,14 +115,15 @@ b .nav {
   width: 100%;
   color: white;
 }
-.ant-modal-content, .ant-modal-header{
-  border-radius: 25px!important;
+.ant-modal-content,
+.ant-modal-header {
+  border-radius: 25px !important;
 }
-.ant-modal-footer{
-  visibility: hidden!important;
+.ant-modal-footer {
+  visibility: hidden !important;
 }
-.sButton{
-  background-color: red!important;
+.sButton {
+  background-color: red !important;
 }
 .box5 {
   /* background-color: rgb(255, 255, 255); */
@@ -134,7 +135,7 @@ b .nav {
   -webkit-backdrop-filter: blur(7px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  height: fit-content!important;
+  height: fit-content !important;
 }
 
 .box5-1 {
@@ -263,6 +264,11 @@ b .nav {
 .font1-2 {
   font-size: xx-large;
   color: green;
+  font-weight: bold;
+}
+.font1-3 {
+  font-size: xx-large;
+  color: red;
   font-weight: bold;
 }
 
@@ -452,7 +458,22 @@ b .nav {
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.portfolioDash{
-  background:linear-gradient(to right,#fd006a,rgba(255, 255, 255, 0),transparent);
-  background-color:rgba(255, 255, 255, 0.6);
+.portfolioDash {
+  background: linear-gradient(
+    to right,
+    #fd006a,
+    rgba(255, 255, 255, 0),
+    transparent
+  );
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.portfolioText {
+  font: bold;
+  background-image: linear-gradient(
+    to left,
+    #fd006a,
+    rgba(255, 255, 255, 0),
+    transparent
+  );
 }
