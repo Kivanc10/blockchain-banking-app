@@ -158,12 +158,21 @@ const Dashboard = () => {
                 <MDBRow>
                   <MDBCol>
                     <div className="d-flex text-center align-items-center justify-content-evenly mb-1 font1">
-                      {userBalance}
                       <div
                         style={{
                           fontSize: 20,
                           color: "white",
                         }}
+                        className="col-4"
+                      >
+                        {176200}
+                      </div>
+                      <div
+                        style={{
+                          fontSize: 20,
+                          color: "white",
+                        }}
+                        className="col-4"
                       >
                         ETH
                       </div>
@@ -172,12 +181,22 @@ const Dashboard = () => {
                       className="d-flex text-center align-items-center justify-content-evenly mb-1 font1"
                       style={{ marginTop: "20px" }}
                     >
-                      {INHBalance}
                       <div
                         style={{
                           fontSize: 20,
                           color: "white",
                         }}
+                        className="col-4"
+                      >
+                        {0}
+                      </div>
+
+                      <div
+                        style={{
+                          fontSize: 20,
+                          color: "white",
+                        }}
+                        className="col-4"
                       >
                         INH
                       </div>
