@@ -166,6 +166,17 @@ export const BankingProvider = ({ children }) => {
     return address.slice(0, 5) + ".." + address.slice(-4)
   }
 
+
+  const getAllTransactionByOwner = async () => {
+    try {
+      let t = await contractBank.methods.getAllTransactionRecorded().call()
+      return t;
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
   const getOwnerTest = async () => {
 
     try {
@@ -493,7 +504,8 @@ export const BankingProvider = ({ children }) => {
         getTransactionHistory,
         formatEther,
         getMyChildrenInfos,
-        getCurrentUserInfo
+        getCurrentUserInfo,
+        getAllTransactionByOwner
       }}
     >
       {children}

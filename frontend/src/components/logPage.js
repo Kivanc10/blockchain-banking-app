@@ -18,40 +18,34 @@ import "swiper/css";
 const { Content, Sider } = Layout;
 
 const LogPage = () => {
-  const { sendEthereum, getTransactionHistory, getEtherBalanceOfCurrentUser } =
-  useContext(BankingContext);
-const [wallet_address, setWalletAddress] = useState("");
-const [amount, setAmount] = useState("0");
-const [transactions, setTransactions] = useState([]);
-const [userBalance, setUserBalance] = useState(0);
+  const { getTransactionHistory, getEtherBalanceOfCurrentUser,getAllTransactionByOwner } = useContext(BankingContext);
+  const [allTransactions, setAllTransactions] = useState([]);
+  const [filteredData, setFilteredData] = useState([])
+  const [balance, setBalance] = useState("");
+  const [searchedName, setSearchedName] = useState("")
+  const [searchedAddress, setSearchedAddress] = useState("")
+
+  const [show, setShow] = useState(false)
 
 useEffect(() => {
-  // let interval = setInterval(() => { }, 1000 * 60 * 60);
-
-  //console.log("prev -> ",previous)
-
   const load = async () => {
-    const userBalance = await getEtherBalanceOfCurrentUser();
-    const transactions = await getTransactionHistory();
-    setUserBalance(userBalance.toString());
-    console.log("transactions --> ", transactions);
-    setTransactions(transactions);
-  };
-  load().catch((e) => console.log("merr --> ", e.message));
-  //window.alert(JSON.stringify(transactions))
-  //  return () => previous = transactions.length;
-  // return () => clearInterval(interval);
-}, [userBalance]);
+    // let transactions = await getTransactionHistory();
+    let tow = await getAllTransactionByOwner();
+    // window.alert(tow)
+    // window.alert(users)
+    let balance = await getEtherBalanceOfCurrentUser();
+    setBalance(balance)
+    setAllTransactions(tow)
+    // console.log(transactions)
+  }
 
-const sendEther = async (wallet_address, amount) => {
-  sendEthereum(wallet_address, amount)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((e) => {
-      console.log(e);
-    });
-};
+  load().catch((e) => console.log("err ---> ", e.message))
+  // search(setSearchedAddress,allTransactions)
+
+}, [balance])
+
+
+
   return(
   <Layout hasSider>
     <Sider
@@ -96,35 +90,76 @@ const sendEther = async (wallet_address, amount) => {
         </div>
         {/* Form  Start*/}
         <div className="container-fluid d-flex justify-content-between col-8">
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Customer</Form.Label>
-            <Form.Control type="email" placeholder="Enter Customer name" />
-          </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Customer</Form.Label>
+              <Form.Control onChange={e => setSearchedAddress(e.target.value)} type="email" placeholder="Enter Customer Address" />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Search</Form.Label><br />
+              <Button onClick={() => {
+                setShow(!show)
+                // setSearchedAddress("")
+              }} className="form-control" style={{ height: '2.4em' }}><FontAwesomeIcon className="ServiceIcon" icon={faSearch} /></Button>
+            </Form.Group>
+          </div>
+          {/* Form  End*/}
+          {/* Table  Start*/}
+          <div className="container-fluid d-flex col-8 ">
+            <table class="table log_Table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Sender</th>
+                  {/* <th scope="col">Last</th> */}
+                  <th scope="col">Receiver</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Time</th>
+                </tr>
+              </thead>
+              <tbody>
 
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Invoice ID</Form.Label>
-            <Form.Control type="email" placeholder="Enter Invoice ID" />
-          </Form.Group>
+                {(show && (allTransactions.length >= 1 && allTransactions !== undefined && allTransactions !== null)) ? (
 
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Start Date</Form.Label>
-            <Form.Control type="date" />
-          </Form.Group>
+                  allTransactions.map((e, i) => (
 
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>End Date</Form.Label>
-            <Form.Control type="date" placeholder="Enter email" />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Search</Form.Label><br/>
-            <Button className="form-control" style={{height:'2.4em'}}><FontAwesomeIcon className="ServiceIcon" icon={faSearch} /></Button>
-          </Form.Group>
-        </div>
-        {/* Form  End*/}
-        {/* Table  Start*/}
-        <div className="container-fluid col-8 justify-content-center bg-light ">
+                    (searchedAddress === "" ? (
+                      <tr key={e.timestamp.toString()} >
+                        <th scope="row">{i + 1}</th>
+                        <td>{e.sender}</td>
+                        <td>{e.receiver} </td> {/*{e.address}*/}
+                        <td>{e.amount.toString()}</td>
+                        <td>{e.timestamp.toString()}</td>
+                      </tr>
+                    ) : (
+                      ((Number("" + e.sender) === Number(searchedAddress) || Number("" + e.receiver) === Number(searchedAddress)) ? (
+                        <tr key={e.timestamp.toString()} >
+                          <th scope="row">{i + 1}</th>
+                          <td>{e.sender}</td>
+                          <td>{e.receiver} </td> {/*{e.address}*/}
+                          <td>{e.amount.toString()}</td>
+                          <td>{e.timestamp.toString()}</td>
+                        </tr>
+                      ) : (
+                        <p></p>
+                      ))
+
+                    ))
+
+
+
+                  ))
+                ) : (
+                  <p></p>
+                )}
+
+
+              </tbody>
+            </table>
+          </div>
+          {/* Table  End*/}
+        {/* <div className="container-fluid col-8 justify-content-center bg-light ">
         <DataList transactions={transactions} style={{width:'100%'}} />
-        </div>
+        </div> */}
         {/* Table  End*/}
       </Content>
     </Layout>
