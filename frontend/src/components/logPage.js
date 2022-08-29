@@ -1,4 +1,4 @@
-import { Layout, Menu } from "antd";
+import { Button, Layout, Menu } from "antd";
 import React from "react";
 import logo from "./raw/logoveyazi.png";
 import "./css/logPage.css";
@@ -10,6 +10,7 @@ import {
   faGlobe,
   faArrowRightFromBracket,
   faUser,
+  faSearch
 } from "@fortawesome/free-solid-svg-icons";
 import "swiper/css";
 const { Content, Sider } = Layout;
@@ -76,6 +77,10 @@ const LogPage = () => (
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>End Date</Form.Label>
             <Form.Control type="date" placeholder="Enter email" />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Search</Form.Label><br/>
+            <Button className="form-control" style={{height:'2.4em'}}><FontAwesomeIcon className="ServiceIcon" icon={faSearch} /></Button>
           </Form.Group>
         </div>
         {/* Form  End*/}
