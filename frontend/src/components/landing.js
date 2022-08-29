@@ -136,7 +136,7 @@ const Landing = () => {
         <div className="col-3 col-md-3 d-flex align-self-center flex-column">
           <div className="container-fluid  roboto">
             <h3 style={{ color: "purple" }}>
-              Manage your <br /> finances like a pro <br /> in no time
+              Manage your finances like a pro <br /> in no time
             </h3>
           </div>
           <div className="container-fluid" id="wwR">
@@ -144,7 +144,7 @@ const Landing = () => {
               With the application, information such as seeing the summary of
               your account status, viewing the last transaction and financial
               analysis will be with you. You will be able to safely track your
-              investment and pass it on to future generations
+              investment and pass it onto the future generations
             </p>
           </div>
         </div>
@@ -154,7 +154,7 @@ const Landing = () => {
       {/* Who are we Section Start */}
       <div class="row justify-content-center text-center container-fluid">
         <div class="col-8">
-          <h1 style={{ color: "purple" }}>
+          <h1 style={{ color: "purple", marginBottom: "20px" }}>
             Who are <span style={{ color: "purple" }}>we ?</span>
           </h1>
         </div>
@@ -163,10 +163,9 @@ const Landing = () => {
         <div class="col-6">
           <p style={{ color: "black", fontWeight: "bold" }} id="rService">
             {" "}
-            Inheritium is a revolutionary creation created to help you manage
-            your money, save money and leave a legacy for future generations. If
-            you want to leave a wonderful legacy to your children, we are here
-            for you.
+            Inheritium is a product created to help you manage your money, save
+            money and leave a legacy for future generations. If you want to
+            leave a wonderful legacy to your children, we are here for you.
           </p>
         </div>
       </div>
@@ -275,7 +274,7 @@ const Landing = () => {
         id="rFAQ"
       >
         <div class="col-8">
-          <h1 style={{ color: "purple" }}>
+          <h1 style={{ color: "purple", marginBottom: "20px" }}>
             Frequently{" "}
             <span style={{ color: "rgb(114, 114, 194)" }}>asked question</span>
           </h1>
@@ -283,7 +282,7 @@ const Landing = () => {
       </div>
       <div class="row justify-content-center text-center container-fluid">
         <div class="col-6">
-          <p style={{ color: "white", fontWeight: "bold" }}>
+          <p style={{ color: "grey", fontWeight: "bold" }}>
             If you are not sure whether Draft is suitalbe for you or not, do not
             worry. We are here to explain everything you might want to know
           </p>
@@ -300,8 +299,8 @@ const Landing = () => {
               </AccordionItemHeading>
               <AccordionItemPanel className="accordion-body">
                 <p>
-                  you can easily invest your accumulation via Inheritium on the
-                  contrary your bank account
+                  You can easily invest your accumulation via Inheritium in
+                  contrast to your bank account.
                 </p>
               </AccordionItemPanel>
             </AccordionItem>
@@ -329,21 +328,6 @@ const Landing = () => {
                   Children will not be able to perform transactions until they
                   reach the legal age limit. The legal age has been determined
                   as 18.
-                </p>
-              </AccordionItemPanel>
-            </AccordionItem>
-            <AccordionItem className="accordion-item">
-              <AccordionItemHeading className="accordion-header">
-                <AccordionItemButton className="accordion-button">
-                  Can I cancel my subscription or switch to another account
-                  anytime?
-                </AccordionItemButton>
-              </AccordionItemHeading>
-              <AccordionItemPanel className="accordion-body">
-                <p>
-                  Our system has been designed to allow this easily. You can
-                  cancel your subscription or switch to your another Inheritium
-                  account.
                 </p>
               </AccordionItemPanel>
             </AccordionItem>

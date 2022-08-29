@@ -18,8 +18,11 @@ const Team = () => {
         class="row justify-content-center text-center container-fluid"
         id="Team"
       >
-        <div class="col-12" style={{ marginTop: "75px" }}>
-          <h1 style={{ color: "blue" }}>Our Team</h1>
+        <div
+          class="col-12"
+          style={{ marginTop: "150px", marginBottom: "50px" }}
+        >
+          <h1 style={{ color: "purple" }}>Our Team</h1>
         </div>
         <div class="col-1">
           <div class="card TeamsBorder" style={{ width: "10rem;" }}>
