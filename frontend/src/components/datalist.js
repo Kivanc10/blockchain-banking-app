@@ -1,33 +1,40 @@
 import { Table } from "antd";
 import qs from "qs";
 import "./css/dashboard.css";
-import React, { useEffect, useState, useContext, useRef, useCallback } from "react";
+import React, {
+  useEffect,
+  useState,
+  useContext,
+  useRef,
+  useCallback,
+} from "react";
 import { BankingContext } from "../context/BankingContext";
 const columns = [
   {
-    title: "receiver",
+    title: "Receiver",
     dataIndex: "receiver",
     sorter: false,
     // render: (name) => `${name.first} ${name.last}`,
     // render: (name) => `${name.sender}`,
-    width: "50%",
+    width: "25%",
   },
   {
-    title: "sender",
+    title: "Sender",
     dataIndex: "sender",
     sorter: false,
     // render: (name) => `${name.first} ${name.last}`,
     // render: (name) => `${name.sender}`,
-    width: "50%",
+    width: "25%",
   },
   {
     title: "Transaction Amount",
     dataIndex: "amount",
-    width: "30%",
+    width: "20%",
   },
   {
     title: "Date",
     dataIndex: "date",
+    width: "30%",
   },
 ];
 
@@ -37,11 +44,7 @@ const columns = [
 //   ...params,
 // });
 
-
-
-
-
-const App = ({transactions}) => {
+const DataList = ({ transactions }) => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
   const [pagination, setPagination] = useState({
@@ -50,26 +53,24 @@ const App = ({transactions}) => {
     pageSize: 10,
   });
 
-
   //const [tsData, setTsData] = useState([]);
-  const {  formatEther } = useContext(BankingContext);
-
+  const { formatEther } = useContext(BankingContext);
 
   const convertDataSource = (arr) => {
-    let data = []
+    let data = [];
     for (let i = 0; i < arr.length; i++) {
+      let trDate = new Date(arr[i].timestamp * 1000);
       let tempObj = {
         key: i,
-        date: arr[i].timestamp.toString(),
+        date: trDate.toLocaleString(),
         receiver: arr[i].receiver,
         sender: arr[i].sender,
-        amount: formatEther(arr[i].amount.toString()) + ""
-      }
-      data.push(tempObj)
+        amount: formatEther(arr[i].amount.toString()) + " ETH",
+      };
+      data.push(tempObj);
     }
     return data;
-  }
-
+  };
 
   // const fetchData = (params = {}) => {
   //   setLoading(true);
@@ -97,7 +98,7 @@ const App = ({transactions}) => {
   //       ts = await getTransactionHistory()
   //     }
   //     //setTransactions(ts)
-     
+
   //     console.log(ts)
   //     if (ts.length !== 0) {
   //       setTransactions(ts);
@@ -125,9 +126,9 @@ const App = ({transactions}) => {
       dataSource={convertDataSource(transactions)}
       // pagination={pagination}
       loading={loading}
-    //onChange={handleTableChange}
+      //onChange={handleTableChange}
     />
   );
 };
 
-export default App;
+export default DataList;
