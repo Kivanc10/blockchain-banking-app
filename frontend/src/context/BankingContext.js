@@ -8,18 +8,26 @@ import { setGlobalState, getGlobalState, setTempVal } from "../store";
 import Web3 from "web3";
 import { useNavigate, useLocation } from "react-router-dom";
 
-window.web3 = new Web3(window.web3.currentProvider);
-const web3 = window.web3; // BankContract
+const generateWeb3 = () => {
+  if (window.web3) {
+    window.web3 = new Web3(window.web3.currentProvider);
+    const web3 = window.web3; // BankContract
 
-const contractBank = new web3.eth.Contract(
-  contract.abi,
-  contractAddrs.BankContract
-);
+    const contractBank = new web3.eth.Contract(
+      contract.abi,
+      contractAddrs.BankContract
+    );
 
-const contractToken = new web3.eth.Contract(
-  tokenContract.abi,
-  contractAddrs.Token
-);
+    const contractToken = new web3.eth.Contract(
+      tokenContract.abi,
+      contractAddrs.Token
+    );
+    return { web3, contractBank, contractToken };
+  }
+  return { web3: undefined, contractBank: undefined, contractToken: undefined };
+};
+
+const { web3, contractBank, contractToken } = generateWeb3();
 
 export const BankingContext = React.createContext();
 
@@ -67,7 +75,7 @@ const createEthereumContract = () => {
 const loadWeb3ForBank = async () => {
   try {
     if (!ethereum) {
-      return alert("Please install metamask !");
+      return console.error("Please install metamask !");
     }
     window.web3 = new Web3(ethereum);
     await ethereum.enable();
@@ -395,9 +403,6 @@ export const BankingProvider = ({ children }) => {
     }
   };
 
-
-  
-
   const getTransactionHistory = async () => {
     try {
       let contractV2Bank = getGlobalState("contractBank");
@@ -417,41 +422,43 @@ export const BankingProvider = ({ children }) => {
 
   const getAllAddressByOwner = async () => {
     try {
-      let addresses = await contractBank.methods.getUsersAddressByOwner().call();;
+      let addresses = await contractBank.methods
+        .getUsersAddressByOwner()
+        .call();
       return addresses;
-
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
-  }
-
+  };
 
   useEffect(() => {
-    isWalletConnected();
-    const load = async () => {
-      //await createEthereumContract();
-      await loadWeb3ForBank();
-      // const data = await getCurrentUserInfo("0xbE8D4707B4D9b7A87DE9bAc74A9Fa583ca04BfC1")
-      // window.alert(data)
-    };
-    load();
+    if (window.ethereum) {
+      isWalletConnected();
+      const load = async () => {
+        //await createEthereumContract();
+        await loadWeb3ForBank();
+        // const data = await getCurrentUserInfo("0xbE8D4707B4D9b7A87DE9bAc74A9Fa583ca04BfC1")
+        // window.alert(data)
+      };
+      load();
 
-    setGlobalState(
-      "contractBank",
-      createEthereumContract().bankingContractForUsers
-    );
-    setGlobalState(
-      "contractToken",
-      createEthereumContract().inheritiumContractForUsers
-    );
-    setGlobalState(
-      "contractTokenAdmin",
-      createEthereumContract().inheritiumContractForAdmin
-    );
-    setGlobalState(
-      "contractBankAdmin",
-      createEthereumContract().bankContractForAdmin
-    );
+      setGlobalState(
+        "contractBank",
+        createEthereumContract().bankingContractForUsers
+      );
+      setGlobalState(
+        "contractToken",
+        createEthereumContract().inheritiumContractForUsers
+      );
+      setGlobalState(
+        "contractTokenAdmin",
+        createEthereumContract().inheritiumContractForAdmin
+      );
+      setGlobalState(
+        "contractBankAdmin",
+        createEthereumContract().bankContractForAdmin
+      );
+    }
 
     if (window.ethereum) {
       // if metamask connection is interrupted
@@ -508,7 +515,7 @@ export const BankingProvider = ({ children }) => {
         getAllTransactionByOwner,
         getBalanceOfInheritumToken,
         getAllAddressByOwner,
-        getAllUsers        
+        getAllUsers,
       }}
     >
       {children}

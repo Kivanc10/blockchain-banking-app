@@ -91,19 +91,27 @@ const Landing = () => {
               </Nav.Link>
             </Nav>
             <Form className="d-flex">
-              <Button
-                onClick={connectWallet}
-                variant="outline-success"
-                className="navbarBtn mmBtn"
-                style={{
-                  backgroundColor: "#C5C9F6",
-                  borderColor: "#C5C9F6",
-                  width: "6em",
-                  height: "5em",
-                }}
-              >
-                <img src={metamask} className=" w-75" alt="" />
-              </Button>
+              {window.ethereum !== undefined ? (
+                <Button
+                  onClick={connectWallet}
+                  variant="outline-success"
+                  className="navbarBtn mmBtn"
+                  style={{
+                    backgroundColor: "#C5C9F6",
+                    borderColor: "#C5C9F6",
+                    width: "6em",
+                    height: "5em",
+                  }}
+                >
+                  <img src={metamask} className=" w-75" alt="" />
+                </Button>
+              ) : (
+                <div>
+                  Please install <a href="https://metamask.io/">Metamask</a>{" "}
+                  <br></br>
+                  and refresh the page to sign in
+                </div>
+              )}
             </Form>
           </Navbar.Collapse>
         </Container>
@@ -155,7 +163,7 @@ const Landing = () => {
       <div class="row justify-content-center text-center container-fluid">
         <div class="col-8">
           <h1 style={{ color: "purple", marginBottom: "20px" }}>
-            Who are  <span style={{ color: "rgb(114, 114, 194)" }}> we?</span>
+            Who are <span style={{ color: "rgb(114, 114, 194)" }}> we?</span>
           </h1>
         </div>
       </div>
@@ -176,7 +184,9 @@ const Landing = () => {
           class="col-12 "
           style={{ marginTop: "75px", marginBottom: "55px" }}
         >
-          <h1 style={{ color: "purple", fontSize: "2.5em" }}>Our <span style={{ color: "rgb(114, 114, 194)" }}>Services</span></h1>
+          <h1 style={{ color: "purple", fontSize: "2.5em" }}>
+            Our <span style={{ color: "rgb(114, 114, 194)" }}>Services</span>
+          </h1>
         </div>
         <div class="col-2 justify-content-center d-flex">
           <div class="card ServicesBox" style={{ width: "18rem;" }}>
