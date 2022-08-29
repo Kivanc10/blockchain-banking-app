@@ -59,6 +59,7 @@ const dataBar = [
 const Dashboard = () => {
   const [currencyData, setCurrencyData] = useState({});
   const [userBalance, setUserBalance] = useState(0);
+  const [INHBalance, setINHBalance] = useState(0);
   const [transactions, setTransactions] = useState([]);
   const [childObjects, setChildObjects] = useState([]);
   const [ETHChange, setETHChange] = useState(0);
@@ -70,6 +71,7 @@ const Dashboard = () => {
     getTransactionHistory,
     formatEther,
     getMyChildrenInfos,
+    getBalanceOfInheritumToken,
   } = useContext(BankingContext);
   const callApi = async () => {
     const data = await getExchangeRates();
@@ -88,10 +90,12 @@ const Dashboard = () => {
 
     const load = async () => {
       const userBalance = await getEtherBalanceOfCurrentUser();
+      const INHBalance = await getBalanceOfInheritumToken(currentAccount);
       const transactions = await getTransactionHistory();
       let childObjects = await getMyChildrenInfos();
       setChildObjects(childObjects);
       setUserBalance(userBalance.toString());
+      setINHBalance(INHBalance.toString());
       console.log("transactions --> ", transactions);
       setTransactions(transactions);
     };
@@ -168,7 +172,7 @@ const Dashboard = () => {
                       className="d-flex text-center align-items-center justify-content-evenly mb-1 font1"
                       style={{ marginTop: "20px" }}
                     >
-                      0INHVAL
+                      {INHBalance}
                       <div
                         style={{
                           fontSize: 20,
