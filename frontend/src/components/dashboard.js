@@ -37,7 +37,9 @@ import sol from "./raw/sol.png";
 import doge from "./raw/doge.png";
 import Chart from "./monthlyChart";
 import { MDBTable, MDBTableBody } from "mdb-react-ui-kit";
-import { getExchangeRates, getChangeRates } from "../utils/exchangeRate";
+import { getExchangeRates, getETHChange } from "../utils/exchangeRate";
+import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 const { Content, Sider } = Layout;
 const dataBar = [
   { x: "Jan", y: 2, y0: 1 },
@@ -57,8 +59,10 @@ const dataBar = [
 const Dashboard = () => {
   const [currencyData, setCurrencyData] = useState({});
   const [userBalance, setUserBalance] = useState(0);
+  const [INHBalance, setINHBalance] = useState(0);
   const [transactions, setTransactions] = useState([]);
   const [childObjects, setChildObjects] = useState([]);
+  const [ETHChange, setETHChange] = useState(0);
   const {
     currentAccount,
     addUser,
@@ -67,12 +71,16 @@ const Dashboard = () => {
     getTransactionHistory,
     formatEther,
     getMyChildrenInfos,
+    getBalanceOfInheritumToken,
   } = useContext(BankingContext);
   const callApi = async () => {
     const data = await getExchangeRates();
+    const change = await getETHChange();
     setCurrencyData(data);
+    setETHChange(change);
     console.log("hello");
     console.log(data);
+    console.log(change);
   };
 
   useEffect(() => {
@@ -82,10 +90,12 @@ const Dashboard = () => {
 
     const load = async () => {
       const userBalance = await getEtherBalanceOfCurrentUser();
+      const INHBalance = await getBalanceOfInheritumToken(currentAccount);
       const transactions = await getTransactionHistory();
       let childObjects = await getMyChildrenInfos();
       setChildObjects(childObjects);
       setUserBalance(userBalance.toString());
+      setINHBalance(INHBalance.toString());
       console.log("transactions --> ", transactions);
       setTransactions(transactions);
     };
@@ -118,53 +128,7 @@ const Dashboard = () => {
 
   return (
     <Layout hasSider>
-      <Sider
-        className="menu"
-        style={{
-          overflow: "auto",
-          height: "100vh",
-          position: "fixed",
-          left: 0,
-          top: 0,
-          bottom: 0,
-        }}
-      >
-        <div className="logo" />
-        <Menu className="menu" defaultSelectedKeys={["4"]}>
-          <img
-            className="rounded mx-auto d-block mb-4 test"
-            src={logo}
-            alt="HeaderImage"
-          ></img>
-          <Menu.Item className="item mb-3">
-            <FontAwesomeIcon className="ServiceIcon" icon={faHome} /> Dashboard
-          </Menu.Item>
-          <Menu.Item className="item mb-3">
-            <FontAwesomeIcon className="ServiceIcon" icon={faGlobe} />{" "}
-            Transactions
-          </Menu.Item>
-          <Menu.Item className="item mb-3">
-            <FontAwesomeIcon
-              className="ServiceIcon"
-              icon={faArrowRightFromBracket}
-            />{" "}
-            Sign out
-          </Menu.Item>
-
-          {/* <Menu.Item className="item mb-3">
-           <FontAwesomeIcon
-              className="ServiceIcon"
-              icon={faArrowRightFromBracket}
-            />{" "}
-            <button onClick={addUserToSystem}>Send</button>
-      </Menu.Item> */}
-          <img
-            className="rounded mx-auto d-block fixed-bottom intertech2"
-            src={intertech}
-            alt="HeaderImage"
-          ></img>
-        </Menu>
-      </Sider>
+      <Navbar type="normal"></Navbar>
       <Layout
         className="site-layout"
         style={{
@@ -185,17 +149,14 @@ const Dashboard = () => {
               >
                 <MDBRow className="d-flex justify-content-evenly">
                   <div
-                    className="d-flex justify-content-evenly mb-3 font3"
+                    className="d-flex justify-content-evenly mb-4 font2"
                     style={{ marginTop: "30px" }}
                   >
-                    My Wallet Summary
+                    Portfolio
                   </div>
                 </MDBRow>
                 <MDBRow>
                   <MDBCol>
-                    <div className="d-flex justify-content-evenly mb-3 font2">
-                      Portfolio
-                    </div>
                     <div className="d-flex text-center align-items-center justify-content-evenly mb-1 font1">
                       {userBalance}
                       <div
@@ -207,38 +168,94 @@ const Dashboard = () => {
                         ETH
                       </div>
                     </div>
+                    <div
+                      className="d-flex text-center align-items-center justify-content-evenly mb-1 font1"
+                      style={{ marginTop: "20px" }}
+                    >
+                      {INHBalance}
+                      <div
+                        style={{
+                          fontSize: 20,
+                          color: "white",
+                        }}
+                      >
+                        INH
+                      </div>
+                    </div>
                   </MDBCol>
                   <MDBCol>
                     <div className="d-flex justify-content-evenly mb-3 font2">
                       PNL
                     </div>
-                    <div className="d-flex justify-content-evenly mb-1 font1-2">
-                      {userBalance === "0" && <p>$0</p>}
-                      {userBalance !== "0" && ( // yapılcak
-                        <p>$2555</p>
-                      )}
-                    </div>
+                    {ETHChange > 0 ? (
+                      <div className="d-flex justify-content-evenly mb-1 font1-2">
+                        {userBalance === "0" && <p>$0</p>}
+                        {userBalance !== "0" && ( // yapılcak
+                          <p>
+                            $
+                            {(
+                              (ETHChange / 100) *
+                              currencyData.ETH *
+                              userBalance
+                            ).toFixed(2)}
+                          </p>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="d-flex justify-content-evenly mb-1 font1-3">
+                        {userBalance === "0" && <p>$0</p>}
+                        {userBalance !== "0" && ( // yapılcak
+                          <p>
+                            $
+                            {(
+                              (ETHChange / 100) *
+                              currencyData.ETH *
+                              userBalance
+                            ).toFixed(2)}
+                          </p>
+                        )}
+                      </div>
+                    )}
                   </MDBCol>
                 </MDBRow>
                 <MDBRow>
                   <MDBCol></MDBCol>
                   <MDBCol className="justify-content-center d-flex">
-                    <div
-                      className="greenBox text-center justify-content-center"
-                      style={{ width: "6.5em" }}
-                    >
-                      <FontAwesomeIcon
-                        className="faArrowTrendUp greenBoxYazilar"
-                        icon={faArrowTrendUp}
-                      />
-                      <label
-                        className="greenBoxYazilar"
-                        style={{ paddingLeft: "5px" }}
+                    {ETHChange > 0 ? (
+                      <div
+                        className="greenBox text-center justify-content-center"
+                        style={{ width: "6.5em" }}
                       >
-                        {" "}
-                        +8%
-                      </label>
-                    </div>
+                        <FontAwesomeIcon
+                          className="faArrowTrendUp greenBoxYazilar"
+                          icon={faArrowTrendUp}
+                        />
+                        <label
+                          className="greenBoxYazilar"
+                          style={{ paddingLeft: "5px" }}
+                        >
+                          {" "}
+                          {ETHChange}
+                        </label>
+                      </div>
+                    ) : (
+                      <div
+                        className="redBox text-center justify-content-center"
+                        style={{ width: "6.5em" }}
+                      >
+                        <FontAwesomeIcon
+                          className="faArrowTrendDown redBoxYazilar"
+                          icon={faArrowTrendDown}
+                        />
+                        <label
+                          className="redBoxYazilar"
+                          style={{ paddingLeft: "5px" }}
+                        >
+                          {" "}
+                          {ETHChange}
+                        </label>
+                      </div>
+                    )}
                   </MDBCol>
                 </MDBRow>
               </MDBCol>
