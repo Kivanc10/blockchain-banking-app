@@ -37,7 +37,7 @@ import sol from "./raw/sol.png";
 import doge from "./raw/doge.png";
 import Chart from "./monthlyChart";
 import { MDBTable, MDBTableBody } from "mdb-react-ui-kit";
-import { getExchangeRates, getChangeRates } from "../utils/exchangeRate";
+import { getExchangeRates, getETHChange } from "../utils/exchangeRate";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 const { Content, Sider } = Layout;
@@ -61,6 +61,7 @@ const Dashboard = () => {
   const [userBalance, setUserBalance] = useState(0);
   const [transactions, setTransactions] = useState([]);
   const [childObjects, setChildObjects] = useState([]);
+  const [ETHChange, setETHChange] = useState(0);
   const {
     currentAccount,
     addUser,
@@ -72,9 +73,12 @@ const Dashboard = () => {
   } = useContext(BankingContext);
   const callApi = async () => {
     const data = await getExchangeRates();
+    const change = await getETHChange();
     setCurrencyData(data);
+    setETHChange(change);
     console.log("hello");
     console.log(data);
+    console.log(change);
   };
 
   useEffect(() => {
@@ -118,7 +122,6 @@ const Dashboard = () => {
 
   const getChildrenFeatures = async () => {};
 
-  const navigate = useNavigate();
   return (
     <Layout hasSider>
       <Navbar type="normal"></Navbar>
@@ -142,17 +145,14 @@ const Dashboard = () => {
               >
                 <MDBRow className="d-flex justify-content-evenly">
                   <div
-                    className="d-flex justify-content-evenly mb-3 font3"
+                    className="d-flex justify-content-evenly mb-4 font2"
                     style={{ marginTop: "30px" }}
                   >
-                    My Wallet Summary
+                    Portfolio
                   </div>
                 </MDBRow>
                 <MDBRow>
                   <MDBCol>
-                    <div className="d-flex justify-content-evenly mb-3 font2">
-                      Portfolio
-                    </div>
                     <div className="d-flex text-center align-items-center justify-content-evenly mb-1 font1">
                       {userBalance}
                       <div
@@ -164,6 +164,20 @@ const Dashboard = () => {
                         ETH
                       </div>
                     </div>
+                    <div
+                      className="d-flex text-center align-items-center justify-content-evenly mb-1 font1"
+                      style={{ marginTop: "20px" }}
+                    >
+                      0INHVAL
+                      <div
+                        style={{
+                          fontSize: 20,
+                          color: "white",
+                        }}
+                      >
+                        INH
+                      </div>
+                    </div>
                   </MDBCol>
                   <MDBCol>
                     <div className="d-flex justify-content-evenly mb-3 font2">
@@ -172,7 +186,14 @@ const Dashboard = () => {
                     <div className="d-flex justify-content-evenly mb-1 font1-2">
                       {userBalance === "0" && <p>$0</p>}
                       {userBalance !== "0" && ( // yapılcak
-                        <p>$2555</p>
+                        <p>
+                          $
+                          {(
+                            (ETHChange / 100) *
+                            currencyData.ETH *
+                            userBalance
+                          ).toFixed(2)}
+                        </p>
                       )}
                     </div>
                   </MDBCol>
@@ -193,7 +214,7 @@ const Dashboard = () => {
                         style={{ paddingLeft: "5px" }}
                       >
                         {" "}
-                        +8%
+                        {ETHChange}
                       </label>
                     </div>
                   </MDBCol>

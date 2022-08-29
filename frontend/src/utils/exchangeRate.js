@@ -32,3 +32,23 @@ export const getExchangeRates = async () => {
 
   return {};
 };
+
+export const getETHChange = async () => {
+  const url =
+    "https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol=ETH";
+  const headers = {
+    "X-CMC_PRO_API_KEY": "181b09aa-f100-473d-88e4-a27101b53ebb",
+  };
+
+  try {
+    const res = await fetch(url, { method: "GET", headers });
+    console.log(res);
+    const json = await res.json();
+    const percentage24h = json.data.ETH.quote.USD.percent_change_24h;
+    if (!percentage24h) return 5;
+    return percentage24h.toFixed(2);
+  } catch (e) {
+    console.log("error", e);
+  }
+  return 0;
+};
