@@ -36,6 +36,8 @@ contract BankingApp {
     event InheritumSent(address from, address to, uint256 amount);
     event allowanceTest(address recipient, uint256 amount);
 
+    Transaction[] public GeneralTransactions;
+
     // persona ait transactionlar
     mapping(address => Transaction[]) transactions;
     mapping(address => Person) userList; // getUser fonk old için private yapıldı
@@ -70,6 +72,14 @@ contract BankingApp {
                     _amount
                 )
             );
+            GeneralTransactions.push(
+                Transaction(
+                    block.timestamp,
+                    msg.sender, // gönderen
+                    _to, // alan
+                    _amount
+                )
+            );
             transactions[_to].push(
                 Transaction(
                     block.timestamp,
@@ -78,6 +88,14 @@ contract BankingApp {
                     _amount
                 )
             );
+            // GeneralTransactions.push(
+            //     Transaction(
+            //         block.timestamp,
+            //         msg.sender, // alan
+            //         _to, // gönderen
+            //         _amount
+            //     )
+            // );
         } else {
             transactions[_to].push(
                 Transaction(
@@ -95,7 +113,28 @@ contract BankingApp {
                     _amount
                 )
             );
+            GeneralTransactions.push(
+                Transaction(
+                    block.timestamp,
+                    _to, // gönderen
+                    msg.sender, // alan
+                    _amount
+                )
+            );
+
+            // GeneralTransactions.push(
+            //     Transaction(
+            //         block.timestamp,
+            //         _to, // gönderen
+            //         msg.sender, // alan
+            //         _amount
+            //     )
+            // );
         }
+    }
+
+    function getAllTransactionRecorded() public view returns (Transaction[] memory) {
+        return GeneralTransactions;
     }
 
     // persona göre transaction history getir
@@ -166,8 +205,6 @@ contract BankingApp {
         _;
     }
 
-   
-
     /*
     çocuk eklemenin son fonku (son adımı)
     eklenen çocuk(addChild() ile) ilgili normal accounta (msg.sender) bağlanıyor
@@ -212,13 +249,15 @@ contract BankingApp {
 
         persons[index].children.push(childAccount); // genel db de update edilmeli (person objesi)
 
-     
+        if (
+            keccak256(bytes(userList[childAccount].name)) !=
+            keccak256(bytes(""))
+        ) {
+            // is child already exist
+            Person memory childTemp = getUser(childAccount);
+            uint256 childParentLen = childTemp.parents.length; // 1 -> 2
+            address[] memory t_parents = childTemp.parents;
 
-        if (keccak256(bytes(userList[childAccount].name)) != keccak256(bytes(""))) { // is child already exist
-            Person memory childTemp =  getUser(childAccount);
-            uint childParentLen = childTemp.parents.length; // 1 -> 2
-            address [] memory t_parents = childTemp.parents;
-            
             // childTemp.parents.push(msg.sender);
             userList[childAccount] = Person(
                 _name,
@@ -226,13 +265,14 @@ contract BankingApp {
                 0,
                 true,
                 new address[](0),
-                new address[](childParentLen+1), // 1 ebeveyn (max) (degisebilir)
+                new address[](childParentLen + 1), // 1 ebeveyn (max) (degisebilir)
                 block.timestamp
             );
-              //t_parents.push(msg.sender); // push 
+            //t_parents.push(msg.sender); // push
 
-             // userList[childAccount].parents = childTemp.parents; // updata parents
-              for (uint i = 0;i<childParentLen+1;i++) { // 2
+            // userList[childAccount].parents = childTemp.parents; // updata parents
+            for (uint256 i = 0; i < childParentLen + 1; i++) {
+                // 2
                 //   if (i < childParentLen) { // 0 1 2
                 //       userList[childAccount].parents[i] = t_parents[i];
                 //   }else{
@@ -240,32 +280,26 @@ contract BankingApp {
                 //   }
                 if (i == childParentLen) {
                     userList[childAccount].parents[i] = msg.sender;
-                }else{
+                } else {
                     userList[childAccount].parents[i] = t_parents[i];
                 }
-              }
-              
-
-        }else{
-             userList[childAccount] = Person(
-                    _name,
-                    _age,
-                    0,
-                    true,
-                    new address[](0),
-                    new address[](1), // 1 ebeveyn (max) (degisebilir)
-                    block.timestamp
-                );
+            }
+        } else {
+            userList[childAccount] = Person(
+                _name,
+                _age,
+                0,
+                true,
+                new address[](0),
+                new address[](1), // 1 ebeveyn (max) (degisebilir)
+                block.timestamp
+            );
             //t_parents[childParentLen] = msg.sender;
             userList[childAccount].parents[0] = msg.sender; // child -> parent
         }
         // Person memory childTemp =  getUser(childAccount);
         // uint childParentLen = childTemp.parents.length; // 1 -> 2
 
-        
-        
-
-       
         /*
          string name;
         uint256 age;
@@ -444,7 +478,7 @@ contract BankingApp {
         public
         payable
         isAdult(userList[msg.sender].isLimited)
-        // checkAllowance(amount)
+    // checkAllowance(amount)
     {
         // amount kadar token göndermek için kontrol yapılıyor.(admin izin vermeli)
         //require(userList[msg.sender].isLimited == false,"You have a limited account");
