@@ -42,8 +42,24 @@ useEffect(() => {
   load().catch((e) => console.log("err ---> ", e.message))
   // search(setSearchedAddress,allTransactions)
 
-}, [balance])
+  if(searchedAddress !== "") {
+    x();
+  }else{
+    setFilteredData(allTransactions)
+  }
 
+}, [searchedAddress])
+
+
+const x = () => {
+  let t = []
+  allTransactions.forEach((e,i) => {
+    if ((Number("" + e.sender) === Number(searchedAddress) || Number("" + e.receiver) === Number(searchedAddress))) {
+        t.push(e);
+    }
+  })
+  setFilteredData(t)
+}
 
 
   return(
@@ -118,48 +134,16 @@ useEffect(() => {
               </thead>
               <tbody>
 
-                {(show && (allTransactions.length >= 1 && allTransactions !== undefined && allTransactions !== null)) ? (
-
-                  allTransactions.map((e, i) => (
-
-                    (searchedAddress === "" ? (
-                      <tr key={e.timestamp.toString()} >
-                        <th scope="row">{i + 1}</th>
-                        <td>{e.sender}</td>
-                        <td>{e.receiver} </td> {/*{e.address}*/}
-                        <td>{formatEther(e.amount.toString()) + " ETH"}</td>
-                        <td>{e.timestamp.toString()}</td>
-                      </tr>
-                    ) : (
-                      ((Number("" + e.sender) === Number(searchedAddress) || Number("" + e.receiver) === Number(searchedAddress)) ? (
-                        <tr key={e.timestamp.toString()} >
-                          <th scope="row">{i + 1}</th>
-                          <td>{e.sender}</td>
-                          <td>{e.receiver} </td> {/*{e.address}*/}
-                          <td>{formatEther(e.amount.toString())+ " ETH"}</td>
-                          <td>{e.timestamp.toString()}</td>
-                        </tr>
-                      ) : (
-                        <p></p>
-                      ))
-
-                    ))
-
-
-
-                  ))
-                ) : (
-                  <p></p>
-                )}
+              
 
 
               </tbody>
             </table>
           </div>
           {/* Table  End*/}
-        {/* <div className="container-fluid col-8 justify-content-center bg-light ">
-        <DataList transactions={allTransactions} style={{width:'100%'}} />
-        </div> */}
+        <div className="container-fluid col-8 justify-content-center bg-light ">
+        <DataList transactions={filteredData} style={{width:'100%'}} />
+        </div>
         {/* Table  End*/}
       </Content>
     </Layout>
