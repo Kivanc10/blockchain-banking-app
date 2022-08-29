@@ -133,7 +133,7 @@ const Transaction = () => {
                 marginBottom: "10px",
               }}
             >
-              <DataList transactions={transactions} />
+              <DataList transactions={transactions} type="transaction" />
             </div>
           </div>
         </Content>

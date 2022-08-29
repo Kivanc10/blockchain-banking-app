@@ -395,6 +395,9 @@ export const BankingProvider = ({ children }) => {
     }
   };
 
+
+  
+
   const getTransactionHistory = async () => {
     try {
       let contractV2Bank = getGlobalState("contractBank");
@@ -505,7 +508,7 @@ export const BankingProvider = ({ children }) => {
         getAllTransactionByOwner,
         getBalanceOfInheritumToken,
         getAllAddressByOwner,
-        getAllUsers
+        getAllUsers        
       }}
     >
       {children}
