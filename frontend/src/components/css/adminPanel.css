@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@700&display=swap");
+
+body {
+  background-image: url(../raw/background.jpg);
+}
+
+.firstTopRight {
+  width: 100%;
+  background-color: rgb(164, 158, 218);
+  /* margin-left: 45px; */
+}
+
+.firstSubContainer {
+}
+
+.graphicBig1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border: 1px solid black;
+  padding: 100px;
+  height: 500px;
+  border-radius: 50px;
+}
+
+.graphicBig2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: bisque; */
+  height: 500px;
+}
+
+.smallGraphics {
+  padding-top: 75px;
+}
+
+.graphicSmall1 {
+  display: flex;
+  justify-content: flex-start;
+  padding: 130px;
+  /* margin-right: 12px; */
+}
+
+.graphicSmall2 {
+  display: flex;
+  justify-content: center;
+  /* margin-right: 1px; */
+}
+
+.graphicSmall3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.smg3Top {
+  justify-content: center;
+  align-items: center;
+}
+
+.smg3Bottom {
+}
+
+.mainWrapper {
+  padding: 40px;
+}
+
+.navBarDiv {
+  border-bottom: 5px solid whitesmoke;
+}
+
+.navBarStyle1 {
+  /* background-color: rgb(113, 114, 165); */
+  background-color: white;
+  height: 100%;
+}
+
+.userListTxt {
+  /* color: white; */
+  color: black;
+}
+
+.fakeImage {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  padding: 25px;
+  background-color: aqua;
+}
+
+.addNewDiv {
+  width: 130px;
+  height: 40px;
+  border-radius: 50px;
+  background-color: rgb(45, 61, 179);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addNewText {
+  align-items: center;
+  color: white;
+}
+
+.navBar2 {
+  height: 150px;
+  border-bottom: 1px solid bisque;
+}
+.rightIcons {
+  margin-right: 15px;
+}
+.tablediv {
+  background-color: white;
+}
+
+.smallGraphic3Div {
+  display: flex;
+  flex-direction: column;
+}
+
+.victoryChartWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.customerSatisfactionSurvey {
+  width: 100%;
+  height: 100%;
+}
