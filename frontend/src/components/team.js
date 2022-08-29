@@ -22,14 +22,15 @@ const Team = () => {
           class="col-12"
           style={{ marginTop: "150px", marginBottom: "50px" }}
         >
-          <h1 style={{ color: "purple" }}>Our Team</h1>
+          <h1 style={{ color: "purple" }}>Our
+          <span style={{ color: "rgb(114, 114, 194)" }}> Team</span></h1>
         </div>
         <div class="col-1">
           <div class="card TeamsBorder" style={{ width: "10rem;" }}>
             <img className="card-img-top" src={senaN} alt="icerik"></img>
             <div class="card-body">
               <h6 class="card-title mb-2 teamsHeader">Senanur Katipoğlu</h6>
-              <p class="card-text">Product Owner & Mentor</p>
+              <p class="card-text"style={{color:'black'}}>Product Owner & Mentor</p>
             </div>
           </div>
         </div>
@@ -38,7 +39,7 @@ const Team = () => {
             <img className="card-img-top" src={SimgeB} alt="icerik"></img>
             <div class="card-body">
               <h6 class="card-title mb-2 teamsHeader">Simge Batur</h6>
-              <p class="card-text">Business Analyst</p>
+              <p class="card-text"style={{color:'black'}}>Business Analyst</p>
             </div>
           </div>
         </div>
@@ -47,7 +48,7 @@ const Team = () => {
             <img className="card-img-top" src={aysenB} alt="icerik"></img>
             <div class="card-body">
               <h6 class="card-title mb-2 teamsHeader">Ayşen Bakış</h6>
-              <p class="card-text">Agile Coach</p>
+              <p class="card-text"style={{color:'black'}}>Agile Coach</p>
             </div>
           </div>
         </div>
@@ -56,7 +57,7 @@ const Team = () => {
             <img className="card-img-top" src={ArdaS} alt="icerik"></img>
             <div class="card-body">
               <h6 class="card-title mb-2 teamsHeader">Arda Sönmezler</h6>
-              <p class="card-text">Software Developer</p>
+              <p class="card-text"style={{color:'black'}}>Software Developer</p>
             </div>
           </div>
         </div>
@@ -69,7 +70,7 @@ const Team = () => {
             <img className="card-img-top" src={KaanK} alt="icerik"></img>
             <div class="card-body">
               <h6 class="card-title mb-2 teamsHeader">Kaan Kaftanoğlu</h6>
-              <p class="card-text">Business Analyst</p>
+              <p class="card-text"style={{color:'black'}}>Business Analyst</p>
             </div>
           </div>
         </div>
@@ -78,7 +79,7 @@ const Team = () => {
             <img className="card-img-top" src={SinejanY} alt="icerik"></img>
             <div class="card-body">
               <h6 class="card-title mb-2 teamsHeader">Sinejan Yıldırım</h6>
-              <p class="card-text">Business Analyst</p>
+              <p class="card-text"style={{color:'black'}}>Business Analyst</p>
             </div>
           </div>
         </div>
@@ -87,7 +88,7 @@ const Team = () => {
             <img className="card-img-top" src={KivancK} alt="icerik"></img>
             <div class="card-body">
               <h6 class="card-title mb-2 teamsHeader">Kıvanç Aydoğmuş</h6>
-              <p class="card-text">Software Developer</p>
+              <p class="card-text"style={{color:'black'}}>Software Developer</p>
             </div>
           </div>
         </div>
@@ -96,7 +97,7 @@ const Team = () => {
             <img className="card-img-top" src={GizemZ} alt="icerik"></img>
             <div class="card-body">
               <h6 class="card-title mb-2 teamsHeader">Gizem Zorba</h6>
-              <p class="card-text">Software Developer</p>
+              <p class="card-text"style={{color:'black'}}>Software Developer</p>
             </div>
           </div>
         </div>
@@ -108,7 +109,7 @@ const Team = () => {
             <img className="card-img-top" src={BerkayT} alt="icerik"></img>
             <div class="card-body">
               <h6 class="card-title mb-2 teamsHeader">Berkay Tuğut</h6>
-              <p class="card-text">Software Developer</p>
+              <p class="card-text" style={{color:'black'}}>Software Developer</p>
             </div>
           </div>
         </div>
@@ -117,7 +118,7 @@ const Team = () => {
             <img className="card-img-top" src={AbdullahK} alt="icerik"></img>
             <div class="card-body">
               <h6 class="card-title mb-2 teamsHeader">Abdullah Küsgülü</h6>
-              <p class="card-text">Software Developer</p>
+              <p class="card-text"style={{color:'black'}}>Software Developer</p>
             </div>
           </div>
         </div>
@@ -126,7 +127,7 @@ const Team = () => {
             <img className="card-img-top" src={HuseyinO} alt="icerik"></img>
             <div class="card-body">
               <h6 class="card-title mb-2 teamsHeader">Hüseyin Özkale</h6>
-              <p class="card-text">Software Developer</p>
+              <p class="card-text"style={{color:'black'}}>Software Developer</p>
             </div>
           </div>
         </div>
@@ -135,7 +136,7 @@ const Team = () => {
             <img className="card-img-top" src={MusaM} alt="icerik"></img>
             <div class="card-body">
               <h6 class="card-title mb-2 teamsHeader ">Musa Meriç</h6>
-              <p class="card-text">Software Developer</p>
+              <p class="card-text"style={{color:'black'}}>Software Developer</p>
             </div>
           </div>
         </div>
