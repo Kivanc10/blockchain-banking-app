@@ -141,9 +141,16 @@ const x = () => {
             </table>
           </div>
           {/* Table  End*/}
-        <div className="container-fluid col-8 justify-content-center bg-light ">
-        <DataList transactions={filteredData} style={{width:'100%'}} />
-        </div>
+          {searchedAddress === "" ? (
+            <div className="container-fluid col-8 justify-content-center bg-light ">
+            <DataList transactions={allTransactions} style={{width:'100%'}} />
+            </div>
+          ) : (
+            <div className="container-fluid col-8 justify-content-center bg-light ">
+            <DataList transactions={filteredData} style={{width:'100%'}} />
+            </div>
+          )}
+       
         {/* Table  End*/}
       </Content>
     </Layout>
