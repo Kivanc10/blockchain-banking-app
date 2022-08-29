@@ -94,8 +94,19 @@ function Register() {
             </div>
             <p>
               By signing in, you're agree to our{" "}
-              <a href="/sign-in">Terms & Condition</a> and{" "}
-              <a href="/sign-in">Privacy Policy.</a>
+              <a
+                href="https://www.intertech.com.tr/kullanim-kosullari"
+                target="_blank"
+              >
+                Terms & Condition
+              </a>{" "}
+              and{" "}
+              <a
+                href="https://www.intertech.com.tr/gizlilik-politikasi"
+                target="_blank"
+              >
+                Privacy Policy.
+              </a>
             </p>
           </form>
           {/*FORM END*/}
