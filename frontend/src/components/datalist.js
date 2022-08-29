@@ -82,6 +82,18 @@ const DataList = ({ transactions,type}) => {
           address : arr[i].address
         };
         data.push(tempObj);
+        if(arr[i].children.length >= 1) {
+          for (let y = 0;y < arr[i].children.length;y++) {
+            trDate = new Date(arr[i].children[y].data.createdTime * 1000);
+            tempObj = {
+            key: i + " child",
+            date: trDate.toLocaleString(),
+            name: arr[i].children[y].data.name + " (inheritor)",
+            address : arr[i].children[y].address
+          };
+          data.push(tempObj);  
+          }
+        }
       }
       columns =  [
         {

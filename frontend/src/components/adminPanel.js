@@ -96,9 +96,18 @@ const App = () => {
       
       // ti["address"] = allAddresses[i];
       // window.alert(Object.keys(ti))
+      let childT = []
+      if (ti.children !== undefined && ti.children.length !== 0) {
+        let tx = await getCurrentUserInfo(ti.children[i]);
+        childT.push({
+          data : tx,
+          address : ti.children[i]
+        })
+      }
       td.push({
         data : ti,
-        address : allAddresses[i]
+        address : allAddresses[i],
+        children : childT
       });
     }
     setUserInfos(td);
