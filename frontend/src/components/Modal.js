@@ -1,16 +1,19 @@
 import { Button, Modal, Slider, Switch } from "antd";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { DatePicker, Space } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MDBRow, MDBCol } from "mdb-react-ui-kit";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { BankingContext } from "../context/BankingContext";
 
 const App = ({ inheritor_name, age, value, remainingDay = 352 }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-
+  const [amount, setAmount] = useState("");
   const showModal = () => {
     setIsModalVisible(true);
   };
+
+  const { withdrawBack, deposit } = useContext(BankingContext);
 
   const handleOk = () => {
     setIsModalVisible(false);
@@ -25,6 +28,15 @@ const App = ({ inheritor_name, age, value, remainingDay = 352 }) => {
   };
   const onChange = (date, dateString) => {
     console.log(date, dateString);
+  };
+
+  const updateInheritance = () => {
+    // FILL THIS
+    // GET CHILD ADDRESS
+    const childAddress = ""; // REPLACE THIS
+
+    withdrawBack(childAddress);
+    deposit(childAddress, amount);
   };
 
   return (
@@ -78,16 +90,25 @@ const App = ({ inheritor_name, age, value, remainingDay = 352 }) => {
                 <div className="mb-3">
                   <label>Inheritance Amount(ETH)</label>
                   <input
-                    type="text"
+                    type="number"
                     className="form-control"
                     placeholder="New amount"
-                    onChange={(e) => {}}
-                    value={""}
+                    onChange={(e) => {
+                      setAmount(e.target.value);
+                    }}
+                    value={amount}
                   />
                 </div>
                 <hr />
                 <div className="d-grid mb-2">
-                  <button type="submit" className="btn btn-primary continue">
+                  <button
+                    type="submit"
+                    className="btn btn-primary continue"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      updateInheritance();
+                    }}
+                  >
                     Confirm
                   </button>
                 </div>
