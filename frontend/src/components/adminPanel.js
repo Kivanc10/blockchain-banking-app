@@ -63,6 +63,7 @@ const App = () => {
     const load = async () => {
       const userBalance = await getEtherBalanceOfCurrentUser();
       const users = await getAllUsers();
+       //window.alert(users)
       const allAddresses = await getAllAddressByOwner();
       // window.alert(allAddresses);
       setUserBalance(userBalance.toString());
@@ -111,6 +112,7 @@ const App = () => {
       });
     }
     setUserInfos(td);
+    // window.alert(userInfos)
   }
 
 

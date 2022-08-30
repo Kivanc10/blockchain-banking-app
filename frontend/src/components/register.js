@@ -43,7 +43,7 @@ function Register() {
   const checkIfRegisterCompleted = async () => {
     console.log("hey");
     const userObj = await getCurrentUserInfo(currentAccount);
-    if (userObj.name === "" && userObj.age === "0") {
+    if (userObj.name === "" && userObj.agestring === "") {
       setTimeout(() => {
         checkIfRegisterCompleted();
       }, 500);

@@ -10,7 +10,7 @@ const App = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [name, setName] = useState("");
   const [wallet_address, setWalletAddress] = useState("");
-  const [age, setAge] = useState(0);
+  const [agestr, setAgestr] = useState("");
   const { linkAccountToCurrentUser } = useContext(BankingContext);
 
   // const linkAccount = async (wallet_address, name, age) => {
@@ -26,9 +26,9 @@ const App = () => {
   // }
 
   const linkAccount = async () => {
-    console.log(wallet_address, name, age);
-    if (wallet_address !== "" && name !== "" && age !== 0) {
-      linkAccountToCurrentUser(wallet_address, name, age)
+    console.log(wallet_address, name, agestr);
+    if (wallet_address !== "" && name !== "" && agestr !== "") {
+      linkAccountToCurrentUser(wallet_address, name, agestr)
         .then((res) => {
           console.log(res);
           //window.location.reload();
@@ -53,11 +53,12 @@ const App = () => {
   };
   const onChange = (date, dateString) => {
     // ---
-    const birthDate = date._d.getFullYear();
-    const currentYear = new Date().getFullYear();
-    console.log(date);
-    setAge(currentYear - birthDate);
-    console.log("age --> ", age);
+    // const birthDate = date._d.getFullYear();
+    // const currentYear = new Date().getFullYear();
+    console.log(dateString);
+    setAgestr(dateString)
+    // setAgestr(currentYear - birthDate);
+    // console.log("age --> ", age);
   };
 
   return (
@@ -85,27 +86,27 @@ const App = () => {
           {/*FORM START*/}
           <form style={{ marginTop: "-3.4em" }}>
             <div className="mb-3">
-              <label>Name of the Inheritor</label>
+              <label>Full name</label>
               <input
                 type="text"
                 className="form-control"
-                placeholder=""
+                placeholder="Enter your Full name"
                 onChange={(e) => setName(e.target.value)}
                 value={name}
               />
             </div>
             <div className="mb-3">
-              <label>Wallet address of the Inheritor</label>
+              <label>Wallet number</label>
               <input
                 type="text"
                 className="form-control"
-                placeholder=""
+                placeholder="Enter your Wallet number"
                 onChange={(e) => setWalletAddress(e.target.value)}
                 value={wallet_address}
               />
             </div>
             <div className="mb-3 date">
-              <label>Inheritor's Date of Birth</label>
+              <label>Date of birth</label>
               <div>
                 <Space direction="vertical">
                   <DatePicker onChange={onChange} />
@@ -114,7 +115,7 @@ const App = () => {
             </div>
             <div className="d-grid mb-2">
               <button
-                onClick={linkAccount}
+                onClick={linkAccount}       
                 type="submit"
                 className="btn btn-primary continue"
               >

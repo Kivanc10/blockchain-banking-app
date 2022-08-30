@@ -462,11 +462,11 @@ const Dashboard = () => {
                     e // veri çekerken balance blockchainden all..(sonra) , reamining day
                   ) => (
                     <Modal
-                      inheritor_name={e[0].name}
-                      age={e[0].age}
-                      remainingDay={(18 - e[0].age) * 365}
-                      value={formatEther(e[0].balance.toString())}
-                    /> //e[1]
+                    inheritor_name={e[0].name}
+                    age={new Date().getFullYear() - parseInt(e[0].agestring.split("-")[0])}
+                    remainingDay={(18 - (new Date().getFullYear() - parseInt(e[0].agestring.split("-")[0]))) * 365}
+                    value={formatEther(e[0].balance.toString())}
+                  />  //e[1]
                   )
                 )
               )}

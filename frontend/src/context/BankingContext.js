@@ -108,7 +108,7 @@ export const BankingProvider = ({ children }) => {
         let userObj = await getCurrentUserInfo(currentAccount);
         if (currentAccount !== "") {
           console.log("userObj ---> ", userObj);
-          if (userObj.name === "" && userObj.age === "0") {
+          if (userObj.name === "" && userObj.agestring === "") {
             navigate("/register");
           } else if (userObj.isLimited === false) {
             setTempVal(true);
@@ -141,10 +141,8 @@ export const BankingProvider = ({ children }) => {
       });
 
       setCurrentAccount(accounts[0]);
-      let userObj = await getCurrentUserInfo(
-        "0xbE8D4707B4D9b7A87DE9bAc74A9Fa583ca04BfC1"
-      );
-      if (userObj.name === "" && userObj.age === 0) {
+      let userObj = await getCurrentUserInfo(currentAccount);
+      if (userObj.name === "" && userObj.agestring === "") {
         navigate("/register");
       } else {
         console.log("path --> ", location.pathname);
@@ -201,8 +199,8 @@ export const BankingProvider = ({ children }) => {
 
   const deposit = async (to, amount) => {
     try {
-      let weiVal = convertEtherToWei(amount);
-      await contractBank.methods.deposit(to, weiVal).send({
+      // let weiVal = convertEtherToWei(amount);
+      await contractBank.methods.deposit(to).send({
         from: currentAccount,
         gasLimit: 5000000,
         value: convertEtherToWei(amount),
@@ -214,7 +212,7 @@ export const BankingProvider = ({ children }) => {
 
   const withdraw = async () => {
     try {
-      await contractBank.methods.withdraw().call({ from: currentAccount });
+      await contractBank.methods.withdraw().send({ from: currentAccount });
     } catch (error) {
       console.log(error.message);
     }
@@ -224,23 +222,23 @@ export const BankingProvider = ({ children }) => {
     try {
       await contractBank.methods
         .withdrawBack(from)
-        .call({ from: currentAccount });
+        .send({ from: currentAccount });
     } catch (e) {
       console.log(e.message);
     }
   };
 
-  const myPending = async () => {
-    try {
-      const amount = await contractBank.methods
-        .myPending()
-        .call({ from: currentAccount });
-      return amount;
-    } catch (e) {
-      console.log(e.message);
-    }
-    return 0;
-  };
+  // const myPending = async () => {
+  //   try {
+  //     const amount = await contractBank.methods
+  //       .myPending()
+  //       .call({ from: currentAccount });
+  //     return amount;
+  //   } catch (e) {
+  //     console.log(e.message);
+  //   }
+  //   return 0;
+  // };
 
   const sendEthereum = async (address_to, amount) => {
     // 0X4fs....,"0.1"
@@ -318,6 +316,18 @@ export const BankingProvider = ({ children }) => {
       console.log(error.message);
     }
   };
+
+  const getPending = async (address) => {
+    try {
+      // let contractV2Bank = getGlobalState("contractBank");
+      let pending = await contractBank.methods.getPending(address).call()
+      //window.alert("pending --> ",pending)
+      return formatEther(pending);
+      
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
   const getMyChildrenInfos = async () => {
     try {
@@ -562,7 +572,8 @@ export const BankingProvider = ({ children }) => {
         deposit,
         withdraw,
         withdrawBack,
-        myPending,
+        getPending,
+        findTheChild
       }}
     >
       {children}

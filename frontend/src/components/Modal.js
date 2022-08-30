@@ -1,5 +1,5 @@
 import { Button, Modal, Slider, Switch } from "antd";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { DatePicker, Space } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MDBRow, MDBCol } from "mdb-react-ui-kit";
@@ -9,11 +9,44 @@ import { BankingContext } from "../context/BankingContext";
 const App = ({ inheritor_name, age, value, remainingDay = 352 }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [amount, setAmount] = useState("");
+  const [childAddress, setChildAddress] = useState("");
+  const [childPending, setChildPending] = useState("")
+
+
+
   const showModal = () => {
     setIsModalVisible(true);
   };
 
-  const { withdrawBack, deposit } = useContext(BankingContext);
+  useEffect(() => {
+    const load = async () => {
+      if (isModalVisible) {
+        let currentUser = await getCurrentUserInfo(currentAccount);
+        //window.alert(inheritor_name)
+        if (currentUser !== undefined) {
+          for (let i = 0; i < currentUser.children.length; i++) {
+            let childAddress = currentUser.children[i]; // get child address;
+            let tempChildObj = await getCurrentUserInfo(childAddress);
+            if (tempChildObj.name === inheritor_name) {
+              //let childPending = await getPending(childAddress);
+              setChildAddress(childAddress);
+              // window.alert(childAddress)
+              await getChildPending()
+              // window.alert("child pending --> ," + childPending)
+              // await withdrawBack(childAddress); // !ok
+              // await deposit(childAddress, amount); 
+              // return
+            }
+          }
+        }
+      }
+    }
+
+    load()
+    
+  }, [isModalVisible])
+
+  const { withdrawBack, deposit, getCurrentUserInfo, currentAccount, getPending } = useContext(BankingContext);
 
   const handleOk = () => {
     setIsModalVisible(false);
@@ -30,13 +63,33 @@ const App = ({ inheritor_name, age, value, remainingDay = 352 }) => {
     console.log(date, dateString);
   };
 
-  const updateInheritance = () => {
+  const getChildPending = async () => {
+    try {
+      let p = await getPending(childAddress);
+      console.log()
+      setChildPending(p);
+
+    } catch (error) {
+
+    }
+  }
+
+  const updateInheritance = async () => {
+
+    // let childObj = await findTheChild(inheritor_name,false);
     // FILL THIS
     // GET CHILD ADDRESS
-    const childAddress = ""; // REPLACE THIS
+    //  console.log("com -> ",childObj)
+    await withdrawBack(childAddress); // !ok
+    await deposit(childAddress, amount);
 
-    withdrawBack(childAddress);
-    deposit(childAddress, amount);
+
+    //const childAddress = childObj[0].address
+    //window.alert(childAddress)
+    //inheritor_name
+
+
+
   };
 
   return (
@@ -83,7 +136,7 @@ const App = ({ inheritor_name, age, value, remainingDay = 352 }) => {
                     }}
                     className="text-center"
                   >
-                    <span style={{}}>{remainingDay}</span>
+                    <span style={{}}>{childPending}</span>
                   </div>
                 </div>
 

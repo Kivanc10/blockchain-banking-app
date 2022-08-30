@@ -28,7 +28,7 @@ const GuestMain = () => {
       address: "",
     },
   ]);
-  const [age, setAge] = useState(0);
+  const [ageStr, setAgeStr] = useState("");
   // const [name,setName] = useState("")
 
   const {
@@ -43,6 +43,18 @@ const GuestMain = () => {
       setFakeBal(childBalance);
       // window.alert(typeof fakeBal)
       let childObj = await getCurrentUserInfo(currentAccount);
+     
+      // while(childObj.agestring === undefined) {
+      //   childObj = await getCurrentUserInfo(currentAccount);
+      // }
+      if(childObj.agestring !== undefined) {
+        setAgeStr(childObj.agestring)
+        console.log("adasd") 
+      }
+      console.log("zxczxcxz")
+      
+      
+      // window.alert(ageStr)
       // window.alert(parseInt(childObj.balance))
       // if(childObj === undefined || childObj === null) {
       //   childObj = await getCurrentUserInfo(currentAccount)
@@ -68,6 +80,7 @@ const GuestMain = () => {
           }
           setParentInfo(pObj);
           // window.alert("parent obj ---> ", parentObj)
+         
         }
       } else {
         window.alert("hata oluştu");
@@ -75,7 +88,7 @@ const GuestMain = () => {
     };
 
     load();
-  }, [childBalance, fakeBal]);
+  }, [childBalance, fakeBal,ageStr]);
 
   return (
     <Layout hasSider>
@@ -103,8 +116,10 @@ const GuestMain = () => {
           <Row style={{ marginTop: "10em" }}>
             <div className="container-fluid col-6 d-flex justify-content-center">
               <div className="container tRemain">
-                <h4 className="text-center">28/12/2027</h4>
-                <Count />
+                <h4 className="text-center">{ageStr.split("-")[2] + "/" + ageStr.split("-")[1] + "/" + (parseInt(ageStr.split("-")[0]) + 18)}</h4>
+                {/*  */}
+                
+                <Count d={new Date(parseInt(ageStr.split("-")[0]) + 18 + "/" + ageStr.split("-")[1] + "/" + ageStr.split("-")[2])} />
                 <Row>
                   <div className="container-fluid text-center d-flex justify-content-center">
                     <p style={{ fontSize: "0.7em", fontWeight: "Bold" }}>

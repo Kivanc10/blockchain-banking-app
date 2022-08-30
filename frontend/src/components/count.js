@@ -3,7 +3,7 @@ import React from 'react';
 const { Countdown } = Statistic;
 const deadline = new Date('2023/10/27'); // Moment is also OK
 
-const App = () => {
+const App = ({d}) => {
   const onFinish = () => {
     console.log('finished!');
   };
@@ -17,7 +17,7 @@ const App = () => {
     <div className="App">
       <Row>
         <div className="container-fluid text-center d-flex justify-content-center">
-          <Countdown title="" value={deadline} format="YY MM DD HH mm ss" className='countItems' style={{ backgroundColor: '#ff5481', width: '28em', borderRadius: '25px' }} />
+          <Countdown title="" value={d} format="YY MM DD HH mm ss" className='countItems' style={{ backgroundColor: '#ff5481', width: '28em', borderRadius: '25px' }} />
 
         </div>
       </Row>
