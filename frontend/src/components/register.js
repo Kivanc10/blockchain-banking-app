@@ -29,7 +29,8 @@ function Register() {
   const [id, setId] = useState("");
 
   let navigate = useNavigate();
-  const { currentAccount, addUser } = useContext(BankingContext);
+  const { currentAccount, addUser, getCurrentUserInfo } =
+    useContext(BankingContext);
 
   const onChange = (date, dateString) => {
     const birthDate = date._d.getFullYear();
@@ -39,16 +40,23 @@ function Register() {
     console.log("age --> ", age);
   };
 
-  const addUserToSystem = async () => {
-    addUser(fNmae + lName, age, false)
-      .then((res) => {
-        //console.log(res)
-        navigate("/dashboard");
-        window.location.reload();
-      })
-      .catch((e) => {
-        console.log("error ->", e.message);
-      });
+  const checkIfRegisterCompleted = async () => {
+    console.log("hey");
+    const userObj = await getCurrentUserInfo(currentAccount);
+    if (userObj.name === "" && userObj.age === "0") {
+      setTimeout(() => {
+        checkIfRegisterCompleted();
+      }, 500);
+    } else {
+      navigate("/dashboard");
+    }
+  };
+
+  const addUserToSystem = async (e) => {
+    e.preventDefault();
+    const res = await addUser(fNmae + lName, age, false);
+    console.log(res);
+    checkIfRegisterCompleted();
   };
 
   return (
