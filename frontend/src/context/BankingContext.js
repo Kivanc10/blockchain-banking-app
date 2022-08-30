@@ -199,6 +199,49 @@ export const BankingProvider = ({ children }) => {
     }
   };
 
+  const deposit = async (to, amount) => {
+    try {
+      let weiVal = convertEtherToWei(amount);
+      await contractBank.methods.deposit(to, weiVal).send({
+        from: currentAccount,
+        gasLimit: 5000000,
+        value: convertEtherToWei(amount),
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const withdraw = async () => {
+    try {
+      await contractBank.methods.withdraw().call({ from: currentAccount });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const withdrawBack = async (from) => {
+    try {
+      await contractBank.methods
+        .withdrawBack(from)
+        .call({ from: currentAccount });
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
+  const myPending = async () => {
+    try {
+      const amount = await contractBank.methods
+        .myPending()
+        .call({ from: currentAccount });
+      return amount;
+    } catch (e) {
+      console.log(e.message);
+    }
+    return 0;
+  };
+
   const sendEthereum = async (address_to, amount) => {
     // 0X4fs....,"0.1"
     try {
@@ -516,6 +559,10 @@ export const BankingProvider = ({ children }) => {
         getBalanceOfInheritumToken,
         getAllAddressByOwner,
         getAllUsers,
+        deposit,
+        withdraw,
+        withdrawBack,
+        myPending,
       }}
     >
       {children}

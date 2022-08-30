@@ -85,27 +85,27 @@ const App = () => {
           {/*FORM START*/}
           <form style={{ marginTop: "-3.4em" }}>
             <div className="mb-3">
-              <label>Full name</label>
+              <label>Name of the Inheritor</label>
               <input
                 type="text"
                 className="form-control"
-                placeholder="Enter your Full name"
+                placeholder=""
                 onChange={(e) => setName(e.target.value)}
                 value={name}
               />
             </div>
             <div className="mb-3">
-              <label>Wallet number</label>
+              <label>Wallet address of the Inheritor</label>
               <input
                 type="text"
                 className="form-control"
-                placeholder="Enter your Wallet number"
+                placeholder=""
                 onChange={(e) => setWalletAddress(e.target.value)}
                 value={wallet_address}
               />
             </div>
             <div className="mb-3 date">
-              <label>Date of birth</label>
+              <label>Inheritor's Date of Birth</label>
               <div>
                 <Space direction="vertical">
                   <DatePicker onChange={onChange} />

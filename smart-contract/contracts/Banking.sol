@@ -53,6 +53,33 @@ contract BankingApp {
         owner = _owner;
     }
 
+    uint256 public balancePool;
+    mapping(address => uint256) pending;
+    mapping(address => mapping(address => uint256)) deposits;
+
+    function deposit(address to) public payable {
+        balancePool += msg.value;
+        pending[to] += msg.value;
+        deposits[msg.sender][to] = msg.value;
+    }
+
+    function withdrawBack(address to) public payable {
+        uint256 amount = deposits[msg.sender][to];
+        balancePool -= amount;
+        pending[to] -= amount;
+        payable(msg.sender).transfer(amount);
+    }
+
+    function withdraw() external payable {
+        uint256 amount = pending[msg.sender];
+        pending[msg.sender] = 0;
+        payable(msg.sender).transfer(amount);
+    }
+
+    function myPending() public view returns (uint256) {
+        return pending[msg.sender];
+    }
+
     // para gönderilince persona transaction ekleme (direk çağırılmaz)
     // burdaki ayrım account un sender olup olmadığıdır. (gönderen veya alan olarak if check yapılır)
     //     (time,sender,receiver,amount) => Transaction struct
@@ -134,7 +161,11 @@ contract BankingApp {
         }
     }
 
-    function getAllTransactionRecorded() public view returns (Transaction[] memory) {
+    function getAllTransactionRecorded()
+        public
+        view
+        returns (Transaction[] memory)
+    {
         return GeneralTransactions;
     }
 
@@ -213,7 +244,7 @@ contract BankingApp {
      en son bu person objesi userListe eklenir ve chidl objesine çocuğun adresi eklenir
     */
 
-    function getUsersAddressByOwner() public view returns (address [] memory) {
+    function getUsersAddressByOwner() public view returns (address[] memory) {
         return user_address;
     }
 
