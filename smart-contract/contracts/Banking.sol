@@ -15,7 +15,7 @@ contract BankingApp {
         uint256 amount;
     }
     // define person struct
-   struct Person {
+    struct Person {
         string name;
         string agestring;
         uint256 balance;
@@ -79,7 +79,6 @@ contract BankingApp {
     function getPending(address user_address) public view returns (uint256) {
         return pending[user_address];
     }
-     
 
     // para gönderilince persona transaction ekleme (direk çağırılmaz)
     // burdaki ayrım account un sender olup olmadığıdır. (gönderen veya alan olarak if check yapılır)
@@ -198,7 +197,7 @@ contract BankingApp {
            after executing function , owner(admin) transfer money to the user in frontend.
             transfer(user_address,amount) 
 */
-      function addPerson(
+    function addPerson(
         // ok
         string memory _name,
         string memory _age,
@@ -228,6 +227,7 @@ contract BankingApp {
 
         return person_instance;
     }
+
     modifier checkAllowance(uint256 amount) {
         // ok
         // >= işlem yapmak için
@@ -288,13 +288,15 @@ contract BankingApp {
 
         persons[index].children.push(childAccount); // genel db de update edilmeli (person objesi)
 
-     
+        if (
+            keccak256(bytes(userList[childAccount].name)) !=
+            keccak256(bytes(""))
+        ) {
+            // is child already exist
+            Person memory childTemp = getUser(childAccount);
+            uint256 childParentLen = childTemp.parents.length; // 1 -> 2
+            address[] memory t_parents = childTemp.parents;
 
-        if (keccak256(bytes(userList[childAccount].name)) != keccak256(bytes(""))) { // is child already exist
-            Person memory childTemp =  getUser(childAccount);
-            uint childParentLen = childTemp.parents.length; // 1 -> 2
-            address [] memory t_parents = childTemp.parents;
-            
             // childTemp.parents.push(msg.sender);
             userList[childAccount] = Person(
                 _name,
@@ -302,13 +304,14 @@ contract BankingApp {
                 0,
                 true,
                 new address[](0),
-                new address[](childParentLen+1), // 1 ebeveyn (max) (degisebilir)
+                new address[](childParentLen + 1), // 1 ebeveyn (max) (degisebilir)
                 block.timestamp
             );
-              //t_parents.push(msg.sender); // push 
+            //t_parents.push(msg.sender); // push
 
-             // userList[childAccount].parents = childTemp.parents; // updata parents
-              for (uint i = 0;i<childParentLen+1;i++) { // 2
+            // userList[childAccount].parents = childTemp.parents; // updata parents
+            for (uint256 i = 0; i < childParentLen + 1; i++) {
+                // 2
                 //   if (i < childParentLen) { // 0 1 2
                 //       userList[childAccount].parents[i] = t_parents[i];
                 //   }else{
@@ -316,32 +319,26 @@ contract BankingApp {
                 //   }
                 if (i == childParentLen) {
                     userList[childAccount].parents[i] = msg.sender;
-                }else{
+                } else {
                     userList[childAccount].parents[i] = t_parents[i];
                 }
-              }
-              
-
-        }else{
-             userList[childAccount] = Person(
-                    _name,
-                    ageString,
-                    0,
-                    true,
-                    new address[](0),
-                    new address[](1), // 1 ebeveyn (max) (degisebilir)
-                    block.timestamp
-                );
+            }
+        } else {
+            userList[childAccount] = Person(
+                _name,
+                ageString,
+                0,
+                true,
+                new address[](0),
+                new address[](1), // 1 ebeveyn (max) (degisebilir)
+                block.timestamp
+            );
             //t_parents[childParentLen] = msg.sender;
             userList[childAccount].parents[0] = msg.sender; // child -> parent
         }
         // Person memory childTemp =  getUser(childAccount);
         // uint childParentLen = childTemp.parents.length; // 1 -> 2
 
-        
-        
-
-       
         /*
          string name;
         uint256 age;
@@ -355,6 +352,7 @@ contract BankingApp {
         Person memory parentIns = userList[msg.sender];
         return parentIns;
     }
+
     // get all persons
 
     function getPersons() public view returns (Person[] memory) {
@@ -592,49 +590,52 @@ contract BankingApp {
         _;
     }
 
-    function makeAccountisLimited(address linked_account)
+    function makeAccountisLimited()
         public
-        isLimitedAccount(linked_account)
-        onlyOwner
+        isLimitedAccount(msg.sender)
+    // onlyOwner
     {
-        Person memory tempLinkedPerson = getUser(linked_account);
-        address parent_addr = tempLinkedPerson.parents[0];
-        Person memory oldChild = extractLinkedAccountFromParent(
-            linked_account,
-            parent_addr
-        );
+        Person memory tempLinkedPerson = getUser(msg.sender);
+        address[] memory parent_addr = tempLinkedPerson.parents;
+        Person memory oldChild = extractLinkedAccountFromParent(parent_addr);
         persons.push(oldChild);
     }
 
     function extractLinkedAccountFromParent(
-        address linked_account,
-        address parent_account
+        // address linked_account,
+        address[] memory parent_accounts
     ) internal returns (Person memory) {
-        Person memory parent = getUser(parent_account);
-        (Person memory t, uint256 parentIndex) = findThePerson(
-            parent.name,
-            false
-        );
-        // persons tan değiştir
-        // userListte değiştir
-        Person memory child = getUser(linked_account);
-        (Person memory t2, uint256 childIndex) = findThePerson(
-            child.name,
-            false
-        );
+        //
+        for (uint256 i = 0; i < parent_accounts.length; i++) {
+            Person memory parent = getUser(parent_accounts[i]);
+            (Person memory t, uint256 parentIndex) = findThePerson(
+                parent.name,
+                false
+            );
+            // persons tan değiştir
+            // userListte değiştir
+            Person memory child = getUser(msg.sender);
+            (Person memory t2, uint256 childIndex) = findThePerson(
+                child.name,
+                false
+            );
 
-        //parent[childIndex]
-        delete parent.children[childIndex]; // delete from sub children address arr
-        //parent.children.length--;
+            //parent[childIndex]
+            delete parent.children[childIndex]; // delete from sub children address arr
+            //parent.children.length--;
 
-        persons[parentIndex] = parent; // update parent in db
+            persons[parentIndex] = parent; // update parent in db
 
-        userList[parent_account] = parent;
+            userList[parent_accounts[i]] = parent;
+        }
+
+        //
+        Person memory child = getUser(msg.sender);
 
         child.isLimited = false;
         delete child.parents[0]; // delete child's parent
 
-        userList[linked_account] = child;
+        userList[msg.sender] = child;
         return child;
     }
 }
