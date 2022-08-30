@@ -28,13 +28,6 @@ const Navbar = ({ type }) => {
       <Menu.Item className="item mb-3" onClick={() => navigate("/transaction")}>
         <FontAwesomeIcon className="ServiceIcon" icon={faGlobe} /> Transactions
       </Menu.Item>
-      <Menu.Item className="item mb-3">
-        <FontAwesomeIcon
-          className="ServiceIcon"
-          icon={faArrowRightFromBracket}
-        />{" "}
-        Sign out
-      </Menu.Item>
     </Menu>
   );
 
@@ -46,13 +39,6 @@ const Navbar = ({ type }) => {
       </Menu.Item>
       <Menu.Item className="item">
         <FontAwesomeIcon className="ServiceIcon" icon={faGlobe} /> Transactions
-      </Menu.Item>
-      <Menu.Item className="item">
-        <FontAwesomeIcon
-          className="ServiceIcon"
-          icon={faArrowRightFromBracket}
-        />{" "}
-        Sign out
       </Menu.Item>
     </Menu>
   );
@@ -73,13 +59,6 @@ const Navbar = ({ type }) => {
           icon={faArrowAltCircleRight}
         />{" "}
         Logs
-      </Menu.Item>
-      <Menu.Item className="item mb-3">
-        <FontAwesomeIcon
-          className="ServiceIcon"
-          icon={faArrowRightFromBracket}
-        />{" "}
-        Sign out
       </Menu.Item>
       <img
         className="rounded mx-auto d-block fixed-bottom intertech2"
