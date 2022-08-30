@@ -39,28 +39,31 @@ class App extends Component {
       let numberOFChild = this.props.chartData.length;
       let childBals = 0;
       if (numberOFChild !== 0) {
+        console.log("chartdata(all) ---> ", this.props.chartData)
         console.log("chartdata ---> ", this.props.chartData[0][0])
 
-        this.props.chartData[0].forEach((e, i) => {
-          if (e.name !== undefined) {
+        this.props.chartData.forEach((e, i) => {
+          if (e[0].name !== undefined) {
             // window.alert(e[1].toString())
             //  window.alert(this.props.chartData)
             // window.alert(parseInt(e.balance.toString()))
-            childBals += Math.round(parseInt(e.balance.toString())*0.000000000000000001)
-
+            childBals += Math.round(parseInt(e[0].balance.toString())*0.000000000000000001)
+            // window.alert("xzxas")
             //window.alert(e.balance.toString())
           }
+          // window.alert(childBals)
         })
         //  window.alert(childBals)
-        this.props.chartData[0].forEach((e, i) => {
-          if (e.name !== undefined) {
+        this.props.chartData.forEach((e, i) => {
+          console.log("n --> ",e[0].balance.toString())
+          if (e[0].name !== undefined) {
             if (i >= colors.length) {
               options.data[0].dataPoints.push(
-                { y: (Math.round(e.balance.toString()) *0.000000000000000001 * 100) / (userBalance + childBals), label: e.name, color: "aqua" } // parseInt((e.balance * 100)/(userBalance + childBals))
+                { y: (Math.round(e[0].balance.toString()) *0.000000000000000001 * 100) / (userBalance + childBals), label: e[0].name, color: "aqua" } // parseInt((e.balance * 100)/(userBalance + childBals))
               )
             } else {
               options.data[0].dataPoints.push(
-                { y: (Math.round(e.balance.toString()) *0.000000000000000001 * 100) / (userBalance + childBals), label: e.name, color: colors[i] } // parseInt((e.balance * 100)/(userBalance + childBals))
+                { y: (Math.round(e[0].balance.toString()) *0.000000000000000001 * 100) / (userBalance + childBals), label: e[0].name, color: colors[i] } // parseInt((e.balance * 100)/(userBalance + childBals))
               )
             }
 

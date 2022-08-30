@@ -94,6 +94,7 @@ const Dashboard = () => {
       const transactions = await getTransactionHistory();
       let childObjects = await getMyChildrenInfos();
       setChildObjects(childObjects);
+      // window.alert(childObjects)
       setUserBalance(userBalance.toString());
       setINHBalance(INHBalance.toString());
       console.log("transactions --> ", transactions);
