@@ -76,9 +76,10 @@ contract BankingApp {
         payable(msg.sender).transfer(amount);
     }
 
-    function myPending() public view returns (uint256) {
-        return pending[msg.sender];
+    function getPending(address user_address) public view returns (uint256) {
+        return pending[user_address];
     }
+     
 
     // para gönderilince persona transaction ekleme (direk çağırılmaz)
     // burdaki ayrım account un sender olup olmadığıdır. (gönderen veya alan olarak if check yapılır)
@@ -223,6 +224,7 @@ contract BankingApp {
 
         //emit InheritumSent(owner,msg.sender,100000000000000000000);
         // tokens will be transferred by owner in fronted....
+        user_address.push(msg.sender);
 
         return person_instance;
     }
