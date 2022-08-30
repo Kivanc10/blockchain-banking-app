@@ -112,10 +112,10 @@ const x = () => {
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Search</Form.Label><br />
-              <Button onClick={() => {
+              {/* <Button onClick={() => {
                 setShow(!show)
                 // setSearchedAddress("")
-              }} className="form-control" style={{ height: '2.4em' }}><FontAwesomeIcon className="ServiceIcon" icon={faSearch} /></Button>
+              }} className="form-control" style={{ height: '2.4em' }}><FontAwesomeIcon className="ServiceIcon" icon={faSearch} /></Button> */}
             </Form.Group>
           </div>
           {/* Form  End*/}

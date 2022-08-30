@@ -249,7 +249,7 @@ export const BankingProvider = ({ children }) => {
         gasLimit: 5000000,
         value: convertEtherToWei(amount),
       });
-      await sendTokenToUserByAdmin(25);
+      await sendTokenToUserByAdmin(1);
       console.log(
         "balance after reward --> ",
         await contractToken.methods.balanceOf(currentAccount).call()
@@ -398,6 +398,18 @@ export const BankingProvider = ({ children }) => {
       console.log(error.message);
     }
   };
+
+  const makeAccountisLimited = async () => {
+    try {
+      await contractBank.methods.makeAccountisLimited().send({
+        from: currentAccount,
+        gasLimit: 5000000, // gas fee is increased
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
 
   const findTheChild = async (name, sendErrorBool = true) => {
     try {
@@ -573,7 +585,8 @@ export const BankingProvider = ({ children }) => {
         withdraw,
         withdrawBack,
         getPending,
-        findTheChild
+        findTheChild,
+        makeAccountisLimited
       }}
     >
       {children}
