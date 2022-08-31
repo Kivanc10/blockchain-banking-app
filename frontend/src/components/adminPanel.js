@@ -52,69 +52,81 @@ const sampleData = [
 ];
 
 const App = () => {
-  const {getEtherBalanceOfCurrentUser ,getAllUsers,getAllAddressByOwner ,getCurrentUserInfo} =
+  const { getEtherBalanceOfCurrentUser, getAllUsers, getAllAddressByOwner, getCurrentUserInfo } =
     useContext(BankingContext);
   const [userBalance, setUserBalance] = useState(0);
-  const [allUsers,setAllUsers] = useState([]);
-  const [allAddresses,setAllAddresses] = useState([]);
-  const [userInfos,setUserInfos] = useState([])
+  const [allUsers, setAllUsers] = useState([]);
+  const [allAddresses, setAllAddresses] = useState([]);
+  const [userInfos, setUserInfos] = useState([])
 
   useEffect(() => {
     const load = async () => {
       const userBalance = await getEtherBalanceOfCurrentUser();
       const users = await getAllUsers();
-       //window.alert(users)
+      //window.alert(users)
       const allAddresses = await getAllAddressByOwner();
       // window.alert(allAddresses);
       setUserBalance(userBalance.toString());
       setAllUsers(users);
       setAllAddresses(allAddresses)
-      console.log("admin users --> ",allUsers)
-      console.log("admin address -> ",allAddresses)
+      console.log("admin users --> ", allUsers)
+      console.log("admin address -> ", allAddresses)
 
-            
+
       // window.alert(allUsers);
-      
+
       //
 
 
-   
+
     };
     load().catch((e) => console.log("merr --> ", e.message));
     if (allAddresses.length !== 0) {
       fetchUserInfos()
     }
-   
+
     //window.alert(JSON.stringify(transactions))
     //  return () => previous = transactions.length;
     // return () => clearInterval(interval);
-  }, [userBalance,allAddresses.length]);
+  }, [userBalance, allAddresses.length]);
 
 
   const fetchUserInfos = async () => {
     let td = []
-    for (let i = 0 ;i < allAddresses.length;i++) {
+    for (let i = 0; i < allAddresses.length; i++) {
+      // window.alert(allAddresses)
+      console.log("ad --> ", allAddresses[i])
       let ti = await getCurrentUserInfo(allAddresses[i]);
 
-      
+
       // ti["address"] = allAddresses[i];
       // window.alert(Object.keys(ti))
+      console.log("t_ti => ", ti)
       let childT = []
       if (ti.children !== undefined && ti.children.length !== 0) {
-        let tx = await getCurrentUserInfo(ti.children[i]);
-        if(ti.children[i] !== "0x0000000000000000000000000000000000000000") {
-          childT.push({
-            data : tx,
-            address : ti.children[i]
-          })
+        for (let y = 0; y < ti.children.length; y++) {
+          let tx = await getCurrentUserInfo(ti.children[y]);
+          // window.alert(tx)
+          if (ti.children[y] !== "0x0000000000000000000000000000000000000000") {
+            childT.push({
+              data: tx,
+              address: ti.children[y]
+            })
+          }
+          // if (ti !== undefined && allAddresses[i] !== undefined && childT.data !== undefined) {
+            td.push({
+              data: ti,
+              address: allAddresses[i],
+              children: childT
+            });
+          // }
         }
-        
+
+
+
       }
-      td.push({
-        data : ti,
-        address : allAddresses[i],
-        children : childT
-      });
+
+
     }
     setUserInfos(td);
     // window.alert(userInfos)
@@ -198,7 +210,7 @@ const App = () => {
                 </nav>
               </div>
 
-              <DataList transactions={userInfos} type = "userList" />
+              <DataList transactions={userInfos} type="userList" />
               {/* <p>{JSON.stringify(userInfos)}</p> */}
             </div>
             <div className="row"></div>

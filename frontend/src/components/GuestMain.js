@@ -62,8 +62,8 @@ const GuestMain = () => {
         if (childObj.agestring !== undefined) {
           setAgeStr(childObj.agestring)
           console.log("adasd")
-          // setFullDate(parseInt(ageStr.split("-")[0]) + 18 + "/" + ageStr.split("-")[1] + "/" + ageStr.split("-")[2]);
-          setFullDate("08-31-2022") // denemek için ucmomment yap
+          setFullDate(parseInt(ageStr.split("-")[0]) + 18 + "/" + ageStr.split("-")[1] + "/" + ageStr.split("-")[2]);
+          // setFullDate("08-31-2022") // denemek için ucmomment yap
           if (new Date(fullDate).getFullYear() === new Date().getFullYear() && new Date(fullDate).getMonth() === new Date().getMonth() && new Date(fullDate).getDate() === new Date().getDate()) {
             // window.alert("time is upppppp");
             setCheckDate(false)
