@@ -50,10 +50,10 @@ const Navbar = ({ type }) => {
         src={logo}
         alt="HeaderImage"
       ></img>
-      <Menu.Item className="item mb-3">
+      <Menu.Item className="item mb-3" onClick={() => navigate("/adminpanel")}>
         <FontAwesomeIcon className="ServiceIcon" icon={faUsers} /> Users
       </Menu.Item>
-      <Menu.Item className="item mb-3">
+      <Menu.Item className="item mb-3" onClick={() => navigate("/logpage")}>
         <FontAwesomeIcon
           className="fa-solid fa-arrow-right-to-bracket"
           icon={faArrowAltCircleRight}
