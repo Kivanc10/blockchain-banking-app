@@ -599,6 +599,7 @@ contract BankingApp {
         address[] memory parent_addr = tempLinkedPerson.parents;
         Person memory oldChild = extractLinkedAccountFromParent(parent_addr);
         persons.push(oldChild);
+        user_address.push(msg.sender);
     }
 
     function extractLinkedAccountFromParent(
@@ -636,6 +637,7 @@ contract BankingApp {
         delete child.parents[0]; // delete child's parent
 
         userList[msg.sender] = child;
+        
         return child;
     }
 }

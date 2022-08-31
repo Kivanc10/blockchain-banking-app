@@ -71,11 +71,11 @@ class App extends Component {
         })
         
         options.data[0].dataPoints.push(
-          { y: parseInt((userBalance * 100) / (userBalance + childBals)), label: "Your balance", color: "red" } // parseInt((userBalance * 100) / (userBalance + childBals))
+          { y: parseInt((userBalance * 100) / (userBalance + childBals)), label: "Your balance", color: "#7172A5" } // parseInt((userBalance * 100) / (userBalance + childBals))
         )
       } else {
         options.data[0].dataPoints.push(
-          { y: parseInt((userBalance * 100) / (userBalance + childBals)), label: "Your balance", color: "red" }
+          { y: parseInt((userBalance * 100) / (userBalance + childBals)), label: "Your balance", color: "#7172A5" }
         )
       }
     } else {

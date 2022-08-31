@@ -69,6 +69,8 @@ const App = () => {
       setUserBalance(userBalance.toString());
       setAllUsers(users);
       setAllAddresses(allAddresses)
+      console.log("admin users --> ",allUsers)
+      console.log("admin address -> ",allAddresses)
 
             
       // window.alert(allUsers);
@@ -100,10 +102,13 @@ const App = () => {
       let childT = []
       if (ti.children !== undefined && ti.children.length !== 0) {
         let tx = await getCurrentUserInfo(ti.children[i]);
-        childT.push({
-          data : tx,
-          address : ti.children[i]
-        })
+        if(ti.children[i] !== "0x0000000000000000000000000000000000000000") {
+          childT.push({
+            data : tx,
+            address : ti.children[i]
+          })
+        }
+        
       }
       td.push({
         data : ti,

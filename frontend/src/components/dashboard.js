@@ -225,7 +225,9 @@ const Dashboard = () => {
                       <div className="d-flex justify-content-evenly mb-1 font1-3">
                         {userBalance === "0" && <p>$0</p>}
                         {userBalance !== "0" && ( // yapılcak
-                          <p>
+                          <p style={{
+                          
+                          }}>
                             $
                             {(
                               (ETHChange / 100) *
