@@ -31,6 +31,7 @@ async function main() {
   console.log("Token address:", token.address);
   const BankContract = await ethers.getContractFactory("BankingApp");
   const bankContract = await BankContract.deploy(token.address,token.getOwner()); // give contract address as argument
+  console.log("bank contract address:", bankContract.address);
   await bankContract.deployed();
 
   // We also save the contract's artifacts and address in the frontend directory
