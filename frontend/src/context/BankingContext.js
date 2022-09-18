@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers";
-
+import { useNavigate, useLocation } from "react-router-dom";
 import contract from "../contracts/BankingApp.json";
 import contractAddrs from "../contracts/contract-address.json";
 import tokenContract from "../contracts/Inheritium.json";
 import { setGlobalState, getGlobalState, setTempVal } from "../store";
-import Web3 from "web3";
-import { useNavigate, useLocation } from "react-router-dom";
+// import Web3 from "web3";
+const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
+const web3 = createAlchemyWeb3(process.env.REACT_APP_API_URL);
+
+
+
 
 const generateWeb3 = () => {
-  if (window.web3) {
-    window.web3 = new Web3(window.web3.currentProvider);
-    const web3 = window.web3; // BankContract
+  if (window.ethereum) {
+    // window.web3 = new Web3(window.web3.currentProvider);
+    // const web3 = window.web3; // BankContract
+    // window.alert(process.env.REACT_APP_ALCHEMY_KEY)
 
     const contractBank = new web3.eth.Contract(
       contract.abi,
@@ -27,7 +32,7 @@ const generateWeb3 = () => {
   return { web3: undefined, contractBank: undefined, contractToken: undefined };
 };
 
-const { web3, contractBank, contractToken } = generateWeb3();
+const { contractBank, contractToken } = generateWeb3();
 
 export const BankingContext = React.createContext();
 
@@ -35,10 +40,13 @@ const { ethereum } = window;
 
 // This will be used to call contract functions
 const createEthereumContract = () => {
-  const provider = new ethers.providers.Web3Provider(ethereum);
+//  const provider = new ethers.providers.Web3Provider(ethereum);
+  const provider = new ethers.providers.AlchemyProvider("goerli", process.env.REACT_APP_ALCHEMY_KEY)
+
   //const signer = provider.getSigner(); // bundan dolayı hata
   const wallet = new ethers.Wallet(process.env.REACT_APP_PRIVATE_KEY, provider);
-  const signer = wallet.provider.getSigner(wallet.address);
+  //const signer = wallet.provider.getSigner(wallet.address);
+  const walletSigner = wallet.connect(provider);
 
   const bankingContractForUsers = new ethers.Contract(
     contractAddrs.BankContract,
@@ -55,13 +63,13 @@ const createEthereumContract = () => {
   const inheritiumContractForAdmin = new ethers.Contract(
     contractAddrs.Token,
     tokenContract.abi,
-    signer
+    walletSigner
   );
 
   const bankContractForAdmin = new ethers.Contract(
     contractAddrs.Token,
     contract.abi,
-    signer
+    walletSigner
   );
 
   return {
@@ -77,7 +85,7 @@ const loadWeb3ForBank = async () => {
     if (!ethereum) {
       return console.error("Please install metamask !");
     }
-    window.web3 = new Web3(ethereum);
+    // window.web3 = new Web3(ethereum);
     await ethereum.enable();
     const networkId = await web3.eth.net.getId();
   } catch (error) {
@@ -561,6 +569,8 @@ export const BankingProvider = ({ children }) => {
     0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65   4
     0x47e179ec197488593b187f80a00eb0da91f1b9d0b13f8733639f19c30a34926a
     */
+    // window.alert(process.env.REACT_APP_API_URL)
+
   }, [currentAccount, contractBank, contractToken]);
 
   return (

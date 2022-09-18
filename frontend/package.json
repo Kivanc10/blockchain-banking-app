@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@alch/alchemy-web3": "^1.4.6",
     "@fortawesome/free-solid-svg-icons": "^6.1.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -30,8 +31,7 @@
     "react-scripts": "^5.0.1",
     "swiper": "^8.3.2",
     "victory": "^36.6.4",
-    "web-vitals": "^2.1.4",
-    "web3": "^1.7.1"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-app-rewired start",
