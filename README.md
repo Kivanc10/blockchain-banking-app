@@ -44,3 +44,6 @@ This blockchain banking app allows users to manage their Metamask accounts, send
 <img src="https://drive.google.com/uc?export=view&id=1yRRCzt8fHNJpiOOQVzLXaEA2sDo3_mPb" />
 
 
+### To see how the system work you can watch the video  <a href="https://www.youtube.com/watch?v=uolKl8fzZJs">here<a/>
+
+
